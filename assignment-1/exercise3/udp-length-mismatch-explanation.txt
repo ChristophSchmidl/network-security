@@ -1,0 +1,4 @@
+RFC768 regarding the User Datagram Protocol (UDP) states that the "Lenght" field is
+the length in octets of the user datagram including the header and the data.
+The size of the data therefore only incorporates the data without the size of the header.
+Therefore, the "Length" field should be 8 bytes larger than the size of the data.
