@@ -43,14 +43,3 @@ if __name__ == "__main__":
     size = 1024  # receive a maximum of 1024 bytes of data
     main()
 
-
-
-
-
-
-
-
-
-
-
-
