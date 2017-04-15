@@ -1,5 +1,7 @@
 # Network Security
 
+![alt tag](https://imgs.xkcd.com/comics/network.png)
+
 This repository contains all assignments for the course "Network Security" (NWI-IBC022) given at the Radboud University.
 
 ## Assignment 1 - Network Sniffer (Ethernet, IP, TCP, UDP, ICMP, ARP)
