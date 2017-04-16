@@ -18,3 +18,22 @@ Useful tutorial regarding assignment 1: https://www.youtube.com/playlist?list=PL
 
 
 ## Assignment 2 - Wireless Network Cracking (aircrack-ng, wireshark, arpspoof)
+
+Topics covered:
+
+* Usage of the following tools: aircrack-ng, wireshark, dsniff
+* Switching wifi card into monitor-mode and capturing traffic
+* Cracking WEP
+* Working with capture files (*.cap) and Wireshark
+* Apply ARP spoofing to redirect traffic to your own machine
+* ARP replay and disassociation
+
+Notes for this assignment:
+
+* My Seup:
+	* Macbook Pro 15''
+	* Virtualbox 5.1.6
+	* Ubuntu 16.04 LTS
+	* Wireless USB Adapter (Alfa AWUS036NH 2000mW)
+	* To make the Wireless USB Adapter available to Virtualbox, just plug it in and on the top bar, selecet "Devices" -> "USB" and check the WLAN entry for the adapter (i.e. Ralink 802.11 n WLAN)
+
