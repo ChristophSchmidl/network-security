@@ -37,7 +37,7 @@ Notes for this assignment:
 	* Wireless USB Adapter (Alfa AWUS036NH 2000mW)
 	* To make the Wireless USB Adapter available to Virtualbox, just plug it in and on the top bar, selecet "Devices" -> "USB" and check the WLAN entry for the adapter (i.e. Ralink 802.11 n WLAN)
 	* Checking in Ubuntu if the Wireless USB Adapter is working:
-	'''
+	```
 	sudo lshw -C network
   *-network               
        description: Ethernet interface
@@ -63,5 +63,5 @@ Notes for this assignment:
        serial: 00:c0:ca:5a:50:a5
        capabilities: ethernet physical wireless
        configuration: broadcast=yes driver=rt2800usb driverversion=4.8.0-36-generic firmware=0.29 link=no multicast=yes wireless=IEEE 802.11
-    '''	
+    ```
 
