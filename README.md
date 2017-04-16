@@ -105,5 +105,34 @@ Notes for this assignment:
     ```
     cs@cs-VirtualBox:~$ sudo /etc/init.d/network-manager stop
     ```
+    * Putting the Wireless USB Adapter into monitor mode:
+    ```
+    cs@cs-VirtualBox:~$ sudo airmon-ng stop mon0
+
+
+		Interface	Chipset		Driver
+
+		mon0		Ralink RT2870/3070	rt2800usb - [phy2] (removed)
+		wlx00c0ca5a50a5		Ralink RT2870/3070	rt2800usb - [phy2]
+
+	cs@cs-VirtualBox:~$ sudo airmon-ng start wlx00c0ca5a50a5
+
+
+		Found 4 processes that could cause trouble.
+		If airodump-ng, aireplay-ng or airtun-ng stops working after
+		a short period of time, you may want to kill (some of) them!
+
+		PID	Name
+		778	avahi-daemon
+		795	avahi-daemon
+		2321	wpa_supplicant
+		3540	dhclient
+
+
+		Interface	Chipset		Driver
+
+		wlx00c0ca5a50a5		Ralink RT2870/3070	rt2800usb - [phy2]
+						(monitor mode enabled on mon0)
+    ```
 
 
