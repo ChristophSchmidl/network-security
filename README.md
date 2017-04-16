@@ -134,5 +134,9 @@ Notes for this assignment:
 		wlx00c0ca5a50a5		Ralink RT2870/3070	rt2800usb - [phy2]
 						(monitor mode enabled on mon0)
     ```
+    * Let the fun begin and see what is on the network:
+    ```
+    cs@cs-VirtualBox:~$ sudo airodump-ng mon0
+    ```
 
 
