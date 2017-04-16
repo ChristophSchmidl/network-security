@@ -35,6 +35,8 @@ Notes for this assignment:
 	* Virtualbox 5.1.6
 	* Ubuntu 16.04 LTS
 	* Wireless USB Adapter (Alfa AWUS036NH 2000mW)
+	* Known issue with Macbook Pro and USB power supply:
+		* If your Macbook's power supply only relies on the battery, then your USB ports do not provide enough power for the Wireless USB Adapter. Fix: Plug in your external power supply when using the Wireless USB Adapter or use an active USB Hub.
 	* To make the Wireless USB Adapter available to Virtualbox, just plug it in and on the top bar, selecet "Devices" -> "USB" and check the WLAN entry for the adapter (i.e. Ralink 802.11 n WLAN)
 	* Checking in Ubuntu if the Wireless USB Adapter is working:
 	```
