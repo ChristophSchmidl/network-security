@@ -92,4 +92,18 @@ Notes for this assignment:
 		          collisions:0 txqueuelen:1000 
 		          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
     ```
+    * Installing packags for this assignment
+    ```
+    cs@cs-VirtualBox:~$ sudo apt-get install aircrack-ng wireshark dsniff
+    ```
+    * Ubuntu is using its own network manager which could prevent us from using the before mentioned tools. Therefore, we just disable it.
+    For Ubuntu 13.10+:
+    ```
+    cs@cs-VirtualBox:~$ sudo service network-manager stop
+    ```
+    Older versions of Ubuntu:
+        ```
+    cs@cs-VirtualBox:~$ sudo /etc/init.d/network-manager stop
+    ```
+
 
