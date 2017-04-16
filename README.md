@@ -102,7 +102,7 @@ Notes for this assignment:
     cs@cs-VirtualBox:~$ sudo service network-manager stop
     ```
     Older versions of Ubuntu:
-        ```
+    ```
     cs@cs-VirtualBox:~$ sudo /etc/init.d/network-manager stop
     ```
 
