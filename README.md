@@ -38,7 +38,7 @@ Notes for this assignment:
 	* To make the Wireless USB Adapter available to Virtualbox, just plug it in and on the top bar, selecet "Devices" -> "USB" and check the WLAN entry for the adapter (i.e. Ralink 802.11 n WLAN)
 	* Checking in Ubuntu if the Wireless USB Adapter is working:
 	```
-	sudo lshw -C network
+cs@cs-VirtualBox:~$ sudo lshw -C network
   *-network               
        description: Ethernet interface
        product: 82540EM Gigabit Ethernet Controller
@@ -63,5 +63,33 @@ Notes for this assignment:
        serial: 00:c0:ca:5a:50:a5
        capabilities: ethernet physical wireless
        configuration: broadcast=yes driver=rt2800usb driverversion=4.8.0-36-generic firmware=0.29 link=no multicast=yes wireless=IEEE 802.11
+    ```
+    * Checking the network interfaces
+    ```
+    cs@cs-VirtualBox:~$ sudo ifconfig
+enp0s3    Link encap:Ethernet  HWaddr 08:00:27:59:8a:48  
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::f230:387:60ab:e8e8/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:2531 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1454 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2831772 (2.8 MB)  TX bytes:152355 (152.3 KB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:279 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:279 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1 
+          RX bytes:23113 (23.1 KB)  TX bytes:23113 (23.1 KB)
+
+wlx00c0ca5a50a5 Link encap:Ethernet  HWaddr 00:c0:ca:5a:50:a5  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
     ```
 
