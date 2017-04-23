@@ -1,0 +1,5 @@
+My intuition says that it is a trivial task for other clients of a WPA2 PSK network to sniff other client's traffic. They all use the same master key to authenticate with the network and I guess it is also used for the encrpytion of packets send over the air. Sending packets over the air is essentially the same as the packet routing mechanism of a network hub with physically attached network cables. Both are using some kind of broadcasting of packets to all clients but the client is responsible for only picking packets which are meant for his address. When a wifi client is using the PSK of a AP, it is the same idea as if he would plug in a network cable into a hub. Therefore I guess that after this step all well known attacks which are suitable for hub scenarios also work with a WPA2 PSK network.
+
+After doing some research on the security section of stackexchange, my intuition has been confirmed:
+	* https://security.stackexchange.com/questions/8591/are-wpa2-connections-with-a-shared-key-secure
+	* https://security.stackexchange.com/questions/108408/sniffing-wpa2-psk-traffic-with-the-key-but-without-association
