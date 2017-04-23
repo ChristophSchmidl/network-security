@@ -129,3 +129,6 @@ Notes for this assignment:
 		* ``` # airodump-ng -c <channel> --bssid <target BSSID> -w outputnetsec mon0 ```
 	Leave this running. Collecting enough packets in the file specified will take a few minutes. Open the manual page for aircrack-ng and read what it does. Identify what option to use to select the target network. This is the only option you really need, but feel free to play around. ** Just document what you do. **	Run aircrack-ng with the option you need, and the file(s) to which airodump-ng is currently writing its output. ** Once again, document what you use. ** When the attack finally succeeds, you are provided with the WEP key. ** Also document this. ** Leave airodump to capture some more data for good measure, 200.000 frames should be more than enough for the next exercise. Then, exit airodump and put the wireless card back into normal mode ``` airmon-ng stop mon0 ```
 	* Answer
+
+3. This exercise can be done from home after successfully completing exercise 2 and capturing a fair amount of data.
+	a) We now have the WEP key, but we also have a generous chunk of data from the network to work with.	
