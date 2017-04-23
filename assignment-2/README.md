@@ -121,3 +121,6 @@ Notes for this assignment:
 
 		* https://security.stackexchange.com/questions/8591/are-wpa2-connections-with-a-shared-key-secure
 		* https://security.stackexchange.com/questions/108408/sniffing-wpa2-psk-traffic-with-the-key-but-without-association
+
+2a. Now let's see what's on the network: ``` # airodump-ng mon0 ```. This will show you a listing of wireless networks, their security level, the access points' MAC addresses (BSSID), channel they operate on (CH), and some other information. **List the networks you see.** You do not have to list duplicate network names. **Identify your target network's name, the access points's MAC address, and channel.** This list will also show you wireless network clients ("stations"). Using the information you have on the target network, identify those clients that are connected to the target network. ** Write down their MAC addresses. When you look at the MAC addresses, does anything strike you as interesting or peculiar? If so, what? Try to explain it.**
+	* Answer 	
