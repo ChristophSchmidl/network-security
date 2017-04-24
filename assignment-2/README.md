@@ -294,6 +294,17 @@ Notes for this assignment:
 		* 00:0f:c9:0c:f7:93 (Allnet_0c:f7:93)
 		* c4:e9:84:d7:70:67 (Tp-LinkT_d7:70:67)
 
+		Interesting conversations:
+		* Allnet_0c:ee:ed -> Allnet_0c:f7:8c (187.441 packets)
+		* Allnet_0c:f7:8c -> Allnet_0c:f7:93 (182.309 packets)
+		* Allnet_0c:f7:8c -> Tp-LinkT_d7:70:67 (86.380 packets)
+		* Allnet_0c:f7:93 -> Tp-LinkT_d7:70:67 (45.869 packets)
+		* Allnet_0c:ee:ed -> Tp-LinkT_d7:70:67 (34.087 packets)
+		* Allnet_0c:f7:8c -> Allnet_0c:f7:8c (14.418 packets)
+		* Allnet_0c:ee:ed -> Allnet_0c:f7:93 (5.585 packets)
+		* Allnet_0c:ee:ed -> Allnet_0c:ee:ed (2.873 packets)
+
+
 	c) Now, to solve the problem identified in exercise3a, aircrack-ng has the tool airdecap-ng. Open its manual page (man airdecap-ng), identify what options you need to pass, then run it with these options on outputnetsec-01.cap. This will create a file outputnetsec-01-dec.cap. Close the file you currently have open in wireshark, then open this new file. **Once again, describe what you see in wireshark, now in exercise3c. Explain why this is different from what you saw in exercise3a.**
 	* Answer
 
