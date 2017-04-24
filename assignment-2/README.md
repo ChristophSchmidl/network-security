@@ -201,7 +201,7 @@ Notes for this assignment:
 
 	b) Now, let's go ahead and crack this network. First, exit airodump-ng. Document all the steps you take here in a file called exercise2b. Cracking WEP is done by capturing enough packets from a network to enable some cryptographic attacks on the algorithms used. Capturing is also done by airodump-ng: ``` # airodump-ng -c <channel> --bssid <target BSSID> -w outputnetsec mon0 ```
 	Leave this running. Collecting enough packets in the file specified will take a few minutes. Open the manual page for aircrack-ng and read what it does. Identify what option to use to select the target network. This is the only option you really need, but feel free to play around. **Just document what you do.** Run aircrack-ng with the option you need, and the file(s) to which airodump-ng is currently writing its output. **Once again, document what you use.** When the attack finally succeeds, you are provided with the WEP key. **Also document this.** Leave airodump to capture some more data for good measure, 200.000 frames should be more than enough for the next exercise. Then, exit airodump and put the wireless card back into normal mode ``` airmon-ng stop mon0 ```
-	* Answer: ```
+	* ```
 		cs@cs-VirtualBox:~$ sudo airodump-ng -c 1 --bssid C4:E9:84:D7:70:67 -w outputnetsec mon0
 
 		 CH  1 ][ Elapsed: 13 mins ][ 2017-04-20 12:56                                         
