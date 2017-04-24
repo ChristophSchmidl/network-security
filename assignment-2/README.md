@@ -187,7 +187,13 @@ Notes for this assignment:
 	The target network:
 	* Network Name: netsec-wep 
 	* AP's MAC address/BSSID: C4:E9:84:D7:70:67
-	* Channel: 1	 
+	* Channel: 1
+	
+	Clients connected to the target network:
+		* 00:0F:C9:0C:F7:93
+		* 00:0F:C9:0C:F7:8C
+		* 00:0F:C9:0C:EE:ED
+		* 00:C0:CA:66:01:F9	 
 
 
 
