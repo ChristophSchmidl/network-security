@@ -262,16 +262,22 @@ Notes for this assignment:
 			* ![BlockAckReq](img/block_ack_req.PNG)
 
 		* 802.11 Block Ack (0x0019, wireshark filter: wlan.fc.type_subtype == 0x0019). This is used to Acknowledge a block of QoS data frames instead of acknowledge each unicast frame independently.
+			* ![BlockAck](img/block_ack.PNG)
 
 		* 802.11 Acknowledgment (0x001d, wireshark filter: wlan.fc.type_subtype == 0x001d). Since 802.11 stations are not able to Tx & Rx at the same time, to ensure a transmitted unicast frame delivered correctly it is expected an “ACK” from receiving station.
+			* ![Ack](img/ack.PNG)
 
 		* 802.11 Clear-to-send (0x001c, wireshark filter: wlan.fc.type_subtype == 0x001c). When a tranmitting station send RTS, the receiving device (typically AP) should send CTS control frame.
+			* ![CTS](img/cts.PNG)
 
 		* 802.11 Request-to-send (0x001b, wireshark filter: wlan.fc.type_subtype == 0x001b). RTS/CTS is a mechanism that perform a NAV (Network Allocation Vector) distribution and helps prevent collision from occurring. When this enabled, everytime a station wants to send a frame, it must perform RTS/CTS exchange prior to normal data transmission. Duration of RTS frame specify how much time it require for the data transmission (so listening station set their NAV timers to this value)
+			* ![RTS](img/rts.PNG)
 
 		* 802.11 Probe Response (0x0005, SSID=netsec-wep, wireshark filter: wlan.fc.type_subtype == 0x0005). See https://mrncciew.com/2014/10/27/cwap-802-11-probe-requestresponse/ for a nice explanation. It's mainly used for scanning networks.
+			* ![ProbeResponse](img/probe_response.PNG)
 
 		* 802.11 QoS Data (0x0028; wireshark filter: wlan.fc.type_subtype == 0x0028). A QoS Data frame.
+			* ![QoSData](img/qos_data.PNG)
 
 		* Information regarding the different subtypes has been used from: https://mrncciew.com/2014/10/13/cwap-802-11-data-frame-types/ and https://mrncciew.com/2014/10/02/cwap-802-11-control-frame-types/
 
