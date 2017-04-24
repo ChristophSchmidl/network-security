@@ -284,7 +284,9 @@ Notes for this assignment:
 		Given the fact that we only got four active stations/clients on the target network (myself included as a client) we can assume that only a fraction of the network traffic is containing actual data. Most of the traffic is due to 802.11 control frame types (https://mrncciew.com/2014/10/02/cwap-802-11-control-frame-types/). I guess the interesting traffic parts which contain actual data are the 802.11 QoS data frames.
 
 	b) There is some useful information, however, and we are going to try to extract that. Wireshark has several very nice analysis tools built into it. They can be accessed in the **Analyze** and **Statistics** menus. Play around with the tools in the top part of the **Statistics** menu. **Document which clients appear to be most active on the network and whom they seem to be communicating with, in a file called exercise3b. Also add the output from the Comments Summary tool, and try to explain why the Protocol Hierarchy looks the way it does.** If you see more than a few very active clients, limit your description to the clients you identified in the previous exercise as connected to the network. If you protocol hierarchy contains more than a few reasonably explainable protocols, there's something wrong with your encrypted capture.
-	* Answer
+	
+	* By using the conversations tab of the statistics option, we get all kinds of conversations between address A and B. If we sort the conversations by the amount of bytes and packets transmitted between the addresses, we can easily see which clients were the most active.
+		* ![Conversation](img/most_active_clients.PNG)
 
 	c) Now, to solve the problem identified in exercise3a, aircrack-ng has the tool airdecap-ng. Open its manual page (man airdecap-ng), identify what options you need to pass, then run it with these options on outputnetsec-01.cap. This will create a file outputnetsec-01-dec.cap. Close the file you currently have open in wireshark, then open this new file. **Once again, describe what you see in wireshark, now in exercise3c. Explain why this is different from what you saw in exercise3a.**
 	* Answer
