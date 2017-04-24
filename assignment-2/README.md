@@ -304,6 +304,8 @@ Notes for this assignment:
 		* Allnet_0c:ee:ed -> Allnet_0c:f7:93 (5.585 packets)
 		* Allnet_0c:ee:ed -> Allnet_0c:ee:ed (2.873 packets)
 
+		* ![ProtocolHierarchy](img/protocol_hierarchy.PNG)
+
 
 	c) Now, to solve the problem identified in exercise3a, aircrack-ng has the tool airdecap-ng. Open its manual page (man airdecap-ng), identify what options you need to pass, then run it with these options on outputnetsec-01.cap. This will create a file outputnetsec-01-dec.cap. Close the file you currently have open in wireshark, then open this new file. **Once again, describe what you see in wireshark, now in exercise3c. Explain why this is different from what you saw in exercise3a.**
 	* Answer
