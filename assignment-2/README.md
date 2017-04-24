@@ -287,6 +287,7 @@ Notes for this assignment:
 	
 	* By using the conversations tab of the statistics option, we get all kinds of conversations between address A and B. If we sort the conversations by the amount of bytes and packets transmitted between the addresses, we can easily see which clients were the most active.
 		* ![Conversation](img/most_active_clients.PNG)
+	The most active clients are therefore:	
 
 	c) Now, to solve the problem identified in exercise3a, aircrack-ng has the tool airdecap-ng. Open its manual page (man airdecap-ng), identify what options you need to pass, then run it with these options on outputnetsec-01.cap. This will create a file outputnetsec-01-dec.cap. Close the file you currently have open in wireshark, then open this new file. **Once again, describe what you see in wireshark, now in exercise3c. Explain why this is different from what you saw in exercise3a.**
 	* Answer
