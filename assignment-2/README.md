@@ -160,4 +160,15 @@ Notes for this assignment:
 		* You will need to find and zero out the packet checksum in the packet header in each frame. For this protocol, the checksum is optional, and a zeroed checksum indicates it's not being used. Not as sophisticated as recalculating the checksum, but just as effective. If you do not change the checksum, the destination will discard the packet before it reaches the application
 		* You will need to use the socket.send() function to send the frame on. The documentation for the socket library does not state this clearyl, but then again, we're not exactly doing legitimate stuff here.
 
-	If you don't feel confident about the above, another option is that you retrieve the payload from each frame, create a different UDP socket, and send the payload on through that socket.	
+	If you don't feel confident about the above, another option is that you retrieve the payload from each frame, create a different UDP socket, and send the payload on through that socket. Add some print() output to show you, when it runs, that forwarding actually works. Once you've made these adaptions, run the forwarder, and then run wireshark and arpspoof the same way you did in exercise 4a. If everything goes correctly, the following will happen:
+
+		* Your forwarder will rewrite and forward the packets.
+		* Wireshark will show you a similar output, i.e. two sets of packets, this time there will be changes in payloads as well as in addresses.
+		* The final endpoint will register the modified packets including the changes you've made.
+		* The final endpoint will acknowledge receiving a valid modified packet by broadcasint the student numbers in a special packet. This way you have some feedback on whether or not you succeeded, so look out for those with e.g. wireshark
+
+	**Let this run for a few packets, then stop arpspoof and the forwarder. Save the wireshark capture file as exercise4b.cap in the folder exercise4.**
+	* Answer
+
+5. As a completly optional extra, if you feel this was too easy, and have finished the assignment, take a look at http://www.aircrack-ng.org/doku.php?id=simple_wep_crack. If a network is not generating enough traffic for an attack by itself, there are more sophisticated attacks using e.g. ARP replay and disassociation to force traffic to be generated. Feel free to play around with this, but note that if your network driver does not support packet injection (the linked tutorial contains instructions on how to test that) these attacks will likely not work without patching and recompiling your driver first. Only do this if you have time left over, and DO NOT USE A DISASSOCIATION ATTACK. I will be very unhappy if you do because it messes with the exercise setup. Document what you do in a file called exerciseBONUS.
+	* Answer		
