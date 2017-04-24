@@ -274,6 +274,8 @@ Notes for this assignment:
 
 		* Information regarding the different subtypes has been used from: https://mrncciew.com/2014/10/13/cwap-802-11-data-frame-types/ and https://mrncciew.com/2014/10/02/cwap-802-11-control-frame-types/
 
+		Given the fact that we only got four active stations/clients on the target network (myself included as a client) we can assume that only a fraction of the network traffic is containing actual data. Most of the traffic is due to 802.11 control frame types (https://mrncciew.com/2014/10/02/cwap-802-11-control-frame-types/). I guess the interesting traffic parts which contain actual data are the 802.11 QoS data frames.
+
 	b) There is some useful information, however, and we are going to try to extract that. Wireshark has several very nice analysis tools built into it. They can be accessed in the **Analyze** and **Statistics** menus. Play around with the tools in the top part of the **Statistics** menu. **Document which clients appear to be most active on the network and whom they seem to be communicating with, in a file called exercise3b. Also add the output from the Comments Summary tool, and try to explain why the Protocol Hierarchy looks the way it does.** If you see more than a few very active clients, limit your description to the clients you identified in the previous exercise as connected to the network. If you protocol hierarchy contains more than a few reasonably explainable protocols, there's something wrong with your encrypted capture.
 	* Answer
 
