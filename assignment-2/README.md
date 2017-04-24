@@ -288,8 +288,7 @@ Notes for this assignment:
 	* By using the conversations tab of the statistics option, we get all kinds of conversations between address A and B. If we sort the conversations by the amount of bytes and packets transmitted between the addresses, we can easily see which clients were the most active.
 		* ![Conversation](img/most_active_clients.PNG)
 
-		The most active clients are therefore:	
-
+		The most active clients are therefore:
 			* 00:0f:c9:0c:ee:ed (Allnet_0c:ee:ed)
 			* 00:0f:c9:0c:f7:8c (Allnet_0c:f7:8c)
 			* 00:0f:c9:0c:f7:93 (Allnet_0c:f7:93)
