@@ -193,7 +193,9 @@ Notes for this assignment:
 	* 00:0F:C9:0C:F7:93
 	* 00:0F:C9:0C:F7:8C
 	* 00:0F:C9:0C:EE:ED
-	* 00:C0:CA:66:01:F9	 
+	* 00:C0:CA:66:01:F9	
+
+	The first three MAC addresses are interesting because their format tells me that the corresponding wifi clients were all built by the same manufacturer. A quick lookup on https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries with the hex values of "00-0F-C9" reveals that the manufacturers name is "Allnet GmbH", a german company based in munich. I suppose that those three clients are part of the whole setup of this assignment and that Allnet sponsored some wifi cards for the computer science department some time ago. It's just a wild guess. The last MAC address seems to be the address of my own USB Wifi adapter (00-C0-CA = ALFA, INC.).
 
 
 
