@@ -24,3 +24,68 @@ cs@cs-VirtualBox:~$ sudo airmon-ng start wlx00c0ca5a50a5
 
 	wlx00c0ca5a50a5		Ralink RT2870/3070	rt2800usb - [phy2]
 					(monitor mode enabled on mon0)
+
+ cs@cs-VirtualBox:~$ airodump-ng mon0
+
+	 CH 12 ][ Elapsed: 4 mins ][ 2017-04-20 12:40                                         
+	                                                                                                                                                      
+	 BSSID              PWR  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+	                                                                                                                                                      
+	 64:F6:9D:10:95:B0   -1        0        0    0   6  -1                    <length:  0>                                                                
+	 A8:9D:21:6D:7B:E0  -41       34      185    0   1  54e  WPA2 CCMP   MGT  eduroam                                                                     
+	 C4:E9:84:D7:70:67  -53       66     1817    0   1  54e  WEP  WEP         netsec-wep                                                                  
+	 88:1D:FC:55:96:63  -55       44        0    0  11  54e  OPN              eduroam-config                                                              
+	 88:1D:FC:55:96:60  -55       51      114    0  11  54e  WPA2 CCMP   MGT  eduroam                                                                      
+	 88:1D:FC:42:22:73  -66       21        0    0   1  54e  OPN              eduroam-config                                                               
+	 88:1D:FC:42:22:70  -66       21        3    0   1  54e  WPA2 CCMP   MGT  eduroam                                                                      
+	 E8:94:F6:BE:64:27  -74       15        1    0   6  54e. WPA2 CCMP   PSK  Noes 2,4                                                                     
+	 00:0C:42:97:B7:6C  -80        2        0    0  13   1 . OPN              Breng_Mobile_Hotspot                                                         
+	 00:0C:F6:F1:7A:D8  -82        1        2    0  11  54e. WPA2 CCMP   PSK  Gangbazen1                                                                   
+	 C0:A0:BB:4A:AC:7C  -78        6        0    0   8  54e  WPA2 CCMP   PSK  Noud WiFi 2.4 GHz                                                            
+	 30:B5:C2:AB:DD:A2  -81        2        0    0   8  54e. WPA2 CCMP   PSK  Victernet                                                                    
+	 A8:9D:21:B2:E3:00   -1        0        0    0   6  -1                    <length:  0>                                                                 
+	 64:D1:A3:1F:80:18  -77        6        0    0   1  54e. WPA2 CCMP   PSK  Sitecom1F8018                                                                
+	 C4:6E:1F:0C:B0:9B  -80        6        1    0   4  54e  WPA2 CCMP   PSK  TP-LINK_2.4GHz_0CB09B                                                        
+	 64:D1:A3:26:A9:B6  -76        4        0    0   1  54e  WPA2 CCMP   PSK  Sitecom26A9B6                                                                
+	 00:2A:10:93:E0:D0   -1        0        0    0   1  -1                    <length:  0>                                                                 
+	 A4:2B:B0:CA:79:04  -80        5        0    0   7  54e. WPA2 CCMP   PSK  TP-LINK_7904                                                                 
+	 F8:04:2E:32:A5:B8  -79        8        0    0   1  54e  WPA2 CCMP   PSK  UPC242466842                                                                 
+	 A8:9D:21:6D:7B:E3  -43       31        0    0   1  54e  OPN              eduroam-config                                                               
+	 00:1C:DF:8A:03:D9   -1        0        0    0   6  -1                    <length:  0>                                                                 
+	                                                                                                                                                       
+	 BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                             
+	                                                                                                                                                       
+	 64:F6:9D:10:95:B0  CC:25:EF:AF:73:B0  -76    0 -12      0        2                                                                                    
+	 (not associated)   CC:3A:61:8F:CB:C5  -36    0 - 1      0        3  Testing12,RaspberryAPI                                                            
+	 (not associated)   64:BC:0C:82:27:8F  -42    0 - 1      0        1                                                                                    
+	 (not associated)   AC:7B:A1:A4:D9:C7  -50    0 - 1      0        1                                                                                    
+	 (not associated)   E8:50:8B:61:72:89  -52    0 - 1      0        3                                                                                    
+	 (not associated)   40:78:6A:D3:18:4B  -56    0 - 6      0       17  EmslandTel.Net,dd-wrt,WiFi_Kolping,ASUS_NDL,een steen,Messung,NZ@McD1,Please inser
+	 (not associated)   70:4D:7B:61:06:C4  -62    0 - 1      0        4  ASUS_NDL                                                                          
+	 (not associated)   C0:EE:FB:4A:96:5C  -64    0 - 1      0        3                                                                                    
+	 (not associated)   8C:1A:BF:8A:6B:EE  -76    0 - 1      0        1  eduroam                                                                           
+	 (not associated)   B8:53:AC:9F:04:73  -76    0 - 1      0        2  eduroam                                                                           
+	 (not associated)   24:0A:64:A7:A9:DE  -76    0 - 1      0        1                                                                                    
+	 (not associated)   EA:91:09:F0:29:25  -76    0 - 1      0        2                                                                                    
+	 (not associated)   D4:0B:1A:5E:26:E2  -76    0 - 1      0        4     
+
+cs@cs-VirtualBox:~$ sudo airodump-ng -c 1 --bssid C4:E9:84:D7:70:67 -w outputnetsec mon0
+
+ CH  1 ][ Elapsed: 13 mins ][ 2017-04-20 12:56                                         
+                                                                                                                                                      
+ BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+                                                                                                                                                      
+ C4:E9:84:D7:70:67  -34  66     4571   182797  198   1  54e  WEP  WEP         netsec-wep                                                              
+                                                                                                                                                      
+ BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                            
+                                                                                                                                                      
+ C4:E9:84:D7:70:67  00:0F:C9:0C:F7:93  -54   54e-54e    22    47190                                                                                    
+ C4:E9:84:D7:70:67  00:0F:C9:0C:F7:8C  -56   54e-54e    33    91402                                                                                    
+ C4:E9:84:D7:70:67  00:0F:C9:0C:EE:ED  -64   54e-11e   930    62588                                                                                    
+ C4:E9:84:D7:70:67  00:C0:CA:66:01:F9   -1    1 - 0      0       24 
+
+
+The target network:
+	* Network Name: netsec-wep 
+	* AP's MAC address/BSSID: C4:E9:84:D7:70:67
+	* Channel: 1
