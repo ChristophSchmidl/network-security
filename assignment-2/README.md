@@ -124,7 +124,9 @@ Notes for this assignment:
 
 2. a) Create a folder called exercise2. Document all the steps you take in a file in this folder called exercise2a. Now let's see what's on the network: ``` # airodump-ng mon0 ```. This will show you a listing of wireless networks, their security level, the access points' MAC addresses (BSSID), channel they operate on (CH), and some other information. **List the networks you see.** You do not have to list duplicate network names. **Identify your target network's name, the access points's MAC address, and channel.** This list will also show you wireless network clients ("stations"). Using the information you have on the target network, identify those clients that are connected to the target network. **Write down their MAC addresses. When you look at the MAC addresses, does anything strike you as interesting or peculiar? If so, what? Try to explain it.**
 	
-	* ``` 
+	* ```
+		 cs@cs-VirtualBox:~$ airodump-ng mon0
+
 		 CH 12 ][ Elapsed: 4 mins ][ 2017-04-20 12:40                                         
                                                                                                                                                       
 		 BSSID              PWR  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
@@ -165,8 +167,22 @@ Notes for this assignment:
 		 (not associated)   B8:53:AC:9F:04:73  -76    0 - 1      0        2  eduroam                                                                           
 		 (not associated)   24:0A:64:A7:A9:DE  -76    0 - 1      0        1                                                                                    
 		 (not associated)   EA:91:09:F0:29:25  -76    0 - 1      0        2                                                                                    
-		 (not associated)   D4:0B:1A:5E:26:E2  -76    0 - 1      0        4     
-	 ```
+		 (not associated)   D4:0B:1A:5E:26:E2  -76    0 - 1      0        4
+
+		 cs@cs-VirtualBox:~$ sudo airodump-ng -c 1 --bssid C4:E9:84:D7:70:67 -w outputnetsec mon0
+
+		 CH  1 ][ Elapsed: 13 mins ][ 2017-04-20 12:56                                         
+		                                                                                                                                                      
+		 BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+		                                                                                                                                                      
+		 C4:E9:84:D7:70:67  -34  66     4571   182797  198   1  54e  WEP  WEP         netsec-wep                                                              
+		                                                                                                                                                      
+		 BSSID              STATION            PWR   Rate    Lost    Frames  Probe                                                                            
+		                                                                                                                                                      
+		 C4:E9:84:D7:70:67  00:0F:C9:0C:F7:93  -54   54e-54e    22    47190                                                                                    
+		 C4:E9:84:D7:70:67  00:0F:C9:0C:F7:8C  -56   54e-54e    33    91402                                                                                    
+		 C4:E9:84:D7:70:67  00:0F:C9:0C:EE:ED  -64   54e-11e   930    62588                                                                                    
+		 C4:E9:84:D7:70:67  00:C0:CA:66:01:F9   -1    1 - 0      0       24 ```
 
 
 	b) Now, let's go ahead and crack this network. First, exit airodump-ng. Document all the steps you take here in a file called exercise2b. Cracking WEP is done by capturing enough packets from a network to enable some cryptographic attacks on the algorithms used. Capturing is also done by airodump-ng:
