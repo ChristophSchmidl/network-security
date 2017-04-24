@@ -257,7 +257,7 @@ Notes for this assignment:
 
 3. a) We now have the WEP key, but we also have a generous chunk of data from the network to work with.	Let's work with that and see what we can learn from the network. In exercise 2 you had airodump-ng write its output to a few files, all prefixed with "outputnetsec". In the folder where you ran airodump, you should now see at least a file called outputnetsec-01.cap. Start wireshark. Since we're not going to capture anything, you can run it as a normal user. In wireshark, open the file outputnetsec-01.cap. **Create a folder called exercise3. Describe what you see in wireshark, after opening the capture file, in a file called exercise3a in that folder. Try to explain why there is very little useful information in this capture file.**
 
-	* The main subtypes of the IEEE 802.11 protocol being used are:
+	* The main subtypes of the IEEE 802.11 protocol being used here are:
 		* 802.11 Block Ack Req (0x0018, wireshark filter: wlan.fc.type_subtype == 0x0018). When a station intend to use Block ACK mechanism to transmit QoS data, it first check to see whether the peer station is capable of Block ACK. Then send block of QoS data frames & requesting all QoS data frame to ACK by sending Block ACK Request (BAR) to receiving station.
 
 		* 802.11 Block Ack (0x0019, wireshark filter: wlan.fc.type_subtype == 0x0019). This is used to Acknowledge a block of QoS data frames instead of acknowledge each unicast frame independently.
