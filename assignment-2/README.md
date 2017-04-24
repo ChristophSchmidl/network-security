@@ -166,7 +166,8 @@ Notes for this assignment:
 		 (not associated)   24:0A:64:A7:A9:DE  -76    0 - 1      0        1                                                                                    
 		 (not associated)   EA:91:09:F0:29:25  -76    0 - 1      0        2                                                                                    
 		 (not associated)   D4:0B:1A:5E:26:E2  -76    0 - 1      0        4     
-	 ```  
+	 ```
+	   
 
 	b) Now, let's go ahead and crack this network. First, exit airodump-ng. Document all the steps you take here in a file called exercise2b. Cracking WEP is done by capturing enough packets from a network to enable some cryptographic attacks on the algorithms used. Capturing is also done by airodump-ng:
 		* ``` # airodump-ng -c <channel> --bssid <target BSSID> -w outputnetsec mon0 ```
