@@ -260,17 +260,19 @@ Notes for this assignment:
 	* The main subtypes of the IEEE 802.11 protocol being used are:
 		* 802.11 Block Ack Req (0x0018, wireshark filter: wlan.fc.type_subtype == 0x0018). When a station intend to use Block ACK mechanism to transmit QoS data, it first check to see whether the peer station is capable of Block ACK. Then send block of QoS data frames & requesting all QoS data frame to ACK by sending Block ACK Request (BAR) to receiving station.
 
-		* 802.11 Block Ack (0x0019, wireshark filter: wlan.fc.type_subtype == 0x0019)
+		* 802.11 Block Ack (0x0019, wireshark filter: wlan.fc.type_subtype == 0x0019). This is used to Acknowledge a block of QoS data frames instead of acknowledge each unicast frame independently.
 
-		* 802.11 Acknowledgment (0x001d, wireshark filter: wlan.fc.type_subtype == 0x001d)
+		* 802.11 Acknowledgment (0x001d, wireshark filter: wlan.fc.type_subtype == 0x001d). Since 802.11 stations are not able to Tx & Rx at the same time, to ensure a transmitted unicast frame delivered correctly it is expected an “ACK” from receiving station.
 
-		* 802.11 Clear-to-send (0x001c, wireshark filter: wlan.fc.type_subtype == 0x001c)
+		* 802.11 Clear-to-send (0x001c, wireshark filter: wlan.fc.type_subtype == 0x001c). When a tranmitting station send RTS, the receiving device (typically AP) should send CTS control frame.
 
-		* 802.11 Request-to-send (0x001b, wireshark filter: wlan.fc.type_subtype == 0x001b)
+		* 802.11 Request-to-send (0x001b, wireshark filter: wlan.fc.type_subtype == 0x001b). RTS/CTS is a mechanism that perform a NAV (Network Allocation Vector) distribution and helps prevent collision from occurring. When this enabled, everytime a station wants to send a frame, it must perform RTS/CTS exchange prior to normal data transmission. Duration of RTS frame specify how much time it require for the data transmission (so listening station set their NAV timers to this value)
 
-		* 802.11 Probe Response (0x0005, SSID=netsec-wep, wireshark filter: wlan.fc.type_subtype == 0x0005)
+		* 802.11 Probe Response (0x0005, SSID=netsec-wep, wireshark filter: wlan.fc.type_subtype == 0x0005). See https://mrncciew.com/2014/10/27/cwap-802-11-probe-requestresponse/ for a nice explanation. It's mainly used for scanning networks.
 
-		* 802.11 QoS Data (0x0028; wireshark filter: wlan.fc.type_subtype == 0x0028)
+		* 802.11 QoS Data (0x0028; wireshark filter: wlan.fc.type_subtype == 0x0028). A QoS Data frame.
+
+		* Information regarding the different subtypes has been used from: https://mrncciew.com/2014/10/13/cwap-802-11-data-frame-types/ and https://mrncciew.com/2014/10/02/cwap-802-11-control-frame-types/
 
 	b) There is some useful information, however, and we are going to try to extract that. Wireshark has several very nice analysis tools built into it. They can be accessed in the **Analyze** and **Statistics** menus. Play around with the tools in the top part of the **Statistics** menu. **Document which clients appear to be most active on the network and whom they seem to be communicating with, in a file called exercise3b. Also add the output from the Comments Summary tool, and try to explain why the Protocol Hierarchy looks the way it does.** If you see more than a few very active clients, limit your description to the clients you identified in the previous exercise as connected to the network. If you protocol hierarchy contains more than a few reasonably explainable protocols, there's something wrong with your encrypted capture.
 	* Answer
