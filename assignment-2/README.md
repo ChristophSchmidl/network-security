@@ -255,7 +255,7 @@ Notes for this assignment:
 			             KEY FOUND! [ C0:FF:EE:42:21:61:1E:4A:1A:44:6E:2F:20 ] 
 				Decrypted correctly: 100% 
 
-3. a) We now have the WEP key, but we also have a generous chunk of data from the network to work with.	Let's work with that and see what we can learn from the network. In exercise 2 you had airodump-ng write its output to a few files, all prefixed with "outputnetsec". In the folder where you ran airodump, you should now see at least a file called outputnetsec-01.cap. Start wireshark. Since we're not going to capture anything, you can run it as a normal user. In wireshark, open the file outputnetsec-01.cap. ** Create a folder called exercise3. Describe what you see in wireshark, after opening the capture file, in a file called exercise3a in that folder. Try to explain why there is very little useful information in this capture file.
+3. a) We now have the WEP key, but we also have a generous chunk of data from the network to work with.	Let's work with that and see what we can learn from the network. In exercise 2 you had airodump-ng write its output to a few files, all prefixed with "outputnetsec". In the folder where you ran airodump, you should now see at least a file called outputnetsec-01.cap. Start wireshark. Since we're not going to capture anything, you can run it as a normal user. In wireshark, open the file outputnetsec-01.cap. **Create a folder called exercise3. Describe what you see in wireshark, after opening the capture file, in a file called exercise3a in that folder. Try to explain why there is very little useful information in this capture file.**
 
 	* Answer
 
