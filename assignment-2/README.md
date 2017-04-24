@@ -259,6 +259,7 @@ Notes for this assignment:
 
 	* The main subtypes of the IEEE 802.11 protocol being used here are:
 		* 802.11 Block Ack Req (0x0018, wireshark filter: wlan.fc.type_subtype == 0x0018). When a station intend to use Block ACK mechanism to transmit QoS data, it first check to see whether the peer station is capable of Block ACK. Then send block of QoS data frames & requesting all QoS data frame to ACK by sending Block ACK Request (BAR) to receiving station.
+			* ![BlockAckReq](img/block_ack_req.PNG)
 
 		* 802.11 Block Ack (0x0019, wireshark filter: wlan.fc.type_subtype == 0x0019). This is used to Acknowledge a block of QoS data frames instead of acknowledge each unicast frame independently.
 
