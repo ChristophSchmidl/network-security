@@ -336,10 +336,12 @@ Notes for this assignment:
 	* 00:0f:c9:0c:f7:8c
 	* 00:0f:c9:0c:f7:93
 
-	Although we only got these three MAC addresses, we have a lot more IP addresses present when look at the IPv4 statistics. The following three IP addresses seem to be the most active:
+	Although we only got these three MAC addresses, we have a lot more IP addresses present when we look at the IPv4 statistics. The following three IP addresses seem to be the most active:
 	* 192.168.84.20
 	* 192.168.84.10
 	* 192.168.84.60	
+
+	The odd thing here is that these three IP addresses only communicate with each other over the TCP protocol which takes the most percentage of the whole traffic captured, namely 98.85%. All other ip addresses in the range of 192.168.84.* communicate with each other over UDP which makes 0.87% of the traffic. The odd thing is that we only got three MAC addresses and a lot more IP addresses. The tcp packets contain data that I cannot interpret but the UDP packets on the other hand contain data such as "Insert your student numbers in the following places. Do not change the packet length. Leave superfluous letters as padding..Student1: XXXXXXX XXXXX.Student 2: YYYYYYY YYYYY. Student 3: ZZZZZZZ ZZZZZ". My assumption is that the three clients are running some kind of program which is communicating over TCP and are creating IP addresses on the fly and then exchange UDP packets between those two newly created IP addresses. By creating enough IP addresses with different destination and source addresses for the UDP packets, we can apply arp spoofing without interfering with other student groups if every group gets a specific IP address assigned for arp spoofing. I guess we also have to alter the data part of the UDP packets later on when arp spoofing is working. That would make sense. 
 
 
 	e) **There should be at least one connection which is consistently being rejected. See if you can find it. Document how you did this in exercise3e.** Not you can filter out conversations which you are not interested in by simply right-clicking on that conversation in the Conversations tool, and preparing a filter. Filter out multiple conversations by using the ... and not ... entry on each. Then, apply the filter. Most of the time, you'll simply want to build filters using the graphical interface, but for more documentation on their syntax, see https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html.

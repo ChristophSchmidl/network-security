@@ -1,0 +1,20 @@
+See supporting screenshots:
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_protocol_hierarchy_ethernet.PNG
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_protocol_hierarchy_ipv4.PNG
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_protocol_hierarchy_tcp.PNG
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_protocol_hierarchy_udp.PNG
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_ipv4_traffic_count.PNG
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_protocol_count.PNG
+	* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_udp_packet.PNG
+
+As we look at the statistics of the ethernet protocol, we can see again the three MAC addresses which were the most active in the encrypted cap-file, namely:
+	* 00:0f:c9:0c:ee:ed
+	* 00:0f:c9:0c:f7:8c
+	* 00:0f:c9:0c:f7:93
+
+Although we only got these three MAC addresses, we have a lot more IP addresses present when we look at the IPv4 statistics. The following three IP addresses seem to be the most active:
+	* 192.168.84.20
+	* 192.168.84.10
+	* 192.168.84.60	
+
+The odd thing here is that these three IP addresses only communicate with each other over the TCP protocol which takes the most percentage of the whole traffic captured, namely 98.85%. All other ip addresses in the range of 192.168.84.* communicate with each other over UDP which makes 0.87% of the traffic. The odd thing is that we only got three MAC addresses and a lot more IP addresses. The tcp packets contain data that I cannot interpret but the UDP packets on the other hand contain data such as "Insert your student numbers in the following places. Do not change the packet length. Leave superfluous letters as padding..Student1: XXXXXXX XXXXX.Student 2: YYYYYYY YYYYY. Student 3: ZZZZZZZ ZZZZZ". My assumption is that the three clients are running some kind of program which is communicating over TCP and are creating IP addresses on the fly and then exchange UDP packets between those two newly created IP addresses. By creating enough IP addresses with different destination and source addresses for the UDP packets, we can apply arp spoofing without interfering with other student groups if every group gets a specific IP address assigned for arp spoofing. I guess we also have to alter the data part of the UDP packets later on when arp spoofing is working. That would make sense. 
