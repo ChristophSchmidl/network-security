@@ -349,6 +349,10 @@ Notes for this assignment:
 		* ![ProtocolHierarchyIPv4](img/3d_protocol_hierarchy_ipv4.PNG)
 		The first two conversations, 192.168.84.20 <-> 192.168.84.60 and 192.168.84.10 <-> 192.168.84.60 seem to be normal and are responsible for most the most packets exchanged. The third conversation however, 192.168.84.10 <-> 192.168.84.20 seems odd because there is a drastic drop in the amount of packages being exchanged. So, if we take a look at this conversation in detail, we'll get alot of rejected tcp connections. 192.168.84.20 is sending a tcp package with the SYN flag to 192.168.84.10 to start a conversation and gets a tcp package with [RST, ACK] flags as a response. Different articles pointed out that a RST/ACK response means that the device is acknowledging whatever data was sent in the previous packet(s) in the sequence with an ACK and then notifying the sender that the connection has closed with the RST. The device is simply combining the two packets into one, just like a SYN/ACK. A RST/ACK is usually not a normal response in closing a tcp session, but it's not necessarily indicative of a problem either. An example scenario of sending RST/ACK is when the receiving host is not listening on the destination TCP port. 
 		* ![TCPRejected](img/3e_tcp_rejections.PNG)
+		* Sites used for background information:
+			* http://animeshkhare-network.blogspot.de/2013/12/tcp.html
+			* https://networkengineering.stackexchange.com/questions/2012/why-do-i-see-a-rst-ack-packet-instead-of-a-rst-packet
+			* https://ask.wireshark.org/questions/5533/rst-ack-immediately-after-sending-data
 
 	f) Finally, there should be several conversations which, when you look at the packets' contents, are obviously interesting for you. Find them. **Document the process in exercise3f, and also include why you think they are interesting.**
 	* Answer
