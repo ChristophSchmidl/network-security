@@ -306,6 +306,7 @@ Notes for this assignment:
 
 		* ![ProtocolHierarchy](img/protocol_hierarchy.PNG)
 
+	If we open the protocol hierarchy option, then we can see that all frames contain the "IEEE 802.11 wireless LAN" protocol. This protocol is divided into 0.3% "IEEE 802.11 wireless LAN management frame" and 29.3%	"Data" based on the amount of packets. If we look at the pure amount of bytes, then the "IEEE 802.11 wireless LAN management frame" is making 0.1% and the "Data" part is taking up 93.2% of all bytes. One interpretation could be that most of the packets captured do not contain actual data but are responsible for different management tasks of the wireless network traffic like probe requests, acknowledgements and so forth. Also their pure amount of packets is larger than the packets which contain data, they do not take the majority compared to the amount of bytes. So, even the amount of packets containing data is small, they take up the majority of bytes taken.	
 
 	c) Now, to solve the problem identified in exercise3a, aircrack-ng has the tool airdecap-ng. Open its manual page (man airdecap-ng), identify what options you need to pass, then run it with these options on outputnetsec-01.cap. This will create a file outputnetsec-01-dec.cap. Close the file you currently have open in wireshark, then open this new file. **Once again, describe what you see in wireshark, now in exercise3c. Explain why this is different from what you saw in exercise3a.**
 	* Answer
