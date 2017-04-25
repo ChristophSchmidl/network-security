@@ -20,3 +20,7 @@ Number of decrypted WEP  packets    183187
 Number of corrupted WEP  packets        16
 Number of decrypted WPA  packets         0
 
+https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/protocol_hierarchy_decrypted.PNG
+
+If we take a look at the decrypted protocol hierarchy, we can see that there is no 802.11 frame any more. The default behaviour of airdecap removes the 802.11 header and decrypts its data. Therefore, we now see the protocols which were wrapped inside the data section of the 802.11 frames which are ethernet, IPv4, ARP, UDP and TCP. While 802.11 works with MAC addresses which were the only address types we saw before in the capture file,  we now can see a mix of MAC and IP addresses due to the different protocols. If we want to know the IP addresses of the most active clients we identified before, we just have to take a look into the ARP packets. 
+
