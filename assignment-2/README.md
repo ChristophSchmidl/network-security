@@ -345,7 +345,8 @@ Notes for this assignment:
 
 
 	e) **There should be at least one connection which is consistently being rejected. See if you can find it. Document how you did this in exercise3e.** Not you can filter out conversations which you are not interested in by simply right-clicking on that conversation in the Conversations tool, and preparing a filter. Filter out multiple conversations by using the ... and not ... entry on each. Then, apply the filter. Most of the time, you'll simply want to build filters using the graphical interface, but for more documentation on their syntax, see https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html.
-	* Answer
+	* Let's take a look at the IPv4 statistics again
+		* * ![ProtocolHierarchyIPv4](img/3d_protocol_hierarchy_ipv4.PNG)
 
 	f) Finally, there should be several conversations which, when you look at the packets' contents, are obviously interesting for you. Find them. **Document the process in exercise3f, and also include why you think they are interesting.**
 	* Answer
