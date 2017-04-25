@@ -310,7 +310,7 @@ Notes for this assignment:
 
 	c) Now, to solve the problem identified in exercise3a, aircrack-ng has the tool airdecap-ng. Open its manual page (man airdecap-ng), identify what options you need to pass, then run it with these options on outputnetsec-01.cap. This will create a file outputnetsec-01-dec.cap. Close the file you currently have open in wireshark, then open this new file. **Once again, describe what you see in wireshark, now in exercise3c. Explain why this is different from what you saw in exercise3a.**
 	* ```
-		cs@cs-VirtualBox:$ airdecap-ng -e 'netsec-wep' -w C0:FF:EE:42:21:61:1E:4A:1A:44:6E:2F:20 outputnetsec-01.cap 
+		cs@cs-VirtualBox:~$ airdecap-ng -e 'netsec-wep' -w C0:FF:EE:42:21:61:1E:4A:1A:44:6E:2F:20 outputnetsec-01.cap 
 			Total number of packets read        571974
 			Total number of WEP data packets    183203
 			Total number of WPA data packets         0
