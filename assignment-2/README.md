@@ -319,6 +319,8 @@ Notes for this assignment:
 			Number of corrupted WEP  packets         0
 			Number of decrypted WPA  packets         0
 
+		* ![ProtocolHierarchy](img/protocol_hierarchy_decrypted.PNG)	
+
 	d) **Similar to exercise3b, using the statistics tools, document which clients are communicating with whom, in a file called exercise3d. Also include their IP addresses. Something should immediately strike you as peculiar when doing this. What do you think is going on here?** You should be able to go into much more details this time. Therefore, this time, also zoom in on the conversations themselved (if you right-click on a conversation in the output from the Conversations tool, you can apply this conversation as a filter so that you only see its packets). There will likely be more than just a few conversations. Pick a few larger ones, or ones that look interesting. **Briefly describe what each conversation is, whether it looks interesting, and why.**
 	* Answer
 

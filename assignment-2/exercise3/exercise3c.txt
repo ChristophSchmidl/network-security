@@ -1,0 +1,22 @@
+This command removes the 802.11 header by default:
+
+cs@cs-VirtualBox:~$ airdecap-ng -e 'netsec-wep' -w C0:FF:EE:42:21:61:1E:4A:1A:44:6E:2F:20 outputnetsec-01.cap 
+	Total number of packets read        571974
+	Total number of WEP data packets    183203
+	Total number of WPA data packets         0
+	Number of plaintext data packets         3
+	Number of decrypted WEP  packets    183187
+	Number of corrupted WEP  packets         0
+	Number of decrypted WPA  packets         0
+
+Keeping the 802.11 header:
+
+cs@cs-VirtualBox:~$ airdecap-ng -l -e 'netsec-wep' -w C0:FF:EE:42:21:61:1E:4A:1A:44:6E:2F:20 outputnetsec-01.cap 
+Total number of packets read        571974
+Total number of WEP data packets    183203
+Total number of WPA data packets         0
+Number of plaintext data packets         3
+Number of decrypted WEP  packets    183187
+Number of corrupted WEP  packets        16
+Number of decrypted WPA  packets         0
+
