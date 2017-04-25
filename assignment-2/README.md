@@ -329,6 +329,9 @@ Notes for this assignment:
 	* ![ProtocolHierarchyUDP](img/3d_protocol_hierarchy_udp.PNG)
 	* ![IPv4TrafficCount](img/3d_ipv4_traffic_count.PNG)
 	* ![ProtocolCount](img/3d_protocol_count.PNG)
+	* ![UDPPacket](img/3d_udp_packet.PNG)
+
+
 
 	e) **There should be at least one connection which is consistently being rejected. See if you can find it. Document how you did this in exercise3e.** Not you can filter out conversations which you are not interested in by simply right-clicking on that conversation in the Conversations tool, and preparing a filter. Filter out multiple conversations by using the ... and not ... entry on each. Then, apply the filter. Most of the time, you'll simply want to build filters using the graphical interface, but for more documentation on their syntax, see https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html.
 	* Answer
