@@ -1,0 +1,5 @@
+There are two types of conversation which I find interesting: ARP and UDP.
+		* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3f_arp.PNG
+		* https://github.com/ChristophSchmidl/network-security/raw/master/assignment-2/img/3d_udp_packet.PNG
+		
+ARP seems interesting to me because there I can see how I had to use ARP spoofing to redirect certain traffic to my computer. The UDP packets are interesting because they contain actual data in ASCII format which I can later on alter to my needs and performing a man-in-the-middle attack by using arp spoofing.
