@@ -332,14 +332,14 @@ Notes for this assignment:
 	* ![UDPPacket](img/3d_udp_packet.PNG)
 
 	As we look at the statistics of the ethernet protocol, we can see again the three MAC addresses which were the most active in the encrypted cap-file, namely:
-		* 00:0f:c9:0c:ee:ed
-		* 00:0f:c9:0c:f7:8c
-		* 00:0f:c9:0c:f7:93
+	* 00:0f:c9:0c:ee:ed
+	* 00:0f:c9:0c:f7:8c
+	* 00:0f:c9:0c:f7:93
 
 	Although we only got these three MAC addresses, we have a lot more IP addresses present when look at the IPv4 statistics. The following three IP addresses seem to be the most active:
-		* 192.168.84.20
-		* 192.168.84.10
-		* 192.168.84.60	
+	* 192.168.84.20
+	* 192.168.84.10
+	* 192.168.84.60	
 
 
 	e) **There should be at least one connection which is consistently being rejected. See if you can find it. Document how you did this in exercise3e.** Not you can filter out conversations which you are not interested in by simply right-clicking on that conversation in the Conversations tool, and preparing a filter. Filter out multiple conversations by using the ... and not ... entry on each. Then, apply the filter. Most of the time, you'll simply want to build filters using the graphical interface, but for more documentation on their syntax, see https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html.
