@@ -361,8 +361,105 @@ Notes for this assignment:
 		
 	ARP seems interesting to me because there I can see how I had to use ARP spoofing to redirect certain traffic to my computer. The UDP packets are interesting because they contain actual data in ASCII format which I can later on alter to my needs and performing a man-in-the-middle attack by using arp spoofing.	
 
-4. a) Run wireshark with root rights, and let it sniff you wireless interface. It should not use either monitor or promiscuous mode. Ping one of the other clients you identified in exercise 3, and see whether these pings show up in wireshark. Note that you may have to specify which interface to ping on, use the manual page (man ping) to figure out how. If this works, enable IP forwarding: ``` # echo 1 > /proc/sys/net/ipv4/ip_forward ```. If using sudo, you will need a slighty different command: ``` $ sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward" ``` or ``` $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward ```	This is due to nuances in when shell redirection happens. Now you can use arpspoof to trick the sending endpoint in the conversation to send its data to you instead of the receiving endpoint, and your machine will forward the data. Use the manual page of arpspoof (man arpspoof) for details on how to use it. Note that you need to keep arpspoof running as long as you want traffic to be redirected, and you should close it down as soon as you're done. Note that you will need to tell arpspoof what interfaces to use, since that determines how and where it spoofs the targets. Verfiy that the traffic of that conversation is flowing through your machine. You should see, among other things, two identical sets of IPv4 packets, interleaved. One set should have as a source address the MAC address of the endpoint you just started ARP spoofing to, and as destination address your own MAC address. The other set should have as source address your own MAC address and as destination address the MAC address of the original receiving endpoint of the conversation. If you do not see the second set, IP forwarding is not working. If you do not see the first set, spoofing is not working. **If this works, turn off arpspoof. Save the wireshark capture to a file called exercise4a.cap in the folder exercise4. Document the commands you used in a file called exercise4a, and explain why you're seeing these two sets of packets in wireshark.** Turn off IP forwarding: ``` # echo 0 > /proc/sys/net/ipv4/ip_forward ``` or ``` $ sudo sh -c "echo 0 > /proc/sys/net/ipv4/ip_forward" ``` or ``` $ echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward ```
-	* Answer
+4. a) Run wireshark with root rights, and let it sniff your wireless interface. It should not use either monitor or promiscuous mode. Ping one of the other clients you identified in exercise 3, and see whether these pings show up in wireshark. Note that you may have to specify which interface to ping on, use the manual page (man ping) to figure out how. If this works, enable IP forwarding: ``` # echo 1 > /proc/sys/net/ipv4/ip_forward ```. If using sudo, you will need a slighty different command: ``` $ sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward" ``` or ``` $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward ```	This is due to nuances in when shell redirection happens. Now you can use arpspoof to trick the sending endpoint in the conversation to send its data to you instead of the receiving endpoint, and your machine will forward the data. Use the manual page of arpspoof (man arpspoof) for details on how to use it. Note that you need to keep arpspoof running as long as you want traffic to be redirected, and you should close it down as soon as you're done. Note that you will need to tell arpspoof what interfaces to use, since that determines how and where it spoofs the targets. Verfiy that the traffic of that conversation is flowing through your machine. You should see, among other things, two identical sets of IPv4 packets, interleaved. One set should have as a source address the MAC address of the endpoint you just started ARP spoofing to, and as destination address your own MAC address. The other set should have as source address your own MAC address and as destination address the MAC address of the original receiving endpoint of the conversation. If you do not see the second set, IP forwarding is not working. If you do not see the first set, spoofing is not working. **If this works, turn off arpspoof. Save the wireshark capture to a file called exercise4a.cap in the folder exercise4. Document the commands you used in a file called exercise4a, and explain why you're seeing these two sets of packets in wireshark.** Turn off IP forwarding: ``` # echo 0 > /proc/sys/net/ipv4/ip_forward ``` or ``` $ sudo sh -c "echo 0 > /proc/sys/net/ipv4/ip_forward" ``` or ``` $ echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward ```
+	* ```
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ iwconfig
+			lo        no wireless extensions.
+
+			enp0s3    no wireless extensions.
+
+			wlx00c0ca5a50a5  IEEE 802.11  ESSID:"netsec-wep"  
+			          Mode:Managed  Frequency:2.412 GHz  Access Point: C4:E9:84:D7:70:67   
+			          Bit Rate=6 Mb/s   Tx-Power=20 dBm   
+			          Retry short limit:7   RTS thr:off   Fragment thr:off
+			          Power Management:on
+			          Link Quality=70/70  Signal level=-31 dBm  
+			          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+			          Tx excessive retries:11  Invalid misc:61   Missed beacon:0
+
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ifconfig
+			enp0s3    Link encap:Ethernet  HWaddr 08:00:27:59:8a:48  
+			          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+			          inet6 addr: fe80::f230:387:60ab:e8e8/64 Scope:Link
+			          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+			          RX packets:135 errors:0 dropped:0 overruns:0 frame:0
+			          TX packets:330 errors:0 dropped:0 overruns:0 carrier:0
+			          collisions:0 txqueuelen:1000 
+			          RX bytes:18947 (18.9 KB)  TX bytes:35204 (35.2 KB)
+
+			lo        Link encap:Local Loopback  
+			          inet addr:127.0.0.1  Mask:255.0.0.0
+			          inet6 addr: ::1/128 Scope:Host
+			          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+			          RX packets:472 errors:0 dropped:0 overruns:0 frame:0
+			          TX packets:472 errors:0 dropped:0 overruns:0 carrier:0
+			          collisions:0 txqueuelen:1 
+			          RX bytes:32988 (32.9 KB)  TX bytes:32988 (32.9 KB)
+
+			wlx00c0ca5a50a5 Link encap:Ethernet  HWaddr 00:c0:ca:5a:50:a5  
+			          inet addr:192.168.84.158  Bcast:192.168.84.255  Mask:255.255.255.0
+			          inet6 addr: fe80::e33e:ccf3:7963:6ec8/64 Scope:Link
+			          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+			          RX packets:545 errors:0 dropped:0 overruns:0 frame:0
+			          TX packets:175 errors:0 dropped:0 overruns:0 carrier:0
+			          collisions:0 txqueuelen:1000 
+			          RX bytes:52639 (52.6 KB)  TX bytes:28154 (28.1 KB)
+
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.10
+			PING 192.168.84.10 (192.168.84.10) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
+			64 bytes from 192.168.84.10: icmp_seq=1 ttl=64 time=109 ms
+			64 bytes from 192.168.84.10: icmp_seq=2 ttl=64 time=126 ms
+			64 bytes from 192.168.84.10: icmp_seq=3 ttl=64 time=98.8 ms
+			64 bytes from 192.168.84.10: icmp_seq=4 ttl=64 time=97.8 ms
+			64 bytes from 192.168.84.10: icmp_seq=6 ttl=64 time=108 ms
+			64 bytes from 192.168.84.10: icmp_seq=7 ttl=64 time=143 ms
+
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.20
+			PING 192.168.84.20 (192.168.84.20) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
+			64 bytes from 192.168.84.20: icmp_seq=1 ttl=64 time=321 ms
+			64 bytes from 192.168.84.20: icmp_seq=2 ttl=64 time=115 ms
+			64 bytes from 192.168.84.20: icmp_seq=3 ttl=64 time=136 ms
+			64 bytes from 192.168.84.20: icmp_seq=4 ttl=64 time=118 ms
+			64 bytes from 192.168.84.20: icmp_seq=5 ttl=64 time=108 ms
+			64 bytes from 192.168.84.20: icmp_seq=6 ttl=64 time=104 ms
+
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.60
+			PING 192.168.84.60 (192.168.84.60) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
+			64 bytes from 192.168.84.60: icmp_seq=1 ttl=64 time=1163 ms
+			64 bytes from 192.168.84.60: icmp_seq=2 ttl=64 time=144 ms
+			64 bytes from 192.168.84.60: icmp_seq=3 ttl=64 time=121 ms
+			64 bytes from 192.168.84.60: icmp_seq=4 ttl=64 time=111 ms
+			64 bytes from 192.168.84.60: icmp_seq=5 ttl=64 time=475 ms
+			64 bytes from 192.168.84.60: icmp_seq=6 ttl=64 time=118 ms
+
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.43
+			PING 192.168.84.43 (192.168.84.43) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
+			64 bytes from 192.168.84.43: icmp_seq=1 ttl=64 time=1299 ms
+			64 bytes from 192.168.84.43: icmp_seq=2 ttl=64 time=272 ms
+			64 bytes from 192.168.84.43: icmp_seq=3 ttl=64 time=839 ms
+			64 bytes from 192.168.84.43: icmp_seq=4 ttl=64 time=21.2 ms
+			64 bytes from 192.168.84.43: icmp_seq=5 ttl=64 time=371 ms
+			64 bytes from 192.168.84.43: icmp_seq=6 ttl=64 time=952 ms	
+	
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ sudo arpspoof -i wlx00c0ca5a50a5 -t 192.168.84.43 192.168.84.83
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
+
+		cs@cs-VirtualBox:~/netsec-repo/assignment-2$ sudo arpspoof -i wlx00c0ca5a50a5 -t 192.168.84.83 192.168.84.43
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
+	```
 
 	b) Start with your implementation of the sniffer from exercise 4 of last week, or use the implementation provided. **Rename it to mitm.py, and place it in the folder exercise4. Change it so that it rewrites the packets according to the instructions contained inside the packet, then sends them on.** For this, you will need to make several changes:
 
