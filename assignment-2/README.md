@@ -473,9 +473,9 @@ Notes for this assignment:
 		* http://linux-hacking-guide.blogspot.nl/2015/05/man-in-middle-attack-using-arpspoof-in.html
 
 		Arp spoofing works like this:
-			1. Tell the 'victim' that we are 'gateway'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t victimIP gatewayIP ```
-			2. Tell the 'gateway' that we are 'victim'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t gatewayIP victimIP ```				
-			3. Enable ip forwarding and start capturing capture or alter package content and forward it.
+		1. Tell the 'victim' that we are 'gateway'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t victimIP gatewayIP ```
+		2. Tell the 'gateway' that we are 'victim'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t gatewayIP victimIP ```				
+		3. Enable ip forwarding and start capturing capture or alter package content and forward it.
 
 	b) Start with your implementation of the sniffer from exercise 4 of last week, or use the implementation provided. **Rename it to mitm.py, and place it in the folder exercise4. Change it so that it rewrites the packets according to the instructions contained inside the packet, then sends them on.** For this, you will need to make several changes:
 
