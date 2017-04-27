@@ -459,7 +459,7 @@ Notes for this assignment:
 			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
 			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
 			0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
-	```
+
 
 	b) Start with your implementation of the sniffer from exercise 4 of last week, or use the implementation provided. **Rename it to mitm.py, and place it in the folder exercise4. Change it so that it rewrites the packets according to the instructions contained inside the packet, then sends them on.** For this, you will need to make several changes:
 
