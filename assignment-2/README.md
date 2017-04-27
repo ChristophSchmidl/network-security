@@ -468,6 +468,15 @@ Notes for this assignment:
 		* ![ARPSpoofing_one](img/4a_udp_1.PNG)
 		* ![ARPSpoofing_two](img/4a_udp_2.PNG)
 
+		As we take a look at the screenshots above we see that pinging the hosts is actually working (ICMP). Portforwarding and arp spoofing is also working by inspecting the two UDP packets. The first one is sent from host A to our machine and then from our machine to host B. To get some more insights on how the arpspoof command actually works, I looked into the man pages and also took two additional websites into account because they had some more sophisticated examples, namely:
+		* https://security.stackexchange.com/questions/113524/a-question-about-arpspoof-command
+		* http://linux-hacking-guide.blogspot.nl/2015/05/man-in-middle-attack-using-arpspoof-in.html
+
+		Arp spoofing works like this:
+			1. Tell the 'victim' that we are 'gateway'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t victimIP gatewayIP ```
+			2. Tell the 'gateway' that we are 'victim'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t gatewayIP victimIP ```				
+			3. Enable ip forwarding and start capturing capture or alter package content and forward it.
+
 	b) Start with your implementation of the sniffer from exercise 4 of last week, or use the implementation provided. **Rename it to mitm.py, and place it in the folder exercise4. Change it so that it rewrites the packets according to the instructions contained inside the packet, then sends them on.** For this, you will need to make several changes:
 
 		* You will need to bind the socket to the wireless interface.
