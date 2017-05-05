@@ -1,7 +1,6 @@
 # Network Security - Assignment 3
 
 1. This question is about IP address spoofing. Write your answers to every subquestion to a file called **exercise1**, making sure to prefix each answer with the letter for that question.
-	
 	a) Take a look at the RFC for the **Internet Protocol**, RFC 791 (https://www.ietf.org/rfc/rfc791.txt). Explain what IP address spoofing is, and what a host on the network must do to spoof its IP address.
 		* Answer
 
