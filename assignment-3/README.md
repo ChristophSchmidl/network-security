@@ -1,19 +1,19 @@
 # Network Security - Assignment 3
 
 1. This question is about IP address spoofing. Write your answers to every subquestion to a file called **exercise1**, making sure to prefix each answer with the letter for that question.
-	a) Take a look at the RFC for the **Internet Protocol**, RFC 791 (https://www.ietf.org/rfc/rfc791.txt). Explain what IP address spoofing is, and what a host on the network must do to spoof its IP address.
+	* a) Take a look at the RFC for the **Internet Protocol**, RFC 791 (https://www.ietf.org/rfc/rfc791.txt). Explain what IP address spoofing is, and what a host on the network must do to spoof its IP address.
 		* Answer
 
-	b) Take a look at the RFC for the **User Datagram Protocol**, RFC 768 (http://www.ietf.org/rfc/rfc768.txt), and the RFC for **Transmission Control Protocol**, RFC 793 (https://www.ietf.org/rfc/rfc793.txt). Explain why an attacker cannot just grab any existing IP packet carrying UDP or TCP, change only the IP addresses in there, and expect the target host to accept the packet. Especially for TCP, don't read the entire RFC but focus on the header (pages 15 - 19)
+	* b) Take a look at the RFC for the **User Datagram Protocol**, RFC 768 (http://www.ietf.org/rfc/rfc768.txt), and the RFC for **Transmission Control Protocol**, RFC 793 (https://www.ietf.org/rfc/rfc793.txt). Explain why an attacker cannot just grab any existing IP packet carrying UDP or TCP, change only the IP addresses in there, and expect the target host to accept the packet. Especially for TCP, don't read the entire RFC but focus on the header (pages 15 - 19)
 		* Answer
 
-	c) During the lecture we explained SYN flooding attacks. Review that now (slide 10 in https://cryptojedi.org/peter/teaching/netsec2017/tcpip_print.pdf). If an attacker wants to do SYN flooding while IP spoofing, she faces a problem. Let's first consider the case where the attacker, Mallory, tries spoofing the IP of an existing host, Bob, to SYN flood her target, Alice. Using the TCP RFC, explain which packets get sent to whom when Mallory sends a SYN to Alice using Bob's address as source. Focus on the TCP three-way handshake and the Reset Generation in section 3.4, "Establishin a connection". Explain why this will cause the SYN flood attack to fail.
+	* c) During the lecture we explained SYN flooding attacks. Review that now (slide 10 in https://cryptojedi.org/peter/teaching/netsec2017/tcpip_print.pdf). If an attacker wants to do SYN flooding while IP spoofing, she faces a problem. Let's first consider the case where the attacker, Mallory, tries spoofing the IP of an existing host, Bob, to SYN flood her target, Alice. Using the TCP RFC, explain which packets get sent to whom when Mallory sends a SYN to Alice using Bob's address as source. Focus on the TCP three-way handshake and the Reset Generation in section 3.4, "Establishin a connection". Explain why this will cause the SYN flood attack to fail.
 		* Answer
 
-	d) When Mallory tries to use the address of Ursula, who's currently not on the network, she does no face the problem you uncovered in the previous question. However, there is now another protocol in play which causes the attack to fail. Take a look at the RFC for the **Internet Control Message Protocol** (https://tools.ietf.org/rfc/rfc792.txt). Read the first five pages, and explain which packets get sent to whom when Mallory sends a SYN to Alice using Ursula's address as source. Explain why this will cause the SYN flood attack to fail.
+	* d) When Mallory tries to use the address of Ursula, who's currently not on the network, she does no face the problem you uncovered in the previous question. However, there is now another protocol in play which causes the attack to fail. Take a look at the RFC for the **Internet Control Message Protocol** (https://tools.ietf.org/rfc/rfc792.txt). Read the first five pages, and explain which packets get sent to whom when Mallory sends a SYN to Alice using Ursula's address as source. Explain why this will cause the SYN flood attack to fail.
 		* Answer
 
-	e) Using what you've learned in this course so far, describe a way to make Mallory's SYN flood attack succeed against Alice, while IP spoofing using either Bob's or Ursula's address. You may assume that Mallory is in the same network as Alice. If you mae any more assumptions (e.g. Mallory is able to modify all traffic on the network) please state these.
+	* e) Using what you've learned in this course so far, describe a way to make Mallory's SYN flood attack succeed against Alice, while IP spoofing using either Bob's or Ursula's address. You may assume that Mallory is in the same network as Alice. If you mae any more assumptions (e.g. Mallory is able to modify all traffic on the network) please state these.
 		* Answer
 
 
