@@ -27,3 +27,16 @@ Topics covered:
 * Working with capture files (*.cap) and Wireshark
 * Apply ARP spoofing to redirect traffic to your own machine
 * ARP replay and disassociation
+
+## Assignment 3 - Network Scanning
+
+Topics covered:
+
+* Usage of the following tools: nmap
+* IP spoofing
+* SYN flooding
+* Port blocking
+* Port scanning
+* OS fingerprinting
+* Host discovery
+* Service and version detection
