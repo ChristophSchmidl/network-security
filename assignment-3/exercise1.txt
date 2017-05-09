@@ -11,7 +11,7 @@ See also following links for further information:
 	* http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml
 
 
-c)
+c) The main idea behind the SYN flooding attack is sending many SYN packets to the server and never reply to the server's SYN/ACK with an ACK. This way the server's SYN queue will fill up to the point that new connections can't be established. Let's use the given scenario where Mallory tries to SYN flood Alice by ip spoofing Bob's address. Mallory is sending an initial SYN with a given sequence number X to Alice with the spoofed ip of Bob. Alice answers the initial response with a SYN/ACK with a new sequence number and the acknowledgment of X + 1. The responding SYN/ACK is now flowing to the spoofed ip which belongs to Bob, Mallory therefore does not get the response. Bob receives a SYN/ACK with an acknowledgment number he can't recognize and can't find the corresponding sequence number. Bob therefore sends a RST and forces the connection to close. The allocated memory in the SYN queue of Alice gets free and the SYN flooding attack does not succeed. 
 
 
 
