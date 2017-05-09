@@ -1,7 +1,14 @@
-a)
+a) IP spoofing describes the process of altering the header information of an IP packet especially the source addrress. The Internet protocol (IP) is a network protocol operating at layer 3 (network) of the OSI model. It is a connectionless model which means that there is no information regarding transaction state. Additionally, there is no method to ensure that a packet is properly delivered to the destination. By altering the source address field of the ip packets, an attacker can disguise his original ip address and can use this technique for various attack scenarios. There are two main scenarios for IP spoofing: the attacker sits on the same subnet and the attacker sits outside the subnet of his victim. If the attacker sits outside the subnet then most of the time the attack is blind ip spoofing because there is no way to catch reponding ip packets. If the attacker sits inside the same subnet then it is called non-blind ip spoofing. If non-blind ip spoofing is applied then most of the time the machine with the spoofed ip is attacked by some sort of DoS attack, so the attacker can fetch the responding ip packets which were originally meant for the spoofed machine.
 
 
-b)
+b) While the Internet protocol (IP) is operating at layer 3 (network) and is responsible for addressing and routing, TCP and UDP operate on layer 4 (transport) and are responsible for reliable transmissions of data segments between points on a network. IP is therefore a wrapper for layer 4 where TCP/UDP are contained in an IP packet's data segment. TCP and UDP incorporate a so called pseudo header. The pseudo header is conceptually prefixed to the UDP or TCP header and contains source address, the destination address, the protocol id and the protocol length. The source and destination address are taken from the ip header. Both UDP and TCP are using the pseudo header and the whole protocol segment to calculate a checksum. If IP spoofing is used with a TCP or UDP protocol within the data segment of the ip packet and the source address in the ip header is changed, then the checksum of the UDP or TCP segment has to be calculated again, otherwise the receiving part will just discard the packet.
+Another problem arises when IP spoofing is used with the TCP protocol. TCP sessions have to build a connection by using the 3-way-handshake beforehand to establish such a valid session by using sequences and acknowledgements. This procedure ensures data reliability because the sender receives an OK from the recipient after each packet exchange. The three-way-handshake is also difficult to establish between a given host and a spoofed ip because most of the time the attacker won't get back any response based on the false ip.
+See also following links for further information:
+	* https://www.elektronik-kompendium.de/sites/net/1412101.htm
+	* https://www.symantec.com/connect/articles/ip-spoofing-introduction
+	* https://www.incapsula.com/ddos/ip-spoofing.html
+	* http://www.tcpipguide.com/free/t_TCPChecksumCalculationandtheTCPPseudoHeader-2.htm
+	* http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml
 
 
 c)
