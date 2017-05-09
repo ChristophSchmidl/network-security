@@ -15,8 +15,8 @@ c) The main idea behind the SYN flooding attack is sending many SYN packets to t
 
 
 
-d)
+d) When Mallory tries to send SYN to Alice then the packet most likely has to be routed by some sort of gateway or switch. A switch has a routing table most of the time which preserves currently active hosts with their MAC and IP addresses. The routing table gets updated by the ICMP protocol in certain scenarios and if a certain destination address cannout be found, the ICMP packet carries a response code of 1 which means "host unreachable". This scenario causes the current attack to fail because the victim of the SYN flooding does not have to allocate any memory on the SYN queue based on its knowledge that the target of the SYN/ACK response is unreachable.
 
 
 
-e)
+e) Assume Bob is on the same subnet as Mallory and Alice. Mallory starts a man-in-the-middle attack by ARP spoofing both Bob and Alice. All traffic between Bob and Alice is therefore redirected through Mallory. Mallory is able to alter packages between these two hosts. Mallory start to SYN flooding Alice with the spoofed IP of Bob. Alice receives the SYNs, allocates memory on the SYN queue and sends a SYN/ACK back to Bob's ip address. The incoming SYN/ACK is intercepted by Alice and discarded which forces the before mentioned memory to stay allocated. In this way Mallory stays anonymous in this attack, can use Bob's ip address and can succeed with the SYN flooding attack.
