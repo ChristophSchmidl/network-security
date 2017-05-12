@@ -55,14 +55,62 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 * ```
 	$ route -n
 	Kernel IP routing table
-	Destination 	Gateway 		Genmask 		Flags 	Iface
-	0.0.0.0 		145.116.128.1 	0.0.0.0 		UG 		wlp3s0
-	145.116.128.0 	0.0.0.0 		255.255.252.0 	U 		wlp3s0
+	Destination Gateway Genmask Flags Iface
+	0.0.0.0 145.116.128.1 0.0.0.0 UG wlp3s0
+	145.116.128.0 0.0.0.0 255.255.252.0 U wlp3s0
 
 	$ ip r show
 	default via 145.116.128.1 dev wlp3s0
 	145.116.128.0/22 dev wlp3s0 proto kernel scope link src 145.116.128.31
 
 Let’s say that my VPN runs on a machine with IP address 198.51.100.42. When I connect to my VPN, a new interface (tap0) is created, and the routing table is changed (I have slightly altered the output for clarity):
+* ```
+	$ route -n
+	Kernel IP routing table
+	Destination Gateway Genmask Flags Iface
+	1. 0.0.0.0 10.50.9.1 128.0.0.0 UG tap0
+	2. 128.0.0.0 10.50.9.1 128.0.0.0 UG tap0
+	3. 10.50.9.0 0.0.0.0 255.255.255.0 U tap0
+	4. 10.0.0.0 145.116.128.1 255.0.0.0 UG wlp3s0
+	5. 172.16.0.0 145.116.128.1 255.240.0.0 UG wlp3s0
+	6. 192.168.0.0 145.116.128.1 255.255.0.0 UG wlp3s0
+	7. 0.0.0.0 145.116.128.1 0.0.0.0 UG wlp3s0
+	8. 131.174.117.20 145.116.128.1 255.255.255.255 UGH wlp3s0
+	9. 145.116.128.0 0.0.0.0 255.255.252.0 U wlp3s0
+	10. 198.51.100.42 145.116.128.1 255.255.255.255 UGH wlp3s0
 
+	$ ip r show
+	1. 0.0.0.0/1 via 10.50.9.1 dev tap0
+	2. 128.0.0.0/1 via 10.50.9.1 dev tap0
+	3. 10.50.9.0/24 dev tap0 proto kernel scope link src 10.50.9.60
+	4. 10.0.0.0/8 via 145.116.128.1 dev wlp3s0
+	5. 172.16.0.0/12 via 145.116.128.1 dev wlp3s0
+	6. 192.168.0.0/16 via 145.116.128.1 dev wlp3s0
+	7. default via 145.116.128.1 dev wlp3s0
+	8. 131.174.117.20 via 145.116.128.1 dev wlp3s0
+	9. 145.116.128.0/22 dev wlp3s0 proto kernel scope link src 145.116.128.31
+	10. 198.51.100.42 via 145.116.128.1 dev wlp3s0
 
+Other relevant information is in the DHCP leases I got:
+* ```	
+	$ dhcpcd --dumplease wlp3s0
+	dhcp_server_identifier=131.174.117.20
+	domain_name_servers=131.174.117.20
+	ip_address=145.116.128.31
+	network_number=145.116.128.0
+	routers=145.116.128.1
+	subnet_cidr=22
+	subnet_mask=255.255.252.0
+
+	$ dhcpcd --dumplease tap0
+	dhcp_server_identifier=10.50.9.1
+	ip_address=10.50.9.60
+	network_number=10.50.9.0
+	subnet_cidr=24
+	subnet_mask=255.255.255.0
+
+For all the following questions, keep in mind that a more specific route (i.e. one that applies to a smaller network, a smaller number of hosts) overrides more generic routes. So a route with a netmask of 255.255.255.0 (a /24) overrides any route with a netmask of 255.0.0.0 (a /8) that covers the same hosts. Also keep in mind that the VPN server is a machine with IP address 198.51.100.42. Internally the VPN uses the network 10.50.9.0/24, as can be seen in the dhcp lease for tap0. Finally, the dhcp protocol
+requires periodic communication with the dhcp server to keep the address lease active. In these questions, when asked “where traffic goes”, please answer with the Gateway IP address and the interface.
+
+* a) Look at routes 1, 2, and 7. Where does traffic not matched by any of the other routes go, and why? Write your answer to **exercise3a**.
+	* Answer
