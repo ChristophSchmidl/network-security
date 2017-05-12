@@ -42,7 +42,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	* Accept incoming TCP connections on port 80 (let’s say that’s a webinterface) and port 22 from the Internet.
 	* Forward TCP and UDP traffic on port 2222 and 8080 to some other host in the local network. Feel free to pick that host yourself.
 
-Since you likely cannot test this, simply give it your best shot. This is the type of configuration you’d use if you use a Linux machine as your home router. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1b.fw**
+	Since you likely cannot test this, simply give it your best shot. This is the type of configuration you’d use if you use a Linux machine as your home router. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1b.fw**
 	* Answer
 
 
