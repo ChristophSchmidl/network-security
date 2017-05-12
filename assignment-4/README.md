@@ -127,3 +127,15 @@ requires periodic communication with the dhcp server to keep the address lease a
 
 * e) Route 10 is the most important route present. Explain what it does, and what would happen if it was not present. Also try to explain what happens when I connect e.g. to an SSH server running on the same machine as the VPN server. Does that traffic get tunneled or not? Explain why. Write your answers to **exercise3e**.
 	* Answer		 	
+
+4. Take a look at RFC 5508, “NAT Behavioral Requirements for ICMP” (http://tools.ietf.org/rfc/rfc5508.txt). Read sections 2 (especially the part on “ICMP Message Classification”), 3, 4, and 10 (looking at 9 for the requirements). Create a folder called **exercise4** for the answers
+	* Why should a NAT drop inbound ICMP Error messages which do not belong to an existing NAT session? What should it do with inbound ICMP Error messages which do belong to an existing NAT session, and why? Write your answers to **exercise4a**.
+		
+		* Answer
+
+	* Why should a NAT drop outbound ICMP Error messages which do not belong to an existing NAT session? What should it do with outbound ICMP Error messages which do belong to an existing NAT session, and why? Write your answers to **exercise4b**.
+
+		* Answer
+
+	* Explain in your own words how NAT for ICMP works for the three different kinds of ICMP packets. Highlight some (two or three) security concerns, explain them, and explain how they are mitigated. Write your answers to **exercise4c**.
+		
