@@ -16,7 +16,7 @@ It might be a good idea to run ```iptables-save``` on the firewall configuration
 		# iptables -P INPUT ACCEPT
 		# iptables -P FORWARD ACCEPT
 		# iptables -P OUTPUT ACCEPT
-	```
+
 test
 
 
