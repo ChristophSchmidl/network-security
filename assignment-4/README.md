@@ -114,3 +114,16 @@ requires periodic communication with the dhcp server to keep the address lease a
 
 * a) Look at routes 1, 2, and 7. Where does traffic not matched by any of the other routes go, and why? Write your answer to **exercise3a**.
 	* Answer
+
+* b) Route 9 is one of the two original routes, also present when the VPN is not active. Similarly, routes 4–6 are always added by my VPN setup script. Explain what these routes accomplish. What traffic do they match, where does that traffic go, and why? Note the IP ranges used, and try to imagine the usage scenario for a VPN. Write your answers to
+**exercise3b**.	
+	* Answer
+
+* c) Explain why route 3 is necessary, in light of what routes 4–6 accomplish. Look at the dhcp lease for the tap0 interface. Write your answer to **exercise3c**.
+	* Answer
+
+* d) Look at route 8 and the dhcp lease for the wlp3s0 interface. Why is route 8 necessary? What happens if it is not present? Write your answer to **exercise3d**. 
+	* Answer
+
+* e) Route 10 is the most important route present. Explain what it does, and what would happen if it was not present. Also try to explain what happens when I connect e.g. to an SSH server running on the same machine as the VPN server. Does that traffic get tunneled or not? Explain why. Write your answers to **exercise3e**.
+	* Answer		 	
