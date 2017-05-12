@@ -26,7 +26,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 		* incoming SSH traffic (filter on transport protocol and port).
 	* Allow all ICMP traffic, except ICMP redirects.	
 
-If you use tutorials or examples, please make sure you understand what the rules do. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1a.fw**
+	If you use tutorials or examples, please make sure you understand what the rules do. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1a.fw**
 
 
 * b) Take a look at the RFC for the **User Datagram Protocol**, RFC 768 (http://www.ietf.org/rfc/rfc768.txt), and the RFC for **Transmission Control Protocol**, RFC 793 (https://www.ietf.org/rfc/rfc793.txt). Explain why an attacker cannot just grab any existing IP packet carrying UDP or TCP, change only the IP addresses in there, and expect the target host to accept the packet. Especially for TCP, don't read the entire RFC but focus on the header (pages 15 - 19)
