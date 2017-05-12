@@ -28,8 +28,22 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 
 	If you use tutorials or examples, please make sure you understand what the rules do. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1a.fw**
 
+	* Answer
 
-* b) Take a look at the RFC for the **User Datagram Protocol**, RFC 768 (http://www.ietf.org/rfc/rfc768.txt), and the RFC for **Transmission Control Protocol**, RFC 793 (https://www.ietf.org/rfc/rfc793.txt). Explain why an attacker cannot just grab any existing IP packet carrying UDP or TCP, change only the IP addresses in there, and expect the target host to accept the packet. Especially for TCP, don't read the entire RFC but focus on the header (pages 15 - 19)
+
+* b) If you felt exercise 1a was easy, try your hand at this one. Otherwise, skip to exercise 2 and come back if you have time left over. Do the same for a masquerading server / router with two network cards: eth0 with IP address 198.51.100.42 and eth1 with address 10.0.0.1/24. eth1 is the internal card, the internal network should be obvious from its address. eth0 is the external card, which is the link to the Internet. The firewall should do the following:
+	
+	* Masquerade traffic coming from the local network going to the Internet.
+	* Allow outgoing traffic to the Internet that’s forwarded from the local network.
+	* Block all outgoing traffic from the machine itself to the Internet, except for ICMP and traffic that belongs to an established connection.
+	* Allow all incoming ICMP traffic.
+	* Allow all outgoing traffic from the machine itself to the local network.
+	* Block all incoming traffic from the Internet, except traffic that belongs to an established connection.
+	* Accept incoming TCP connections on port 80 (let’s say that’s a webinterface) and port 22 from the Internet.
+	* Forward TCP and UDP traffic on port 2222 and 8080 to some other host in the local network. Feel free to pick that host yourself.
+
+Since you likely cannot test this, simply give it your best shot. This is the type of configuration you’d use if you use a Linux machine as your home router. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1b.fw**
+
 	* Answer
 
 
