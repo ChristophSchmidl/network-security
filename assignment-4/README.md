@@ -138,4 +138,6 @@ requires periodic communication with the dhcp server to keep the address lease a
 		* Answer
 
 	* Explain in your own words how NAT for ICMP works for the three different kinds of ICMP packets. Highlight some (two or three) security concerns, explain them, and explain how they are mitigated. Write your answers to **exercise4c**.
+
+		* Answer
 		
