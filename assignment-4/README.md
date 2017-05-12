@@ -52,16 +52,16 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	* Answer
 
 3. In a later lecture you will be told something about OpenVPN. It is another form of VPN software than sshuttle. For now, the main difference you need to understand is that OpenVPN provides a virtual ethernet interface to route traffic through, in contrast to sshuttle which redirects traffic using iptables. The result is that the routing table contains rules to route normally, as well as rules to route traffic over the VPN. Create a folder called **exercise3** to hold the answers for this exercise. My IP address is 145.116.128.31/22. When I’m not connected to my VPN, my routing table looks like this:
-	* ```
-		$ route -n
-		Kernel IP routing table
-		Destination Gateway Genmask Flags Iface
-		0.0.0.0 145.116.128.1 0.0.0.0 UG wlp3s0
-		145.116.128.0 0.0.0.0 255.255.252.0 U wlp3s0
+* ```
+	$ route -n
+	Kernel IP routing table
+	Destination Gateway Genmask Flags Iface
+	0.0.0.0 145.116.128.1 0.0.0.0 UG wlp3s0
+	145.116.128.0 0.0.0.0 255.255.252.0 U wlp3s0
 
-		$ ip r show
-		default via 145.116.128.1 dev wlp3s0
-		145.116.128.0/22 dev wlp3s0 proto kernel scope link src 145.116.128.31
+	$ ip r show
+	default via 145.116.128.1 dev wlp3s0
+	145.116.128.0/22 dev wlp3s0 proto kernel scope link src 145.116.128.31
 
 Let’s say that my VPN runs on a machine with IP address 198.51.100.42. When I connect to my VPN, a new interface (tap0) is created, and the routing table is changed (I have slightly altered the output for clarity):
 
