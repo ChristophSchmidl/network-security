@@ -7,15 +7,15 @@ In this exercise you will be using the following tools:
 1. In this exercise you will use iptables to create two firewall configurations: one for a client machine, one for a masquerading server. You are encouraged to test your configuration on your own (virtual) machine. You can use the commands ```iptables-save``` and ```iptables-restore``` to save and restore iptables rules to and from a file, respectively. Usage: ```# iptables-save > filename``` stores the firewall configuration in the file ```filename```. ```# iptables-restore < filename``` restores the firewall configuration from filename.
 It might be a good idea to run ```iptables-save``` on the firewall configuration you have before starting this exercise. If you get in unrecoverable trouble, you can completely reset the firewall configuration by running the following commands:
 * ```
-# iptables -F
-# iptables -X
-# iptables -t nat -F
-# iptables -t nat -X
-# iptables -t mangle -F
-# iptables -t mangle -X
-# iptables -P INPUT ACCEPT
-# iptables -P FORWARD ACCEPT
-# iptables -P OUTPUT ACCEPT
+	# iptables -F
+	# iptables -X
+	# iptables -t nat -F
+	# iptables -t nat -X
+	# iptables -t mangle -F
+	# iptables -t mangle -X
+	# iptables -P INPUT ACCEPT
+	# iptables -P FORWARD ACCEPT
+	# iptables -P OUTPUT ACCEPT
 ```
 
 
