@@ -20,8 +20,14 @@ It might be a good idea to run ```iptables-save``` on the firewall configuration
 This will flush (-F) all built-in chains and delete (-X) all user-defined chains in the standard tables, and set the default policy (-P) to accept. Create a folder called **exercise1** to hold the answers to this exercise. Note that under some Linux distributions (most notably Ubuntu), you may have to add a rule allowing traffic from localhost to localhost in order to allow some local processes to communicate.
 
 * a) Use the iptables manpage (**man iptables**), the netfilter documentation on http://www.netfilter.org/documentation/index.html#documentation-howto (especially the Packet Filtering HOWTO), the lecture slides, and any sources you want to build a client firewall that does the following:
+	* Allow all outgoing traffic.
+	* Deny all incoming traffic, except
+		* traffic that belongs to an established connection, and
+		* incoming SSH traffic (filter on transport protocol and port).
+	* Allow all ICMP traffic, except ICMP redirects.	
 
-	* Answer
+If you use tutorials or examples, please make sure you understand what the rules do. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1a.fw**
+
 
 * b) Take a look at the RFC for the **User Datagram Protocol**, RFC 768 (http://www.ietf.org/rfc/rfc768.txt), and the RFC for **Transmission Control Protocol**, RFC 793 (https://www.ietf.org/rfc/rfc793.txt). Explain why an attacker cannot just grab any existing IP packet carrying UDP or TCP, change only the IP addresses in there, and expect the target host to accept the packet. Especially for TCP, don't read the entire RFC but focus on the header (pages 15 - 19)
 	* Answer
