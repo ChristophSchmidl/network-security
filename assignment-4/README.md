@@ -55,9 +55,9 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 * ```
 	$ route -n
 	Kernel IP routing table
-	Destination Gateway Genmask Flags Iface
-	0.0.0.0 145.116.128.1 0.0.0.0 UG wlp3s0
-	145.116.128.0 0.0.0.0 255.255.252.0 U wlp3s0
+	Destination 	Gateway 		Genmask 		Flags 	Iface
+	0.0.0.0 		145.116.128.1 	0.0.0.0 		UG 		wlp3s0
+	145.116.128.0 	0.0.0.0 		255.255.252.0 	U 		wlp3s0
 
 	$ ip r show
 	default via 145.116.128.1 dev wlp3s0
