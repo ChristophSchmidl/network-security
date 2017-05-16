@@ -75,6 +75,8 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	iptables -t nat -I PREROUTING 1 -j sshuttle-12300
 	iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.0/8 -p tcp
 	iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+	iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 127.0.1.1/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
+
 	```
 
 	* The iptables program contains the following tables: filter(default), nat, mangle, raw and security. By executing ``` sudo iptables -t nat -L ``` for each table respectively you can see that sshuttle only altered the nat table. 
@@ -149,6 +151,8 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	COMMIT
 	# Completed on Tue May 16 17:06:32 2017
 	```
+
+	The nat table contains different chains, namely "PREROUTING", "INPUT", "OUTPUT", "POSTROUTING" and "sshuttle-12300". "PREROUTING" is invoked before reaching the "INPUT" or "FORWARD" chain. "POSTROUTING" is invoked after traversing the "FORWARD" or "OUTPUT" chain. Sshuttle altered the nat table in such a way that the "OUTPUT" and "PREROUTING" chain are catching all network traffic and then forward it to the custom chain "sshuttle-12300" with custom rules.
 
 3. In a later lecture you will be told something about OpenVPN. It is another form of VPN software than sshuttle. For now, the main difference you need to understand is that OpenVPN provides a virtual ethernet interface to route traffic through, in contrast to sshuttle which redirects traffic using iptables. The result is that the routing table contains rules to route normally, as well as rules to route traffic over the VPN. Create a folder called **exercise3** to hold the answers for this exercise. My IP address is 145.116.128.31/22. When I’m not connected to my VPN, my routing table looks like this:
 * ```
