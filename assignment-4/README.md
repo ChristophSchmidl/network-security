@@ -68,13 +68,13 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 2. In this exercise you will use sshuttle to set up a secure tunnel to the lilo login server of the Faculty of Science, and then inspect and analyze the resulting iptables rules. For this, you will need to use your Faculty of Science account. If you do not have one, and do not have access to an alternative SSH server on which sshuttle works, send me an e-mail as soon as possible. Use the manpage of sshuttle (**man sshuttle**) to figure out the command to route everything through the VPN. The remote host to use is **username**@lilo.science.ru.nl, where **username** is your Science login name. Write the command you use to **exercise2**. Remember to run sshuttle as root. Now, view the resulting iptables configuration using either ```# iptables -t <table> -L``` for each table listed in the manual page, or use ```# iptables-save```. Write the rules to **exercise2**, and explain what they do and why they route everything through the VPN. Try e.g. looking for the port number you see in a listing of listening ports. Feel free to play with other configurations (e.g. routing only certain networks through the VPN, or using exceptions) and explain what the different firewall rules for these configurations do as well.
 
 	* By starting sshuttle with the following command ``` test ``` sshuttle updates the iptables as following:
-		* ```
-		iptables -t nat -N sshuttle-12300
-		iptables -t nat -F sshuttle-12300
-		iptables -t nat -I OUTPUT 1 -j sshuttle-12300
-		iptables -t nat -I PREROUTING 1 -j sshuttle-12300
-		iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.0/8 -p tcp
-		iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+	* ```
+	iptables -t nat -N sshuttle-12300
+	iptables -t nat -F sshuttle-12300
+	iptables -t nat -I OUTPUT 1 -j sshuttle-12300
+	iptables -t nat -I PREROUTING 1 -j sshuttle-12300
+	iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.0/8 -p tcp
+	iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
 
 3. In a later lecture you will be told something about OpenVPN. It is another form of VPN software than sshuttle. For now, the main difference you need to understand is that OpenVPN provides a virtual ethernet interface to route traffic through, in contrast to sshuttle which redirects traffic using iptables. The result is that the routing table contains rules to route normally, as well as rules to route traffic over the VPN. Create a folder called **exercise3** to hold the answers for this exercise. My IP address is 145.116.128.31/22. When I’m not connected to my VPN, my routing table looks like this:
 * ```
