@@ -28,7 +28,25 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 
 	If you use tutorials or examples, please make sure you understand what the rules do. Write your firewall configuration, preferably dumped by ```# iptables-save```, to **exercise1a.fw**
 
-	* Answer
+	* ```
+		# Set default chain policies
+		sudo iptables -P INPUT DROP
+		sudo iptables -P FORWARD DROP
+		sudo iptables -P OUTPUT ACCEPT
+
+		# Accept on localhost. Important, otherwise strange things happen.
+		sudo iptables -A INPUT -i lo -j ACCEPT
+		sudo iptables -A OUTPUT -o lo -j ACCEPT
+
+		# Allow established sessions to receive traffic
+		sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+		# Allow incoming ssh connections
+		sudo iptables -A INPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+		# Allow all ICMP traffic, except ICMP redirects
+		sudo iptables -A INPUT -p icmp --icmp-type redirect -j DROP
+		sudo iptables -A INPUT -p icmp --icmp-type any -j ACCEPT
 
 
 * b) If you felt exercise 1a was easy, try your hand at this one. Otherwise, skip to exercise 2 and come back if you have time left over. Do the same for a masquerading server / router with two network cards: eth0 with IP address 198.51.100.42 and eth1 with address 10.0.0.1/24. eth1 is the internal card, the internal network should be obvious from its address. eth0 is the external card, which is the link to the Internet. The firewall should do the following:
