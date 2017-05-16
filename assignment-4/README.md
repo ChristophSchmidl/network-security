@@ -77,7 +77,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
 	```
 
-	* The iptables program contains the following tables: filter(default), nat, mangle, raw and security. By executing ``` sudo iptables -t nat -L ```:
+	* The iptables program contains the following tables: filter(default), nat, mangle, raw and security. By executing ``` sudo iptables -t nat -L ``` for each table respectively you can see that sshuttle only altered the nat table. 
 
 	```
 	cs@cs-VirtualBox:~$ sudo iptables -t nat -L
@@ -102,7 +102,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 		REDIRECT   udp  --  anywhere             cs-VirtualBox        udp dpt:domain TTL match TTL != 42 redir ports 12300
 	```	
 
-	for each table respectively you can see that sshuttle only altered the nat table. By executing ``` sudo iptables-save > exercise2.fw ``` we get the whole ruleset created by sshuttle:
+	By executing ``` sudo iptables-save > exercise2.fw ``` we get the whole ruleset created by sshuttle:
 
 
 	```
