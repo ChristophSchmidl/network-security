@@ -78,6 +78,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	```
 
 	* The iptables program contains the following tables: filter(default), nat, mangle, raw and security. By executing ``` sudo iptables -t nat -L ```:
+	
 	```
 	cs@cs-VirtualBox:~$ sudo iptables -t nat -L
 		Chain PREROUTING (policy ACCEPT)
