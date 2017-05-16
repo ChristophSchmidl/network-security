@@ -1,0 +1,6 @@
+According to the official rfc, outbound icmp error messages which belong to an existing NAT session should be treated as following:
+	a) Revert the IP and transport headers of the embedded IP packet to their original form, using the matching mapping; and
+	b) Leave the ICMP Error type and code unchanged; and
+	c) If the NAT enforces Basic NAT function [NAT-TRAD], and the NAT has active mapping for the IP address that sent the ICMP Error, translate the source IP address of the ICMPError packet with the public IP address in the mapping. In all other cases, translate the source IP address of the ICMP Error packet with its own public IP address.
+
+Outbound icmp error messages without an existing nat session/mapping should be dropped because there was no preceding event which could have caused the creation of the error message in the first place. Therefore there is a high chance that such an icmp error message is of malicious nature. Option a and c are standard nat procedures so that the IP address of the router of the external realm is exchanged for the source ip address of the host in the private realm.
