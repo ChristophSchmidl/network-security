@@ -78,7 +78,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	```
 
 	* The iptables program contains the following tables: filter(default), nat, mangle, raw and security. By executing ``` sudo iptables -t nat -L ```:
-	
+
 	```
 	cs@cs-VirtualBox:~$ sudo iptables -t nat -L
 		Chain PREROUTING (policy ACCEPT)
@@ -100,6 +100,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 		RETURN     tcp  --  anywhere             127.0.0.0/8         
 		REDIRECT   tcp  --  anywhere             anywhere             TTL match TTL != 42 redir ports 12300
 		REDIRECT   udp  --  anywhere             cs-VirtualBox        udp dpt:domain TTL match TTL != 42 redir ports 12300
+	```	
 
 	for each table respectively you can see that sshuttle only altered the nat table. By executing ``` sudo iptables-save > exercise2.fw ``` we get the whole ruleset created by sshuttle:
 
