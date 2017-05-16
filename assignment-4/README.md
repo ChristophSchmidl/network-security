@@ -120,7 +120,7 @@ This will flush (-F) all built-in chains and delete (-X) all user-defined chains
 	:OUTPUT ACCEPT [11377:2985700]
 	COMMIT
 	# Completed on Tue May 16 17:06:32 2017
-
+	```
 
 3. In a later lecture you will be told something about OpenVPN. It is another form of VPN software than sshuttle. For now, the main difference you need to understand is that OpenVPN provides a virtual ethernet interface to route traffic through, in contrast to sshuttle which redirects traffic using iptables. The result is that the routing table contains rules to route normally, as well as rules to route traffic over the VPN. Create a folder called **exercise3** to hold the answers for this exercise. My IP address is 145.116.128.31/22. When I’m not connected to my VPN, my routing table looks like this:
 * ```
