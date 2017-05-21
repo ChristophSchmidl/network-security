@@ -1,0 +1,1 @@
+cs@cs-VirtualBox:~$ sudo drill -Db 4096 ANY @89.163.210.121 stackexchange.com
