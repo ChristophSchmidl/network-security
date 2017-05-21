@@ -19,18 +19,17 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 	* c) Suppose you are the administrator of this network. You want to make sure that, from the LAN, nobody can use this kind of DNS amplification attack. The LAN network is 203.0.113.0/24, the gateway's internal IP address is 203.0.113.1, and its external IP address is 198.51.100.78. What firewall measures (iptables rules) would be effective in preventing this kind of attack without impeding normal operation of the network? Describe these measure in detail, and also try to come up with actual iptables rules for them. Write your answer to **exercise1c**.
 
 		* ``` 
+			# Set default chain policies
+			sudo iptables -P INPUT ACCEPT
+			sudo iptables -P FORWARD DROP
+			sudo iptables -P OUTPUT DROP
 
-		# Set default chain policies
-		sudo iptables -P INPUT ACCEPT
-		sudo iptables -P FORWARD DROP
-		sudo iptables -P OUTPUT DROP
+			# Accept on localhost. Important, otherwise strange things happen.
+			sudo iptables -A INPUT -i lo -j ACCEPT
+			sudo iptables -A OUTPUT -o lo -j ACCEPT
 
-		# Accept on localhost. Important, otherwise strange things happen.
-		sudo iptables -A INPUT -i lo -j ACCEPT
-		sudo iptables -A OUTPUT -o lo -j ACCEPT
-
-		# Only allow outgoing traffic when the source is inside the given ip range of the subnet. DNS Amplificaiton with Ip Spoofing is therefore not possible.
-		sudo iptables -A OUTPUT -m iprange --src-range 192.168.1.0-192.168.1.255 -j ACCEPT
+			# Only allow outgoing traffic when the source is inside the given ip range of the subnet. DNS Amplificaiton with Ip Spoofing is therefore not possible.
+			sudo iptables -A OUTPUT -m iprange --src-range 192.168.1.0-192.168.1.255 -j ACCEPT
 
 
 	
