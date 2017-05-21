@@ -31,7 +31,6 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 		# Only allow outgoing traffic when the source is inside the given ip range of the subnet. DNS Amplificaiton with Ip Spoofing is therefore not possible.
 		sudo iptables -A OUTPUT -m iprange --src-range 192.168.1.0-192.168.1.255 -j ACCEPT
-		``` 
 
 
 	
