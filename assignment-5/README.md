@@ -8,7 +8,7 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 	* a) Using any tool, script or program you want, figure out the UDP DNS query that gives you the largest DNS amplification. E.g. a query that's 100 bytes and generates a response of 1000 bytes gives you an amplification factor of 10. You are not allowed to use DNS servers under your own control for this, but apart from that you are free to pick any server and any query you want. To make sure that we can verify your answer, make a packet capture of the outgoing query and the incoming response. Members of the group with the largest amplification will get a prize: a copy of "Ghost in the Wires: My Adventures as the World's Most Wanted Hacker" by Kevin Mitnick. In the case of a tie, the first submission in Blackboard wins. Don't spend all your time doing this, however. Find a reasonable query, then do the other exercises before coming back to improve on this answer. Write your answer, preferably as a **dig** or **drill** query, to **exercise1a**. Also store the packet capture as **exercise1a.cap**. If you programmed something for this, include the source code.
 		
-		* ``` cs@cs-VirtualBox:~$ sudo drill -Db 4096 ANY @89.163.210.121 stackexchange.com ```
+		* ``` cs@cs-VirtualBox:~$ sudo drill -Db 4096 ANY @89.163.210.121 isc.org ```
 		* See also: https://blog.cloudflare.com/deep-inside-a-dns-amplification-ddos-attack/
 		* https://technet.microsoft.com/de-de/security/hh972393.aspx
 
