@@ -31,8 +31,6 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 			# Only allow outgoing traffic when the source is inside the given ip range of the subnet. DNS Amplificaiton with Ip Spoofing is therefore not possible.
 			sudo iptables -A OUTPUT -m iprange --src-range 192.168.1.0-192.168.1.255 -j ACCEPT
 
-
-	
 2. Create a folder called **exercise2**. Assume you're an attacker who wants to trick a DNS cache into believing your server is actually hosting blackboard.ru.nl. You try to race a legitimate DNS server to provide the answer faster.
 
 	* a) How would you ensure that you can predict the queries that the cache is going to produce, and how would you ensure that your answers will be accepted (i.e. pass the bailiwick check)? Describe the setup and/or process. Write your answer to **exercise2a**.
