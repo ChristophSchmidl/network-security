@@ -35,7 +35,9 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 	* a) How would you ensure that you can predict the queries that the cache is going to produce, and how would you ensure that your answers will be accepted (i.e. pass the bailiwick check)? Describe the setup and/or process. Write your answer to **exercise2a**.
 
-		* Answer
+		* See also: http://sourcedaddy.com/networking/dns-cache-poisoning.html
+		* http://www.unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html
+		* http://www.linuxjournal.com/content/understanding-kaminskys-dns-bug
 
 	* b) QID randomization and port randomization are (somewhat) effective countermeasures against cache poisoning. If you craft a single blind response, to a single DNS query, what are the odds that you guess right if the DNS cache is only using QID randomization in its queries? What are the odds if the cache is also using source port randomization? Write your answers to **exercise2b**.
 	
