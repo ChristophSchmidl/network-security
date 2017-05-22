@@ -35,6 +35,27 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 	* a) How would you ensure that you can predict the queries that the cache is going to produce, and how would you ensure that your answers will be accepted (i.e. pass the bailiwick check)? Describe the setup and/or process. Write your answer to **exercise2a**.
 
+		* Let's look at an example using the drill command
+		* ```
+			cs@cs-VirtualBox:~$ sudo drill -D -b 4096 ANY @89.163.210.121 blackboard.ru.nl
+			;; ->>HEADER<<- opcode: QUERY, rcode: NOERROR, id: 61957
+			;; flags: qr rd ra ; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0 
+			;; QUESTION SECTION:
+			;; blackboard.ru.nl.	IN	TYPE255
+
+			;; ANSWER SECTION:
+			blackboard.ru.nl.	552	IN	A	131.174.57.69
+
+			;; AUTHORITY SECTION:
+
+			;; ADDITIONAL SECTION:
+
+			;; Query time: 16 msec
+			;; EDNS: version 0; flags: do ; udp: 4000
+			;; SERVER: 89.163.210.121
+			;; WHEN: Mon May 22 13:17:02 2017
+			;; MSG SIZE  rcvd: 61
+
 		* See also: http://sourcedaddy.com/networking/dns-cache-poisoning.html
 		* http://www.unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html
 		* http://www.linuxjournal.com/content/understanding-kaminskys-dns-bug
@@ -45,11 +66,12 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 	* c) Imagine that on top of that, these DNS servers also deploy 0x20 randomization (see slides, the random capital letters in the query). What are the odds now that you will guess right on a query for the blackboard.ru.nl host? Write your answer to **exercise2c**.
 
-		* Let's take the simplest scenario from exercise 2b where QID and source port randomization would result in 32 bit entropy. 0x20 randomization changes the capitalization of the letters in the query. Let's say the url in the query is x tokens long. Then 0x20 would add 2^x or x bits of entropy to the 32 bits of entropy. Therefore, 32 + x bits entropy.
+		* Let's take the simplest scenario from exercise 2b where QID and source port randomization would result in 32 bit entropy. 0x20 randomization changes the capitalization of the letters in the query. Let's say the url in the query is x tokens long. Then 0x20 would add 2^x or x bits of entropy to the 32 bits of entropy. In the above example, blackboard.ru.nl, we therefore have x = 14. The resulting entropy is therefore 32 bit + 14 bit = 46 bit.
+		* See also: https://dyn.com/blog/use-of-bit-0x20-in-dns-labels/
 
 	* d) How could you still try to get a good success rate, even though your odds of guessing correctly are low? Describe the general idea behind the attack, exact calculations of probability are not required. Write your answer to **exercise2d**.	
 
-		* Answer
+		* By luring the victim to a www.attacker.com website which includes pictures from www.target.com, the attack sees the website request and knows that DNS requests for www.target.com will follow. The main idea is to choose a target with many links on subdomains so man DNS requests will be triggered. The attacker can therefore try his luck with many different forged DNS replies and additionally could try to run a DOS attack against the real DNS server, so he improves his chances of winning the race.
 
 	* e) Explain in your own words, why all these countermeasures do not work against the easy DNS attack, i.e. against a passive MitM attacker. Write your answer to **exercise2e**.
 	
