@@ -86,5 +86,6 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 3. The firewall configuration you made in assignment 4, exercise 1a, should still allow DNS conversations. However, DNS usually runs over UDP and UDP is a connectionless protocol. Try to explain how the firewall still knows that it should allow this DNS traffic. Feel free to consult iptables documentation for this. Write your answer to **exercise3**. 
 
 	* The firewall configuration from assignment 4, exercise 1a allowed all outgoing traffic and only the input traffic which has been established or related, therefore traffic which belongs to a session of any kind. The firewall allows DNS traffic although it's based on a stateless protocol like UDP, because it remembers outgoing UDP packets based on source ip, destination ip, source port and destination port for a while and recognises its responses.
+	* See also: https://serverfault.com/questions/123208/iptables-p-udp-state-established
 
 
