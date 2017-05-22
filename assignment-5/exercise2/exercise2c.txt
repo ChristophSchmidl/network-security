@@ -1,0 +1,1 @@
+Let's take the simplest scenario from exercise 2b where QID and source port randomization would result in 32 bit entropy. 0x20 randomization changes the capitalization of the letters in the query. Let's say the url in the query is x tokens long. Then 0x20 would add 2^x or x bits of entropy to the 32 bits of entropy. Therefore, 32 + x bits entropy.

@@ -41,11 +41,11 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 	* b) QID randomization and port randomization are (somewhat) effective countermeasures against cache poisoning. If you craft a single blind response, to a single DNS query, what are the odds that you guess right if the DNS cache is only using QID randomization in its queries? What are the odds if the cache is also using source port randomization? Write your answers to **exercise2b**.
 	
-		* Answer
+		* QID randomization can choose from a 16 bit pool of values which gives 2^{16} = 65536 possibilities to choose from. The chance to guess this value right with one single blind response is therefore 1/65536. If source port randomization is added, then the odds are not that clear, in my opinion. Let's assume the simplest scenario where the source port can be chosen from all 16 bits available which gives 65536 possibilities. Therefore, we would have 16 bits from QID and 16 bits from source port randomization which makes 32 bit entropy or 4294967296 possibilities. The odds are therefore 1/4294967296. But if you consider the fact that the first 1024 ports are registered to well known services and should not be chosen from the pool, where one of those 1024 ports is registered to DNS (53), then we are faced with a reduction of 1023 ports to choose from. This new calculation would be therefore: 65536 (QID) * (65536(source ports) - 1023(well known services)) = 4227923968 possibilities.
 
 	* c) Imagine that on top of that, these DNS servers also deploy 0x20 randomization (see slides, the random capital letters in the query). What are the odds now that you will guess right on a query for the blackboard.ru.nl host? Write your answer to **exercise2c**.
 
-		* Answer
+		* Let's take the simplest scenario from exercise 2b where QID and source port randomization would result in 32 bit entropy. 0x20 randomization changes the capitalization of the letters in the query. Let's say the url in the query is x tokens long. Then 0x20 would add 2^x or x bits of entropy to the 32 bits of entropy. Therefore, 32 + x bits entropy.
 
 	* d) How could you still try to get a good success rate, even though your odds of guessing correctly are low? Describe the general idea behind the attack, exact calculations of probability are not required. Write your answer to **exercise2d**.	
 
@@ -53,7 +53,7 @@ In this exercise you will be using dig, drill, or similar DNS query tools:
 
 	* e) Explain in your own words, why all these countermeasures do not work against the easy DNS attack, i.e. against a passive MitM attacker. Write your answer to **exercise2e**.
 	
-		* Answer
+		* All the preceding DNS attacks were blind forgeries where the attacker had to guess information like QID, port number and so forth. The attacker had to face a list of entropy measures. A Man-in-the-middle (MitM) attack gives the attacker the possibility to read all the traffic and therefore does not have to craft blind forgeries because he can intercept the traffic and therefore also can read information like QID and port number. This makes these countermeasures obsolete.
 
 	* f) As a completely optional bonus, calculate the number of queries the cache needs to make on average for your attack from 2d to succeed with a 90% success rate, assuming you win every race (i.e. for each query it makes, you successfully inject your own response), for all three situations of only QID randomization, QID and port randomization, and QID, port, and 0x20 randomization on blackboard.ru.nl. Write your answers to **exercise2bonus**.
 
