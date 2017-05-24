@@ -14,7 +14,42 @@ In this assignment you will be using the following tools:
 
 	* a) Although WPA2 is more secure than WEP, just like any other good cryptographic system it is only as strong as the key material in use. To demonstrate this, you will use aircrack-ng to crack the passphrase of the wireless network where the course administrator is working. We have already take care of capturing the WPA2 connection handshakes, you can download it as http://www.cs.ru.nl/~paubel/netsec/2017/handshake.cap. To crack WPA2 passphrases, you need wordlists. A tutorial on how to crack WPA is on http://www.aircrack-ng.org/doku.php?id=cracking_wpa. Ignore the stuff about injecting packets, capturing the handshake etc. We'va already taken care of that. The interesting part is section 4. Pointers on where to find wordlists are on http://www.aircrack-ng.org/doku.php?id=faq#how_can_i_crack_a_wpa-psk_network. Since it is not our intention to have you spend hours on WPA cracking, use the wordlist at http://gdataonline.com/downloads/GDict/GDict_v2.0.7z. Note that you have to unzip it first (7z x GDict_v2.0.7z). The bssid of the network is **00:0f:c9:0c:f7:93**. If you want to decrypt the capture to see whether you have the correct key, you also need the essid. This is **netsec-wpa**. The capture should contain a single DHCP packet. Beware of the Ubuntu decryption bug, however: if you see other stuff you may still have the correct key. The best way to check is to try to connect to the network. Keep in mind that the network may not have a running DHCP server so if you fail to connect, try to set a static IP address in the 192.168.84.200 - 249 range, with netmask 255.255.255.0 and gateway 192.168.84.1. Write the passphrase you found to a file called **exercise1a**.
 
-		* Answer
+		* ```
+			cs@cs-VirtualBox:~$ aircrack-ng -w GDict_v2.txt -b 00:0f:c9:0c:f7:93 handshake.cap
+			Opening handshake.cap
+			Reading packets, please wait...
+
+			                                 Aircrack-ng 1.2 beta3
+
+
+			                   [00:00:02] 10548 keys tested (4155.81 k/s)
+
+
+			                           KEY FOUND! [ <OC@(OL4 ]
+
+
+			      Master Key     : A2 3E 89 CC EF EC 87 9A BF AC 4D 39 C2 80 31 C4 
+			                       BA 90 75 29 06 E4 D3 C7 19 C5 BD A1 32 8A 42 FE 
+
+			      Transient Key  : A3 CA 24 30 C0 54 2D 08 02 F9 CA 20 A7 DB 67 62 
+			                       22 3F B3 03 C1 EA FC 95 FE 10 C3 EB D2 EF 13 E9 
+			                       AA C4 FD 70 A1 29 D8 68 4C 04 FD 40 4B 47 B1 22 
+			                       3C C6 DB A8 98 CD 18 D5 8C D1 F3 76 64 39 DB 61 
+
+			      EAPOL HMAC     : 9F 32 CA 85 04 F8 71 A1 B6 FA D2 87 FF 68 B1 69
+
+			cs@cs-VirtualBox:~$ airdecap-ng -e 'netsec-wpa' -p '<OC@(OL4' handshake.cap
+			
+				Total number of packets read            99
+				Total number of WEP data packets         0
+				Total number of WPA data packets         5
+				Number of plaintext data packets         0
+				Number of decrypted WEP  packets         0
+				Number of corrupted WEP  packets         0
+				Number of decrypted WPA  packets         1 
+
+		* WPA2 passphrase: <OC@(OL4	  
+		
 
 	* b) Connect to the network. There should be a DHCP server running. If not, use an IP address in the range of 192.168.84.200 - 249, with a netmask 255.255.255.0 and gateway 192.168.84.10. Use nmap to scan this network. Find the hosts in the range 192.168.84.1 - 80. Disable reverse DNS lookup to speed up things. There should be many hosts, apart from the gateways (192.168.84.1 - 20). Write which hosts you find to **exercise1b**.
 	
