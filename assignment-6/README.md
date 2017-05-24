@@ -53,7 +53,9 @@ In this assignment you will be using the following tools:
 
 	* b) Connect to the network. There should be a DHCP server running. If not, use an IP address in the range of 192.168.84.200 - 249, with a netmask 255.255.255.0 and gateway 192.168.84.10. Use nmap to scan this network. Find the hosts in the range 192.168.84.1 - 80. Disable reverse DNS lookup to speed up things. There should be many hosts, apart from the gateways (192.168.84.1 - 20). Write which hosts you find to **exercise1b**.
 	
-		* Answer
+		* ``` nmap -sP 192.168.84.1/24 ```
+		* See: https://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network
+		* TODO: discover actual hosts
 
 	* c) From this point onwards you will need to coordinate with other groups, since there is only a limited number of hosts to arpspoof. Do not get in each others way. Pick one of the hosts that are not the gateways (192.168.84.1 - 20). Its gateway is matched modulo 20 (so 192.168.84.32 and 192.168.84.52 both have gateway 192.168.84.12, whereas 192.168.84.23 has gateway 192.168.84.3). Using arpspoofing and wireshark, figure out which websites this host is contacting. Save the network capture in **exercise1c.cap**. Write the URLs to **exercise1c**. Note that you may need to also arpspoof its gateway. NOTE: There is some delay between requests in order to not abuse the target website. This delay is approximately 300 seconds as of this writing.
 	
