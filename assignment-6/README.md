@@ -76,18 +76,18 @@ In this assignment you will be using the following tools:
 
 		* openvpn-science.ovpn
 		* ```
-			client
-			proto tcp
-			dev tun
-			ca /etc/ssl/certs/DigiCert_Assured_ID_Root_CA.pem
-			remote-cert-tls server
-			auth-user-pass
-			cipher AES-256-CBC
-			verify-x509-name openvpn.science.ru.nl name
-			auth SHA256
-			comp-lzo
-			verb 3
-			remote openvpn.science.ru.nl 443
+			client  # Indicating that we are using the client mode and not the server mode.
+			proto tcp  # We want to communicate with the remote host through tcp.
+			dev tun  # Telling which device type we want to use. tun (OSI layer 3) or tan (OSI layer 2).
+			ca /etc/ssl/certs/DigiCert_Assured_ID_Root_CA.pem  # Path to the Certificate authority (CA) file.
+			remote-cert-tls server  # This is a useful security option for clients, to ensure that the host they connect to is a designated server. The --remote-cert-tls server option is equivalent to --remote-cert-ku a0 88 --remote-cert-eku "TLS Web Server Authentication".
+			auth-user-pass  # Tells the client that he needs username/password to authenticate at the server.
+			cipher AES-256-CBC  # Encryption/Decryption of IP packets by using the AES-256-CBC cipher.
+			verify-x509-name openvpn.science.ru.nl name  # Enforcing a stricter certificate check. For client configurations you can add this parameter where you provide for example the certificate subject of the server. This will ensure that only a server who identifies itself as a particular server will be accepted. 
+			auth SHA256  # Authenticate packets with HMAC using message digest algorithm SHA256
+			comp-lzo  # Using LZO compression to speed things up.
+			verb 3  # Verbose model level 3 for logging purposes.
+			remote openvpn.science.ru.nl 443  # The OpenVPN client will try to connect to the server openvpn.science.ru.nl at port 443 (HTTPS (Hypertext Transfer Protocol over SSL/TLS))
 		* Traceroute with OpenVPN
 		* ```
 			cs@cs-VirtualBox:~$ sudo traceroute -I blackboard.ru.nl
