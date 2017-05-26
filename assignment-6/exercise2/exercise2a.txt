@@ -1,0 +1,140 @@
+		* openvpn-science.ovpn
+		* ```
+			client  # Indicating that we are using the client mode and not the server mode.
+			proto tcp  # We want to communicate with the remote host through tcp.
+			dev tun  # Telling which device type we want to use. tun (OSI layer 3) or tan (OSI layer 2).
+			ca /etc/ssl/certs/DigiCert_Assured_ID_Root_CA.pem  # Path to the Certificate authority (CA) file.
+			remote-cert-tls server  # This is a useful security option for clients, to ensure that the host they connect to is a designated server. The --remote-cert-tls server option is equivalent to --remote-cert-ku a0 88 --remote-cert-eku "TLS Web Server Authentication".
+			auth-user-pass  # Tells the client that he needs username/password to authenticate at the server.
+			cipher AES-256-CBC  # Encryption/Decryption of IP packets by using the AES-256-CBC cipher.
+			verify-x509-name openvpn.science.ru.nl name  # Enforcing a stricter certificate check. For client configurations you can add this parameter where you provide for example the certificate subject of the server. This will ensure that only a server who identifies itself as a particular server will be accepted. 
+			auth SHA256  # Authenticate packets with HMAC using message digest algorithm SHA256
+			comp-lzo  # Using LZO compression to speed things up.
+			verb 3  # Verbose model level 3 for logging purposes.
+			remote openvpn.science.ru.nl 443  # The OpenVPN client will try to connect to the server openvpn.science.ru.nl at port 443 (HTTPS (Hypertext Transfer Protocol over SSL/TLS))
+		* Traceroute with OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo traceroute -I blackboard.ru.nl
+			traceroute to blackboard.ru.nl (131.174.57.69), 30 hops max, 60 byte packets
+			 1  openvpn-gw.science.ru.nl (131.174.224.129)  27.148 ms  53.599 ms  53.614 ms
+			 2  dr-huyg.net.science.ru.nl (131.174.16.129)  53.618 ms  53.622 ms  53.647 ms
+			 3  * * *
+			 4  192.168.23.25 (192.168.23.25)  53.621 ms  53.609 ms  53.598 ms
+			 5  192.168.23.67 (192.168.23.67)  53.622 ms  81.682 ms  81.688 ms
+			 6  blackboard.ru.nl (131.174.57.69)  81.582 ms  63.915 ms  80.421 ms
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I google.com
+			traceroute to google.com (172.217.16.174), 30 hops max, 60 byte packets
+			 1  openvpn-gw.science.ru.nl (131.174.224.129)  27.232 ms  57.587 ms  57.604 ms
+			 2  dr-huyg.net.science.ru.nl (131.174.16.129)  57.610 ms  57.615 ms  57.621 ms
+			 3  * * *
+			 4  192.168.23.25 (192.168.23.25)  57.656 ms  57.636 ms  57.626 ms
+			 5  192.168.23.17 (192.168.23.17)  57.608 ms  57.613 ms  57.651 ms
+			 6  AE8.1117.JNR01.Asd001A.surf.net (145.145.8.81)  84.478 ms  70.350 ms  59.307 ms
+			 7  google-router1.peering.surf.net (145.145.166.82)  59.273 ms  43.180 ms  43.126 ms
+			 8  108.170.241.226 (108.170.241.226)  43.110 ms  43.115 ms  43.113 ms
+			 9  209.85.240.225 (209.85.240.225)  43.086 ms  43.101 ms  66.114 ms
+			10  108.170.234.11 (108.170.234.11)  66.115 ms  90.299 ms  90.841 ms
+			11  108.170.235.144 (108.170.235.144)  87.194 ms  87.196 ms  87.194 ms
+			12  216.239.47.53 (216.239.47.53)  87.140 ms  87.132 ms  87.131 ms
+			13  216.239.63.255 (216.239.63.255)  87.138 ms  87.155 ms  87.165 ms
+			14  fra15s11-in-f14.1e100.net (172.217.16.174)  90.338 ms  90.284 ms  82.759 ms 
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I cs.ru.nl
+			traceroute to cs.ru.nl (131.174.8.6), 30 hops max, 60 byte packets
+			 1  openvpn-gw.science.ru.nl (131.174.224.129)  27.524 ms  29.774 ms  29.806 ms
+			 2  dr-huyg.net.science.ru.nl (131.174.16.129)  29.870 ms  29.875 ms  56.527 ms
+			 3  cs.ru.nl (131.174.8.6)  29.806 ms  29.813 ms  29.819 ms
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I openvpn.science.ru.nl
+			traceroute to openvpn.science.ru.nl (131.174.16.141), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.119 ms  0.095 ms  0.071 ms
+			 2  * * *
+			 3  * * *
+			 4  * * *
+			 5  * * *
+			 6  * * *
+			 7  * * *
+			 8  * * *
+			 9  * * *
+			10  * * *
+			11  * * *
+			12  openvpn.science.ru.nl (131.174.16.141)  26.977 ms  26.918 ms  25.671 ms 
+
+		* Traceroute without OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo traceroute -I blackboard.ru.nl
+			traceroute to blackboard.ru.nl (131.174.57.69), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.563 ms  0.515 ms  0.494 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  13.500 ms  13.487 ms  13.539 ms
+			 4  217.239.48.138 (217.239.48.138)  20.964 ms  20.953 ms  20.929 ms
+			 5  80.157.204.62 (80.157.204.62)  26.177 ms  26.149 ms  26.220 ms
+			 6  xe-4-0-2.cr0-ams2.ip4.gtt.net (141.136.108.253)  22.839 ms  23.400 ms  23.337 ms
+			 7  surfnet-gw.ip4.gtt.net (77.67.76.34)  23.643 ms  21.990 ms  21.966 ms
+			 8  ru-router.customer.surf.net (145.145.8.82)  25.384 ms  25.815 ms  25.806 ms
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I google.com
+			traceroute to google.com (172.217.16.174), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.103 ms  0.061 ms  0.033 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  12.531 ms  12.561 ms  12.634 ms
+			 4  f-ee7-i.F.DE.NET.DTAG.DE (62.156.131.90)  19.493 ms  19.465 ms  19.437 ms
+			 5  72.14.196.17 (72.14.196.17)  20.748 ms  20.968 ms  20.928 ms
+			 6  216.239.46.63 (216.239.46.63)  21.113 ms  21.294 ms  21.266 ms
+			 7  64.233.175.171 (64.233.175.171)  18.657 ms  18.693 ms  18.656 ms
+			 8  fra15s11-in-f14.1e100.net (172.217.16.174)  18.689 ms  19.359 ms  19.208 ms 
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I cs.ru.nl
+			traceroute to cs.ru.nl (131.174.8.6), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  1.245 ms  1.210 ms  1.190 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  12.056 ms  12.144 ms  12.136 ms
+			 4  f-ed5-i.F.DE.NET.DTAG.DE (217.5.95.58)  19.057 ms  19.088 ms  19.182 ms
+			 5  80.157.204.62 (80.157.204.62)  19.165 ms  19.432 ms  19.430 ms
+			 6  xe-4-0-2.cr0-ams2.ip4.gtt.net (141.136.108.253)  21.987 ms  21.994 ms  22.274 ms
+			 7  surfnet-gw.ip4.gtt.net (77.67.76.34)  22.484 ms  22.284 ms  22.211 ms
+			 8  ru-router.customer.surf.net (145.145.8.82)  25.654 ms  25.633 ms  25.770 ms
+			 9  * * *
+			10  * * *
+			11  * * *
+			12  cs.ru.nl (131.174.8.6)  25.827 ms  25.748 ms  25.704 ms 
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I openvpn.science.ru.nl
+			traceroute to openvpn.science.ru.nl (131.174.16.141), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.442 ms  0.423 ms  0.422 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  12.145 ms  12.166 ms  12.311 ms
+			 4  f-ed5-i.F.DE.NET.DTAG.DE (217.5.95.58)  19.327 ms  19.322 ms  19.303 ms
+			 5  80.157.204.62 (80.157.204.62)  20.271 ms  20.266 ms  20.374 ms
+			 6  xe-4-0-2.cr0-ams2.ip4.gtt.net (141.136.108.253)  22.581 ms  21.417 ms  21.373 ms
+			 7  surfnet-gw.ip4.gtt.net (77.67.76.34)  21.433 ms  22.139 ms  22.117 ms
+			 8  ru-router.customer.surf.net (145.145.8.82)  25.542 ms  24.874 ms  24.860 ms
+			 9  * * *
+			10  * * *
+			11  * * *
+			12  openvpn.science.ru.nl (131.174.16.141)  24.755 ms  25.045 ms  26.079 ms
+
+		* ip route with OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo ip route show
+			0.0.0.0/1 via 131.174.224.129 dev tun0 
+			default via 10.0.2.2 dev enp0s3  proto static  metric 100 
+			default via 192.168.2.1 dev enp0s8  proto static  metric 101 
+			10.0.2.0/24 dev enp0s3  proto kernel  scope link  src 10.0.2.15  metric 100 
+			128.0.0.0/1 via 131.174.224.129 dev tun0 
+			131.174.16.141 via 10.0.2.2 dev enp0s3 
+			131.174.224.128/27 dev tun0  proto kernel  scope link  src 131.174.224.151 
+			169.254.0.0/16 dev enp0s3  scope link  metric 1000 
+			192.168.2.0/24 dev enp0s8  proto kernel  scope link  src 192.168.2.117  metric 100
+
+		* ip route without OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo ip route show
+			default via 10.0.2.2 dev enp0s3  proto static  metric 100 
+			default via 192.168.2.1 dev enp0s8  proto static  metric 101 
+			10.0.2.0/24 dev enp0s3  proto kernel  scope link  src 10.0.2.15  metric 100 
+			169.254.0.0/16 dev enp0s3  scope link  metric 1000 
+			192.168.2.0/24 dev enp0s8  proto kernel  scope link  src 192.168.2.117  metric 100
+
+		* I'm using Virtualbox with two virtual network interfaces. enp0s3 (10.0.2.15) is the normal NAT interface which uses the host as a gateway and enp0s8 is a ethernet bridge (192.168.2.117), so that my host and guest are in the same subnet for several reasons. We can discard the enp0s8 interface completely for this exercise. So, my current ip address is 10.0.2.15 and the ip address of the default gateway is 10.0.2.2. When we perform the traceroute we can see that the first hop is the standard gateway when we do not use OpenVPN. Every destination which is related to ru.nl gets routed through ru-router.customer.surf.net (145.145.8.82) in the end and then reaches its destination. Blackboard.ru.nl seems to be an exception where ru-router.customer.surf.net performs some forwarding magic in the background I suppose. All traceroutes had to be performed with the -I parameter so that we are using ICMP requests. The default behaviour with udp packets does not seem to perform reliable enough. If we are using OpenVPN then the default gateway is changed to openvpn-gw.science.ru.nl (131.174.224.129) which is also the first hop when traceroute is performed again. The second hop is dr-huyg.net.science.ru.nl (131.174.16.129) which is located in the huygens building I suppose. This hop should know all science related ips of the radboud university and therefore should reach its target right after this hop. If we try to traceroute the openvpn-server itself (openvpn-gw.science.ru.nl (131.174.224.129)) then the default gateway is chosen again (10.0.2.2). This may happen because the client and the server are communicating over a tun device and not the normal internet interface. A tun device is just a file and is offering access on a user level. I assume that makes it also hard to host other services on the openvpn-server and make them accessible while having a estabished vpn connection. Maybe it's also due to the fact that a tun device is operating on the OSI level 3 and a tan device may be the solution. I assume that a vpn server could host different services and make them accessible to vpn users if the tun device is establishing a bridge to the physical network card and therefore making them accessible again.
