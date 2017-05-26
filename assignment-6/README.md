@@ -74,7 +74,146 @@ In this assignment you will be using the following tools:
 
 	* a) CNCZ provides an OpenVPN-based Science VPN. Instruction for this are at http://wiki.science.ru.nl/cncz/index.php?title=Vpn&setlang=en#OpenVPN_.5Bvoor.5D.5Bfor.5D_Linux_.26_MacOS. See if you can get this to work with your Science account. Look up in the OpenVPN man page (man openvpn) what each line of the configuration file means. For easy searching, append "--" to the first word on the line. So searching for "dev" becomes "--dev". Perform traceroutes (traceroute) to blackboard.ru.nl, www.google.com, www.cs.ru.nl, and to the VPN server itself, with and without the VPN running. Paste the commands you used and their output in a file called **exercise2a**. Look at the routing table (ip route show), and paste it as well. Explain the differences between traceroutes, paying special attention to the one to the VPN itself. In particular, explain why it is not straightforward to run other services on the OpenVPN server and contact them via the VPN tunnel. Can you thing of a solution for this problem?
 
-		* Answer
+		* openvpn-science.ovpn
+		* ```
+			client
+			proto tcp
+			dev tun
+			ca /etc/ssl/certs/DigiCert_Assured_ID_Root_CA.pem
+			remote-cert-tls server
+			auth-user-pass
+			cipher AES-256-CBC
+			verify-x509-name openvpn.science.ru.nl name
+			auth SHA256
+			comp-lzo
+			verb 3
+			remote openvpn.science.ru.nl 443
+		* Traceroute with OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo traceroute -I blackboard.ru.nl
+			traceroute to blackboard.ru.nl (131.174.57.69), 30 hops max, 60 byte packets
+			 1  openvpn-gw.science.ru.nl (131.174.224.129)  27.148 ms  53.599 ms  53.614 ms
+			 2  dr-huyg.net.science.ru.nl (131.174.16.129)  53.618 ms  53.622 ms  53.647 ms
+			 3  * * *
+			 4  192.168.23.25 (192.168.23.25)  53.621 ms  53.609 ms  53.598 ms
+			 5  192.168.23.67 (192.168.23.67)  53.622 ms  81.682 ms  81.688 ms
+			 6  blackboard.ru.nl (131.174.57.69)  81.582 ms  63.915 ms  80.421 ms
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I google.com
+			traceroute to google.com (172.217.16.174), 30 hops max, 60 byte packets
+			 1  openvpn-gw.science.ru.nl (131.174.224.129)  27.232 ms  57.587 ms  57.604 ms
+			 2  dr-huyg.net.science.ru.nl (131.174.16.129)  57.610 ms  57.615 ms  57.621 ms
+			 3  * * *
+			 4  192.168.23.25 (192.168.23.25)  57.656 ms  57.636 ms  57.626 ms
+			 5  192.168.23.17 (192.168.23.17)  57.608 ms  57.613 ms  57.651 ms
+			 6  AE8.1117.JNR01.Asd001A.surf.net (145.145.8.81)  84.478 ms  70.350 ms  59.307 ms
+			 7  google-router1.peering.surf.net (145.145.166.82)  59.273 ms  43.180 ms  43.126 ms
+			 8  108.170.241.226 (108.170.241.226)  43.110 ms  43.115 ms  43.113 ms
+			 9  209.85.240.225 (209.85.240.225)  43.086 ms  43.101 ms  66.114 ms
+			10  108.170.234.11 (108.170.234.11)  66.115 ms  90.299 ms  90.841 ms
+			11  108.170.235.144 (108.170.235.144)  87.194 ms  87.196 ms  87.194 ms
+			12  216.239.47.53 (216.239.47.53)  87.140 ms  87.132 ms  87.131 ms
+			13  216.239.63.255 (216.239.63.255)  87.138 ms  87.155 ms  87.165 ms
+			14  fra15s11-in-f14.1e100.net (172.217.16.174)  90.338 ms  90.284 ms  82.759 ms 
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I cs.ru.nl
+			traceroute to cs.ru.nl (131.174.8.6), 30 hops max, 60 byte packets
+			 1  openvpn-gw.science.ru.nl (131.174.224.129)  27.524 ms  29.774 ms  29.806 ms
+			 2  dr-huyg.net.science.ru.nl (131.174.16.129)  29.870 ms  29.875 ms  56.527 ms
+			 3  cs.ru.nl (131.174.8.6)  29.806 ms  29.813 ms  29.819 ms
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I openvpn.science.ru.nl
+			traceroute to openvpn.science.ru.nl (131.174.16.141), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.119 ms  0.095 ms  0.071 ms
+			 2  * * *
+			 3  * * *
+			 4  * * *
+			 5  * * *
+			 6  * * *
+			 7  * * *
+			 8  * * *
+			 9  * * *
+			10  * * *
+			11  * * *
+			12  openvpn.science.ru.nl (131.174.16.141)  26.977 ms  26.918 ms  25.671 ms 
+
+		* Traceroute without OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo traceroute -I blackboard.ru.nl
+			traceroute to blackboard.ru.nl (131.174.57.69), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.563 ms  0.515 ms  0.494 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  13.500 ms  13.487 ms  13.539 ms
+			 4  217.239.48.138 (217.239.48.138)  20.964 ms  20.953 ms  20.929 ms
+			 5  80.157.204.62 (80.157.204.62)  26.177 ms  26.149 ms  26.220 ms
+			 6  xe-4-0-2.cr0-ams2.ip4.gtt.net (141.136.108.253)  22.839 ms  23.400 ms  23.337 ms
+			 7  surfnet-gw.ip4.gtt.net (77.67.76.34)  23.643 ms  21.990 ms  21.966 ms
+			 8  ru-router.customer.surf.net (145.145.8.82)  25.384 ms  25.815 ms  25.806 ms
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I google.com
+			traceroute to google.com (172.217.16.174), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.103 ms  0.061 ms  0.033 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  12.531 ms  12.561 ms  12.634 ms
+			 4  f-ee7-i.F.DE.NET.DTAG.DE (62.156.131.90)  19.493 ms  19.465 ms  19.437 ms
+			 5  72.14.196.17 (72.14.196.17)  20.748 ms  20.968 ms  20.928 ms
+			 6  216.239.46.63 (216.239.46.63)  21.113 ms  21.294 ms  21.266 ms
+			 7  64.233.175.171 (64.233.175.171)  18.657 ms  18.693 ms  18.656 ms
+			 8  fra15s11-in-f14.1e100.net (172.217.16.174)  18.689 ms  19.359 ms  19.208 ms 
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I cs.ru.nl
+			traceroute to cs.ru.nl (131.174.8.6), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  1.245 ms  1.210 ms  1.190 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  12.056 ms  12.144 ms  12.136 ms
+			 4  f-ed5-i.F.DE.NET.DTAG.DE (217.5.95.58)  19.057 ms  19.088 ms  19.182 ms
+			 5  80.157.204.62 (80.157.204.62)  19.165 ms  19.432 ms  19.430 ms
+			 6  xe-4-0-2.cr0-ams2.ip4.gtt.net (141.136.108.253)  21.987 ms  21.994 ms  22.274 ms
+			 7  surfnet-gw.ip4.gtt.net (77.67.76.34)  22.484 ms  22.284 ms  22.211 ms
+			 8  ru-router.customer.surf.net (145.145.8.82)  25.654 ms  25.633 ms  25.770 ms
+			 9  * * *
+			10  * * *
+			11  * * *
+			12  cs.ru.nl (131.174.8.6)  25.827 ms  25.748 ms  25.704 ms 
+
+			cs@cs-VirtualBox:~$ sudo traceroute -I openvpn.science.ru.nl
+			traceroute to openvpn.science.ru.nl (131.174.16.141), 30 hops max, 60 byte packets
+			 1  10.0.2.2 (10.0.2.2)  0.442 ms  0.423 ms  0.422 ms
+			 2  * * *
+			 3  62.155.244.66 (62.155.244.66)  12.145 ms  12.166 ms  12.311 ms
+			 4  f-ed5-i.F.DE.NET.DTAG.DE (217.5.95.58)  19.327 ms  19.322 ms  19.303 ms
+			 5  80.157.204.62 (80.157.204.62)  20.271 ms  20.266 ms  20.374 ms
+			 6  xe-4-0-2.cr0-ams2.ip4.gtt.net (141.136.108.253)  22.581 ms  21.417 ms  21.373 ms
+			 7  surfnet-gw.ip4.gtt.net (77.67.76.34)  21.433 ms  22.139 ms  22.117 ms
+			 8  ru-router.customer.surf.net (145.145.8.82)  25.542 ms  24.874 ms  24.860 ms
+			 9  * * *
+			10  * * *
+			11  * * *
+			12  openvpn.science.ru.nl (131.174.16.141)  24.755 ms  25.045 ms  26.079 ms
+
+		* ip route with OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo ip route show
+			0.0.0.0/1 via 131.174.224.129 dev tun0 
+			default via 10.0.2.2 dev enp0s3  proto static  metric 100 
+			default via 192.168.2.1 dev enp0s8  proto static  metric 101 
+			10.0.2.0/24 dev enp0s3  proto kernel  scope link  src 10.0.2.15  metric 100 
+			128.0.0.0/1 via 131.174.224.129 dev tun0 
+			131.174.16.141 via 10.0.2.2 dev enp0s3 
+			131.174.224.128/27 dev tun0  proto kernel  scope link  src 131.174.224.151 
+			169.254.0.0/16 dev enp0s3  scope link  metric 1000 
+			192.168.2.0/24 dev enp0s8  proto kernel  scope link  src 192.168.2.117  metric 100
+
+		* ip route without OpenVPN
+		* ```
+			cs@cs-VirtualBox:~$ sudo ip route show
+			default via 10.0.2.2 dev enp0s3  proto static  metric 100 
+			default via 192.168.2.1 dev enp0s8  proto static  metric 101 
+			10.0.2.0/24 dev enp0s3  proto kernel  scope link  src 10.0.2.15  metric 100 
+			169.254.0.0/16 dev enp0s3  scope link  metric 1000 
+			192.168.2.0/24 dev enp0s8  proto kernel  scope link  src 192.168.2.117  metric 100
+
+
 
 
 	* b) Create a subfolder called **exercise2b** to hold your answers and configuration files. Using the OpenVPN documentation you must set up an OpenVPN network between two machines. These can be physical machines, e.g. yours and your lab partner's laptops, but you can also use virtual machines. Virtualbox and KVM/QEMU are decent options in this regard. Note that you may not be able to reach other's machines through eduroam, but a direct link using an ehternet cable or ad ad-hoc WiFi network usually works. Setting up a virtual machine with e.g. Ubuntu is covered in tutorials so we will not cover that here. The bootable USB iso image downloadable at https://www.cs.ru.nl/~paubel/netsec/2017/netsec-debian-usb-image-20170411.img.gz (with credentials root:root, sutdent:student) should also be directly bootable as a virtual machine disk. The minimum setup you should get working is a VPN with a static, pre-distributed key. You should use layer 3 tunneling (tun devices), not layer 2 (tap devices). Document the commands you use in a text file **commands**. Also include configuration files for both hosts, if applicable. Note that the client does not need to tunnel all its network traffic over the VPN, it only needs to be able to reach the other endpoint through the VPN. Also perform a set of short packet captures on both ends of the connection, while doing a ping from the VPN server to the VPN client and vice versa. The packetm captures on each end should be done on two interfaces: one capture on the tun-interface created for the VPN, and another capture on the network interface that is actually carrying the VPN-tunneled traffic ( either your normal network , or a virtual interface created by e.g. virtualbox). So there should be fours captures in total. Include these captures, and name them along the lines of **client-tun.cap** and **server-wlan0.cap**. Also include the commands and (partial) output of the ping command and other commands you used during the capture in the file **commands**.
