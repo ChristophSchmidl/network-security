@@ -94,15 +94,180 @@ In this assignment you will be using the following tools:
 				          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
 				          Tx excessive retries:0  Invalid misc:42   Missed beacon:0
 
-enp0s3    no wireless extensions.
+				enp0s3    no wireless extensions.
 
-lo        no wireless extensions.          
+				lo        no wireless extensions.          
 
 
 
-		* ``` nmap -sP 192.168.84.1/24 ```
+		* Discovering hosts:
+			* ```
+				cs@cs-VirtualBox:~$ nmap -e wlx00c0ca5a50a5 -sP 192.168.84.1/24
+
+				Starting Nmap 7.01 ( https://nmap.org ) at 2017-06-01 13:02 CEST
+				Nmap scan report for 192.168.84.1
+				Host is up (0.097s latency).
+				Nmap scan report for 192.168.84.2
+				Host is up (0.11s latency).
+				Nmap scan report for 192.168.84.3
+				Host is up (0.11s latency).
+				Nmap scan report for 192.168.84.4
+				Host is up (0.0060s latency).
+				Nmap scan report for 192.168.84.5
+				Host is up (0.11s latency).
+				Nmap scan report for 192.168.84.6
+				Host is up (0.11s latency).
+				Nmap scan report for 192.168.84.7
+				Host is up (0.12s latency).
+				Nmap scan report for 192.168.84.8
+				Host is up (0.12s latency).
+				Nmap scan report for 192.168.84.9
+				Host is up (0.12s latency).
+				Nmap scan report for 192.168.84.10
+				Host is up (0.12s latency).
+				Nmap scan report for 192.168.84.11
+				Host is up (0.0066s latency).
+				Nmap scan report for 192.168.84.12
+				Host is up (0.0073s latency).
+				Nmap scan report for 192.168.84.13
+				Host is up (0.024s latency).
+				Nmap scan report for 192.168.84.14
+				Host is up (0.025s latency).
+				Nmap scan report for 192.168.84.15
+				Host is up (0.0079s latency).
+				Nmap scan report for 192.168.84.16
+				Host is up (0.0040s latency).
+				Nmap scan report for 192.168.84.17
+				Host is up (0.016s latency).
+				Nmap scan report for 192.168.84.18
+				Host is up (0.016s latency).
+				Nmap scan report for 192.168.84.19
+				Host is up (0.0087s latency).
+				Nmap scan report for 192.168.84.20
+				Host is up (0.0086s latency).
+				Nmap scan report for 192.168.84.21
+				Host is up (0.019s latency).
+				Nmap scan report for 192.168.84.22
+				Host is up (0.021s latency).
+				Nmap scan report for 192.168.84.23
+				Host is up (0.0041s latency).
+				Nmap scan report for 192.168.84.24
+				Host is up (0.0095s latency).
+				Nmap scan report for 192.168.84.25
+				Host is up (0.021s latency).
+				Nmap scan report for 192.168.84.26
+				Host is up (0.023s latency).
+				Nmap scan report for 192.168.84.27
+				Host is up (0.010s latency).
+				Nmap scan report for 192.168.84.28
+				Host is up (0.0045s latency).
+				Nmap scan report for 192.168.84.29
+				Host is up (0.023s latency).
+				Nmap scan report for 192.168.84.30
+				Host is up (0.026s latency).
+				Nmap scan report for 192.168.84.31
+				Host is up (0.0051s latency).
+				Nmap scan report for 192.168.84.32
+				Host is up (0.0071s latency).
+				Nmap scan report for 192.168.84.33
+				Host is up (0.026s latency).
+				Nmap scan report for 192.168.84.34
+				Host is up (0.028s latency).
+				Nmap scan report for 192.168.84.35
+				Host is up (0.0074s latency).
+				Nmap scan report for 192.168.84.36
+				Host is up (0.0057s latency).
+				Nmap scan report for 192.168.84.37
+				Host is up (0.027s latency).
+				Nmap scan report for 192.168.84.38
+				Host is up (0.034s latency).
+				Nmap scan report for 192.168.84.39
+				Host is up (0.0096s latency).
+				Nmap scan report for 192.168.84.40
+				Host is up (0.011s latency).
+				Nmap scan report for 192.168.84.41
+				Host is up (0.018s latency).
+				Nmap scan report for 192.168.84.42
+				Host is up (0.020s latency).
+				Nmap scan report for 192.168.84.44
+				Host is up (0.062s latency).
+				Nmap scan report for 192.168.84.45
+				Host is up (0.022s latency).
+				Nmap scan report for 192.168.84.46
+				Host is up (0.028s latency).
+				Nmap scan report for 192.168.84.47
+				Host is up (0.026s latency).
+				Nmap scan report for 192.168.84.48
+				Host is up (0.012s latency).
+				Nmap scan report for 192.168.84.49
+				Host is up (0.027s latency).
+				Nmap scan report for 192.168.84.50
+				Host is up (0.033s latency).
+				Nmap scan report for 192.168.84.51
+				Host is up (0.064s latency).
+				Nmap scan report for 192.168.84.52
+				Host is up (0.21s latency).
+				Nmap scan report for 192.168.84.53
+				Host is up (0.033s latency).
+				Nmap scan report for 192.168.84.54
+				Host is up (0.037s latency).
+				Nmap scan report for 192.168.84.55
+				Host is up (0.19s latency).
+				Nmap scan report for 192.168.84.56
+				Host is up (0.0028s latency).
+				Nmap scan report for 192.168.84.57
+				Host is up (0.036s latency).
+				Nmap scan report for 192.168.84.58
+				Host is up (0.039s latency).
+				Nmap scan report for 192.168.84.59
+				Host is up (0.015s latency).
+				Nmap scan report for 192.168.84.60
+				Host is up (0.0038s latency).
+				Nmap scan report for 192.168.84.61
+				Host is up (0.043s latency).
+				Nmap scan report for 192.168.84.62
+				Host is up (0.046s latency).
+				Nmap scan report for 192.168.84.63
+				Host is up (0.017s latency).
+				Nmap scan report for 192.168.84.64
+				Host is up (0.020s latency).
+				Nmap scan report for 192.168.84.65
+				Host is up (0.052s latency).
+				Nmap scan report for 192.168.84.66
+				Host is up (0.055s latency).
+				Nmap scan report for 192.168.84.67
+				Host is up (0.012s latency).
+				Nmap scan report for 192.168.84.68
+				Host is up (0.21s latency).
+				Nmap scan report for 192.168.84.69
+				Host is up (0.062s latency).
+				Nmap scan report for 192.168.84.70
+				Host is up (0.067s latency).
+				Nmap scan report for 192.168.84.71
+				Host is up (0.014s latency).
+				Nmap scan report for 192.168.84.72
+				Host is up (0.021s latency).
+				Nmap scan report for 192.168.84.73
+				Host is up (0.077s latency).
+				Nmap scan report for 192.168.84.74
+				Host is up (0.078s latency).
+				Nmap scan report for 192.168.84.75
+				Host is up (0.20s latency).
+				Nmap scan report for 192.168.84.76
+				Host is up (0.026s latency).
+				Nmap scan report for 192.168.84.77
+				Host is up (0.085s latency).
+				Nmap scan report for 192.168.84.78
+				Host is up (0.089s latency).
+				Nmap scan report for 192.168.84.79
+				Host is up (0.19s latency).
+				Nmap scan report for 192.168.84.80
+				Host is up (0.021s latency).
+				Nmap scan report for 192.168.84.158
+				Host is up (0.000080s latency).
+				Nmap done: 256 IP addresses (80 hosts up) scanned in 3.91 seconds
+
 		* See: https://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network
-		* TODO: discover actual hosts
 
 	* c) From this point onwards you will need to coordinate with other groups, since there is only a limited number of hosts to arpspoof. Do not get in each others way. Pick one of the hosts that are not the gateways (192.168.84.1 - 20). Its gateway is matched modulo 20 (so 192.168.84.32 and 192.168.84.52 both have gateway 192.168.84.12, whereas 192.168.84.23 has gateway 192.168.84.3). Using arpspoofing and wireshark, figure out which websites this host is contacting. Save the network capture in **exercise1c.cap**. Write the URLs to **exercise1c**. Note that you may need to also arpspoof its gateway. NOTE: There is some delay between requests in order to not abuse the target website. This delay is approximately 300 seconds as of this writing.
 	
