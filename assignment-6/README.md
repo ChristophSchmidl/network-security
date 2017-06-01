@@ -53,6 +53,53 @@ In this assignment you will be using the following tools:
 
 	* b) Connect to the network. There should be a DHCP server running. If not, use an IP address in the range of 192.168.84.200 - 249, with a netmask 255.255.255.0 and gateway 192.168.84.10. Use nmap to scan this network. Find the hosts in the range 192.168.84.1 - 80. Disable reverse DNS lookup to speed up things. There should be many hosts, apart from the gateways (192.168.84.1 - 20). Write which hosts you find to **exercise1b**.
 	
+		* Connected to the network
+			* ```
+				cs@cs-VirtualBox:~$ sudo ifconfig
+				enp0s3    Link encap:Ethernet  HWaddr 08:00:27:59:8a:48  
+				          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+				          inet6 addr: fe80::f230:387:60ab:e8e8/64 Scope:Link
+				          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+				          RX packets:30 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:106 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1000 
+				          RX bytes:4105 (4.1 KB)  TX bytes:10433 (10.4 KB)
+
+				lo        Link encap:Local Loopback  
+				          inet addr:127.0.0.1  Mask:255.0.0.0
+				          inet6 addr: ::1/128 Scope:Host
+				          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+				          RX packets:82 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:82 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1 
+				          RX bytes:6488 (6.4 KB)  TX bytes:6488 (6.4 KB)
+
+				wlx00c0ca5a50a5 Link encap:Ethernet  HWaddr 00:c0:ca:5a:50:a5  
+				          inet addr:192.168.84.158  Bcast:192.168.84.255  Mask:255.255.255.0
+				          inet6 addr: fe80::ff1a:adb8:facb:32ab/64 Scope:Link
+				          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+				          RX packets:5 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:50 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1000 
+				          RX bytes:833 (833.0 B)  TX bytes:7336 (7.3 KB)
+
+				cs@cs-VirtualBox:~$ sudo iwconfig
+				wlx00c0ca5a50a5  IEEE 802.11  ESSID:"netsec-wpa"  
+				          Mode:Managed  Frequency:2.412 GHz  Access Point: 00:0F:C9:0C:F7:93   
+				          Bit Rate=12 Mb/s   Tx-Power=20 dBm   
+				          Retry short limit:7   RTS thr:off   Fragment thr:off
+				          Encryption key:off
+				          Power Management:on
+				          Link Quality=51/70  Signal level=-59 dBm  
+				          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+				          Tx excessive retries:0  Invalid misc:42   Missed beacon:0
+
+enp0s3    no wireless extensions.
+
+lo        no wireless extensions.          
+
+
+
 		* ``` nmap -sP 192.168.84.1/24 ```
 		* See: https://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network
 		* TODO: discover actual hosts
