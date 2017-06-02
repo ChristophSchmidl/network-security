@@ -290,9 +290,7 @@ In this assignment you will be using the following tools:
 				sudo sslstrip.py -l <listenPort>		
 				sudo arpspoof -i <interface> -t <targetIP> <gatewayIP>
 
-			* First, arpspoof convinces a host that our MAC address is the router’s MAC address, and the target begins to send us all its network traffic. The kernel forwards everything along except for traffic destined to port 80, which it redirects to $listenPort (10000, for example).
-
-At this point, sslstrip receives the traffic and does its magic.	
+			* First, arpspoof convinces a host that our MAC address is the router’s MAC address, and the target begins to send us all its network traffic. The kernel forwards everything along except for traffic destined to port 80, which it redirects to $listenPort (10000, for example). At this point, sslstrip receives the traffic and does its magic.	
 
 		* Running sslstrip nicely explained: http://jkook.blogspot.de/2009/09/sslstrip-step-by-step-on-ubuntu.html	
 
