@@ -1,0 +1,214 @@
+* Connected to the network:
+
+  cs@cs-VirtualBox:~$ sudo ifconfig
+  enp0s3    Link encap:Ethernet  HWaddr 08:00:27:59:8a:48  
+            inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+            inet6 addr: fe80::f230:387:60ab:e8e8/64 Scope:Link
+            UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+            RX packets:30 errors:0 dropped:0 overruns:0 frame:0
+            TX packets:106 errors:0 dropped:0 overruns:0 carrier:0
+            collisions:0 txqueuelen:1000 
+            RX bytes:4105 (4.1 KB)  TX bytes:10433 (10.4 KB)
+
+  lo        Link encap:Local Loopback  
+            inet addr:127.0.0.1  Mask:255.0.0.0
+            inet6 addr: ::1/128 Scope:Host
+            UP LOOPBACK RUNNING  MTU:65536  Metric:1
+            RX packets:82 errors:0 dropped:0 overruns:0 frame:0
+            TX packets:82 errors:0 dropped:0 overruns:0 carrier:0
+            collisions:0 txqueuelen:1 
+            RX bytes:6488 (6.4 KB)  TX bytes:6488 (6.4 KB)
+
+  wlx00c0ca5a50a5 Link encap:Ethernet  HWaddr 00:c0:ca:5a:50:a5  
+            inet addr:192.168.84.158  Bcast:192.168.84.255  Mask:255.255.255.0
+            inet6 addr: fe80::ff1a:adb8:facb:32ab/64 Scope:Link
+            UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+            RX packets:5 errors:0 dropped:0 overruns:0 frame:0
+            TX packets:50 errors:0 dropped:0 overruns:0 carrier:0
+            collisions:0 txqueuelen:1000 
+            RX bytes:833 (833.0 B)  TX bytes:7336 (7.3 KB)
+
+  cs@cs-VirtualBox:~$ sudo iwconfig
+  wlx00c0ca5a50a5  IEEE 802.11  ESSID:"netsec-wpa"  
+            Mode:Managed  Frequency:2.412 GHz  Access Point: 00:0F:C9:0C:F7:93   
+            Bit Rate=12 Mb/s   Tx-Power=20 dBm   
+            Retry short limit:7   RTS thr:off   Fragment thr:off
+            Encryption key:off
+            Power Management:on
+            Link Quality=51/70  Signal level=-59 dBm  
+            Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+            Tx excessive retries:0  Invalid misc:42   Missed beacon:0
+
+  enp0s3    no wireless extensions.
+
+  lo        no wireless extensions.      
+
+
+* Discovering hosts:
+
+  cs@cs-VirtualBox:~$ nmap -e wlx00c0ca5a50a5 -sP 192.168.84.1/24
+
+  Starting Nmap 7.01 ( https://nmap.org ) at 2017-06-01 13:02 CEST
+  Nmap scan report for 192.168.84.1
+  Host is up (0.097s latency).
+  Nmap scan report for 192.168.84.2
+  Host is up (0.11s latency).
+  Nmap scan report for 192.168.84.3
+  Host is up (0.11s latency).
+  Nmap scan report for 192.168.84.4
+  Host is up (0.0060s latency).
+  Nmap scan report for 192.168.84.5
+  Host is up (0.11s latency).
+  Nmap scan report for 192.168.84.6
+  Host is up (0.11s latency).
+  Nmap scan report for 192.168.84.7
+  Host is up (0.12s latency).
+  Nmap scan report for 192.168.84.8
+  Host is up (0.12s latency).
+  Nmap scan report for 192.168.84.9
+  Host is up (0.12s latency).
+  Nmap scan report for 192.168.84.10
+  Host is up (0.12s latency).
+  Nmap scan report for 192.168.84.11
+  Host is up (0.0066s latency).
+  Nmap scan report for 192.168.84.12
+  Host is up (0.0073s latency).
+  Nmap scan report for 192.168.84.13
+  Host is up (0.024s latency).
+  Nmap scan report for 192.168.84.14
+  Host is up (0.025s latency).
+  Nmap scan report for 192.168.84.15
+  Host is up (0.0079s latency).
+  Nmap scan report for 192.168.84.16
+  Host is up (0.0040s latency).
+  Nmap scan report for 192.168.84.17
+  Host is up (0.016s latency).
+  Nmap scan report for 192.168.84.18
+  Host is up (0.016s latency).
+  Nmap scan report for 192.168.84.19
+  Host is up (0.0087s latency).
+  Nmap scan report for 192.168.84.20
+  Host is up (0.0086s latency).
+  Nmap scan report for 192.168.84.21
+  Host is up (0.019s latency).
+  Nmap scan report for 192.168.84.22
+  Host is up (0.021s latency).
+  Nmap scan report for 192.168.84.23
+  Host is up (0.0041s latency).
+  Nmap scan report for 192.168.84.24
+  Host is up (0.0095s latency).
+  Nmap scan report for 192.168.84.25
+  Host is up (0.021s latency).
+  Nmap scan report for 192.168.84.26
+  Host is up (0.023s latency).
+  Nmap scan report for 192.168.84.27
+  Host is up (0.010s latency).
+  Nmap scan report for 192.168.84.28
+  Host is up (0.0045s latency).
+  Nmap scan report for 192.168.84.29
+  Host is up (0.023s latency).
+  Nmap scan report for 192.168.84.30
+  Host is up (0.026s latency).
+  Nmap scan report for 192.168.84.31
+  Host is up (0.0051s latency).
+  Nmap scan report for 192.168.84.32
+  Host is up (0.0071s latency).
+  Nmap scan report for 192.168.84.33
+  Host is up (0.026s latency).
+  Nmap scan report for 192.168.84.34
+  Host is up (0.028s latency).
+  Nmap scan report for 192.168.84.35
+  Host is up (0.0074s latency).
+  Nmap scan report for 192.168.84.36
+  Host is up (0.0057s latency).
+  Nmap scan report for 192.168.84.37
+  Host is up (0.027s latency).
+  Nmap scan report for 192.168.84.38
+  Host is up (0.034s latency).
+  Nmap scan report for 192.168.84.39
+  Host is up (0.0096s latency).
+  Nmap scan report for 192.168.84.40
+  Host is up (0.011s latency).
+  Nmap scan report for 192.168.84.41
+  Host is up (0.018s latency).
+  Nmap scan report for 192.168.84.42
+  Host is up (0.020s latency).
+  Nmap scan report for 192.168.84.44
+  Host is up (0.062s latency).
+  Nmap scan report for 192.168.84.45
+  Host is up (0.022s latency).
+  Nmap scan report for 192.168.84.46
+  Host is up (0.028s latency).
+  Nmap scan report for 192.168.84.47
+  Host is up (0.026s latency).
+  Nmap scan report for 192.168.84.48
+  Host is up (0.012s latency).
+  Nmap scan report for 192.168.84.49
+  Host is up (0.027s latency).
+  Nmap scan report for 192.168.84.50
+  Host is up (0.033s latency).
+  Nmap scan report for 192.168.84.51
+  Host is up (0.064s latency).
+  Nmap scan report for 192.168.84.52
+  Host is up (0.21s latency).
+  Nmap scan report for 192.168.84.53
+  Host is up (0.033s latency).
+  Nmap scan report for 192.168.84.54
+  Host is up (0.037s latency).
+  Nmap scan report for 192.168.84.55
+  Host is up (0.19s latency).
+  Nmap scan report for 192.168.84.56
+  Host is up (0.0028s latency).
+  Nmap scan report for 192.168.84.57
+  Host is up (0.036s latency).
+  Nmap scan report for 192.168.84.58
+  Host is up (0.039s latency).
+  Nmap scan report for 192.168.84.59
+  Host is up (0.015s latency).
+  Nmap scan report for 192.168.84.60
+  Host is up (0.0038s latency).
+  Nmap scan report for 192.168.84.61
+  Host is up (0.043s latency).
+  Nmap scan report for 192.168.84.62
+  Host is up (0.046s latency).
+  Nmap scan report for 192.168.84.63
+  Host is up (0.017s latency).
+  Nmap scan report for 192.168.84.64
+  Host is up (0.020s latency).
+  Nmap scan report for 192.168.84.65
+  Host is up (0.052s latency).
+  Nmap scan report for 192.168.84.66
+  Host is up (0.055s latency).
+  Nmap scan report for 192.168.84.67
+  Host is up (0.012s latency).
+  Nmap scan report for 192.168.84.68
+  Host is up (0.21s latency).
+  Nmap scan report for 192.168.84.69
+  Host is up (0.062s latency).
+  Nmap scan report for 192.168.84.70
+  Host is up (0.067s latency).
+  Nmap scan report for 192.168.84.71
+  Host is up (0.014s latency).
+  Nmap scan report for 192.168.84.72
+  Host is up (0.021s latency).
+  Nmap scan report for 192.168.84.73
+  Host is up (0.077s latency).
+  Nmap scan report for 192.168.84.74
+  Host is up (0.078s latency).
+  Nmap scan report for 192.168.84.75
+  Host is up (0.20s latency).
+  Nmap scan report for 192.168.84.76
+  Host is up (0.026s latency).
+  Nmap scan report for 192.168.84.77
+  Host is up (0.085s latency).
+  Nmap scan report for 192.168.84.78
+  Host is up (0.089s latency).
+  Nmap scan report for 192.168.84.79
+  Host is up (0.19s latency).
+  Nmap scan report for 192.168.84.80
+  Host is up (0.021s latency).
+  Nmap scan report for 192.168.84.158
+  Host is up (0.000080s latency).
+  Nmap done: 256 IP addresses (80 hosts up) scanned in 3.91 seconds
+
+    
