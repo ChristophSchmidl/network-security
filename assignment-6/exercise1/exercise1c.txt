@@ -1,0 +1,1 @@
+The only ip the server 192.168.84.77 was connecting to: 131.174.8.6
