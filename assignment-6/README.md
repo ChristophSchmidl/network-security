@@ -275,7 +275,14 @@ In this assignment you will be using the following tools:
 
 	* d) Now, use sslstrip (http://www.thoughtcrime.org/software/sslstrip/) to strip out SSL from its web traffic. The documentation and explanation on the websites should be enough to get it to work. Look at the traffic in wireshark and figure out the login credentials to use. Save the network capture in **exercise1d.cap** and write the login credentials you found to **exercise1d.creds**.
 
-		* Answer
+		* I'm using Ubuntu 16.04 and had to install some additional packages to get sslstrip running. First download sslstrip from its website or clone the git repository. Then go into the sslstrip folder and run ``` sudo python setup.py build ``` and ``` sudo python setup.py install ```. After that we have to install the additional packages:
+			* ```
+				sudo pip install twisted
+				sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+				sudo pip install cryptography
+				sudo pip install pyopenssl
+				sudo pip install service_identity
+			* Running sslstrip nicely explained: http://jkook.blogspot.de/2009/09/sslstrip-step-by-step-on-ubuntu.html	
 
 	* e) Finally, log in to the website, find your grades, and edit them to your desired result. After that, write your student numbers and the result you set to **exercise1e**.
 	
