@@ -293,10 +293,11 @@ In this assignment you will be using the following tools:
 			* First, arpspoof convinces a host that our MAC address is the router’s MAC address, and the target begins to send us all its network traffic. The kernel forwards everything along except for traffic destined to port 80, which it redirects to $listenPort (10000, for example). At this point, sslstrip receives the traffic and does its magic.	
 
 		* Running sslstrip nicely explained: http://jkook.blogspot.de/2009/09/sslstrip-step-by-step-on-ubuntu.html	
+		* Although I was not able to see the TLSv1.2 packages in exercise 1c, I was able to finish this exercise when I also used sslstrip which seems kind of odd.
 
 	* e) Finally, log in to the website, find your grades, and edit them to your desired result. After that, write your student numbers and the result you set to **exercise1e**.
 	
-		* Answer
+		* s4226887:10
 
 
 2. Create a folder called **exercise2**. This exercise is intended to teach you the basic use of OpenVPN. There is an abundance of documentation on the internet. A lot of good documentation is on the project's website, https://openvpn.net/index.php/open-source/documentation.html
