@@ -450,7 +450,208 @@ In this assignment you will be using the following tools:
 
 	* b) Create a subfolder called **exercise2b** to hold your answers and configuration files. Using the OpenVPN documentation you must set up an OpenVPN network between two machines. These can be physical machines, e.g. yours and your lab partner's laptops, but you can also use virtual machines. Virtualbox and KVM/QEMU are decent options in this regard. Note that you may not be able to reach other's machines through eduroam, but a direct link using an ehternet cable or ad ad-hoc WiFi network usually works. Setting up a virtual machine with e.g. Ubuntu is covered in tutorials so we will not cover that here. The bootable USB iso image downloadable at https://www.cs.ru.nl/~paubel/netsec/2017/netsec-debian-usb-image-20170411.img.gz (with credentials root:root, sutdent:student) should also be directly bootable as a virtual machine disk. The minimum setup you should get working is a VPN with a static, pre-distributed key. You should use layer 3 tunneling (tun devices), not layer 2 (tap devices). Document the commands you use in a text file **commands**. Also include configuration files for both hosts, if applicable. Note that the client does not need to tunnel all its network traffic over the VPN, it only needs to be able to reach the other endpoint through the VPN. Also perform a set of short packet captures on both ends of the connection, while doing a ping from the VPN server to the VPN client and vice versa. The packetm captures on each end should be done on two interfaces: one capture on the tun-interface created for the VPN, and another capture on the network interface that is actually carrying the VPN-tunneled traffic ( either your normal network , or a virtual interface created by e.g. virtualbox). So there should be fours captures in total. Include these captures, and name them along the lines of **client-tun.cap** and **server-wlan0.cap**. Also include the commands and (partial) output of the ping command and other commands you used during the capture in the file **commands**.
 
-		* Answer
+		* ```
+			Creating pre-shared key: 
+			
+			cs@cs-VirtualBox:~$ openvpn --genkey --secret static.key
+			cs@cs-VirtualBox:~$ cat static.key
+			#
+			# 2048 bit OpenVPN static key
+			#
+			-----BEGIN OpenVPN Static key V1-----
+			a9cbc5701e8f4d113d284f711ba3234b
+			1cbff606f07db8d09b4cf392ed0c5ee7
+			0b42e61988f5db0acaa9283385d1ed23
+			6b51f9c97ebda1e2aa1495782feaa8a8
+			97ce74294ed36f34ec3500ca0a71d4b0
+			67696eb0da8cded40633f8d1185565ea
+			52ebded9d2f382cce2a3577f8cb8755b
+			390bef77e1d4415b60a15f6f8a986dcf
+			84f7feeeb05ebc3f3e2cb496259c149c
+			715c379a0a506f04494dd18a92987101
+			099cbfeb143c2d8f9272b87b8907bfc8
+			ea2266faeeb2971c404e6b14f6194bc0
+			63c2da8861b0cbbae103c66e294656a6
+			db089066cce1c9f53ad37f76a8212460
+			2bf8b646332b00750809ec40eb572886
+			aed9cbfe2764119aa7c3ca5eefadbfad
+			-----END OpenVPN Static key V1-----
+
+
+			Distributing static.key file to server and client.
+
+			Creating vpn-server config file (vpn-server.conf):
+
+				dev tun
+				ifconfig 10.9.0.1 10.9.0.2
+				secret static.key
+				#proto tcp-server
+				keepalive 10 120
+
+
+			Creating vpn-client config file (vpn-client.conf):	
+
+				remote 192.168.2.116
+				dev tun
+				ifconfig 10.9.0.2 10.9.0.1
+				secret static.key
+				route 192.168.255.0 255.255.255.0
+				#proto tcp-client
+				keepalive 10 120
+
+
+			Starting the vpn server:
+
+				cs@cs-VirtualBox:/etc/openvpn$ sudo openvpn --config vpn-server.conf 
+				Sat Jun  3 15:20:02 2017 OpenVPN 2.3.10 x86_64-pc-linux-gnu [SSL (OpenSSL)] [LZO] [EPOLL] [PKCS11] [MH] [IPv6] built on Feb  2 2016
+				Sat Jun  3 15:20:02 2017 library versions: OpenSSL 1.0.2g  1 Mar 2016, LZO 2.08
+				Sat Jun  3 15:20:02 2017 TUN/TAP device tun0 opened
+				Sat Jun  3 15:20:02 2017 do_ifconfig, tt->ipv6=0, tt->did_ifconfig_ipv6_setup=0
+				Sat Jun  3 15:20:02 2017 /sbin/ip link set dev tun0 up mtu 1500
+				Sat Jun  3 15:20:02 2017 /sbin/ip addr add dev tun0 local 10.9.0.1 peer 10.9.0.2
+				Sat Jun  3 15:20:02 2017 UDPv4 link local (bound): [undef]
+				Sat Jun  3 15:20:02 2017 UDPv4 link remote: [undef]
+				Sat Jun  3 15:20:54 2017 Peer Connection Initiated with [AF_INET]192.168.2.117:1194
+				Sat Jun  3 15:20:54 2017 Initialization Sequence Completed
+
+			Network information of server:
+
+				cs@cs-VirtualBox:/etc/openvpn$ ifconfig
+				enp0s3    Link encap:Ethernet  HWaddr 08:00:27:67:58:ee  
+				          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+				          inet6 addr: fe80::67c5:b83f:8069:4dc9/64 Scope:Link
+				          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+				          RX packets:2 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:88 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1000 
+				          RX bytes:1180 (1.1 KB)  TX bytes:11533 (11.5 KB)
+
+				enp0s8    Link encap:Ethernet  HWaddr 08:00:27:47:90:cb  
+				          inet addr:192.168.2.116  Bcast:192.168.2.255  Mask:255.255.255.0
+				          inet6 addr: 2003:df:c3e2:7765:c590:4e16:98df:92cb/64 Scope:Global
+				          inet6 addr: 2003:df:c3e2:7765:cd69:ae4c:e078:32f8/64 Scope:Global
+				          inet6 addr: fe80::3c03:856c:28a3:614b/64 Scope:Link
+				          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+				          RX packets:1633 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:458 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1000 
+				          RX bytes:189718 (189.7 KB)  TX bytes:51596 (51.5 KB)
+
+				lo        Link encap:Local Loopback  
+				          inet addr:127.0.0.1  Mask:255.0.0.0
+				          inet6 addr: ::1/128 Scope:Host
+				          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+				          RX packets:216 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:216 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1 
+				          RX bytes:14746 (14.7 KB)  TX bytes:14746 (14.7 KB)
+
+				tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+				          inet addr:10.9.0.1  P-t-P:10.9.0.2  Mask:255.255.255.255
+				          inet6 addr: fe80::2720:fb4:507a:e9a2/64 Scope:Link
+				          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+				          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:100 
+				          RX bytes:0 (0.0 B)  TX bytes:144 (144.0 B)
+
+			Starting the vpn client:
+
+				cs@cs-VirtualBox:/etc/openvpn$ sudo openvpn --config vpn-client.conf 
+				Sat Jun  3 15:20:54 2017 OpenVPN 2.3.10 x86_64-pc-linux-gnu [SSL (OpenSSL)] [LZO] [EPOLL] [PKCS11] [MH] [IPv6] built on Feb  2 2016
+				Sat Jun  3 15:20:54 2017 library versions: OpenSSL 1.0.2g  1 Mar 2016, LZO 2.08
+				Sat Jun  3 15:20:54 2017 WARNING: file 'static.key' is group or others accessible
+				Sat Jun  3 15:20:54 2017 TUN/TAP device tun0 opened
+				Sat Jun  3 15:20:54 2017 do_ifconfig, tt->ipv6=0, tt->did_ifconfig_ipv6_setup=0
+				Sat Jun  3 15:20:54 2017 /sbin/ip link set dev tun0 up mtu 1500
+				Sat Jun  3 15:20:54 2017 /sbin/ip addr add dev tun0 local 10.9.0.2 peer 10.9.0.1
+				Sat Jun  3 15:20:54 2017 UDPv4 link local (bound): [undef]
+				Sat Jun  3 15:20:54 2017 UDPv4 link remote: [AF_INET]192.168.2.116:1194
+				Sat Jun  3 15:21:03 2017 Peer Connection Initiated with [AF_INET]192.168.2.116:1194
+				Sat Jun  3 15:21:03 2017 Initialization Sequence Completed
+
+			Network information of client:
+
+				cs@cs-VirtualBox:/etc/openvpn$ sudo ifconfig
+				enp0s3    Link encap:Ethernet  HWaddr 08:00:27:55:16:4a  
+				          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+				          inet6 addr: fe80::1694:5217:d6b8:f34b/64 Scope:Link
+				          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+				          RX packets:1 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:87 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1000 
+				          RX bytes:590 (590.0 B)  TX bytes:11139 (11.1 KB)
+
+				enp0s8    Link encap:Ethernet  HWaddr 08:00:27:74:2a:4b  
+				          inet addr:192.168.2.117  Bcast:192.168.2.255  Mask:255.255.255.0
+				          inet6 addr: 2003:df:c3e2:7765:d4cd:6a90:7b4f:97b7/64 Scope:Global
+				          inet6 addr: 2003:df:c3e2:7765:55c4:e955:83d0:5171/64 Scope:Global
+				          inet6 addr: fe80::95ed:2df5:de8b:ee8a/64 Scope:Link
+				          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+				          RX packets:1855 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:519 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1000 
+				          RX bytes:216466 (216.4 KB)  TX bytes:56638 (56.6 KB)
+
+				lo        Link encap:Local Loopback  
+				          inet addr:127.0.0.1  Mask:255.0.0.0
+				          inet6 addr: ::1/128 Scope:Host
+				          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+				          RX packets:232 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:232 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:1 
+				          RX bytes:15791 (15.7 KB)  TX bytes:15791 (15.7 KB)
+
+				tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+				          inet addr:10.9.0.2  P-t-P:10.9.0.1  Mask:255.255.255.255
+				          inet6 addr: fe80::1a60:f3eb:5d66:e550/64 Scope:Link
+				          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+				          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+				          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+				          collisions:0 txqueuelen:100 
+				          RX bytes:0 (0.0 B)  TX bytes:144 (144.0 B)
+
+			Pinging the client from server:
+
+				cs@cs-VirtualBox:/etc/openvpn$ ping 10.9.0.2
+				PING 10.9.0.2 (10.9.0.2) 56(84) bytes of data.
+				64 bytes from 10.9.0.2: icmp_seq=1 ttl=64 time=0.575 ms
+				64 bytes from 10.9.0.2: icmp_seq=2 ttl=64 time=1.00 ms
+				64 bytes from 10.9.0.2: icmp_seq=3 ttl=64 time=0.501 ms
+				64 bytes from 10.9.0.2: icmp_seq=4 ttl=64 time=0.473 ms
+				64 bytes from 10.9.0.2: icmp_seq=5 ttl=64 time=0.486 ms
+				64 bytes from 10.9.0.2: icmp_seq=6 ttl=64 time=0.454 ms
+				64 bytes from 10.9.0.2: icmp_seq=7 ttl=64 time=0.547 ms
+				64 bytes from 10.9.0.2: icmp_seq=8 ttl=64 time=0.524 ms
+				64 bytes from 10.9.0.2: icmp_seq=9 ttl=64 time=0.317 ms
+				64 bytes from 10.9.0.2: icmp_seq=10 ttl=64 time=0.473 ms
+				64 bytes from 10.9.0.2: icmp_seq=11 ttl=64 time=0.578 ms
+				64 bytes from 10.9.0.2: icmp_seq=12 ttl=64 time=0.578 ms
+				64 bytes from 10.9.0.2: icmp_seq=13 ttl=64 time=0.542 ms
+				64 bytes from 10.9.0.2: icmp_seq=14 ttl=64 time=0.542 ms
+				64 bytes from 10.9.0.2: icmp_seq=15 ttl=64 time=0.483 ms
+				64 bytes from 10.9.0.2: icmp_seq=16 ttl=64 time=0.484 ms
+				64 bytes from 10.9.0.2: icmp_seq=17 ttl=64 time=0.543 ms
+				64 bytes from 10.9.0.2: icmp_seq=18 ttl=64 time=0.610 ms
+
+			Pinging the server from client:
+
+				cs@cs-VirtualBox:/etc/openvpn$ ping 10.9.0.1
+				PING 10.9.0.1 (10.9.0.1) 56(84) bytes of data.
+				64 bytes from 10.9.0.1: icmp_seq=1 ttl=64 time=0.526 ms
+				64 bytes from 10.9.0.1: icmp_seq=2 ttl=64 time=0.539 ms
+				64 bytes from 10.9.0.1: icmp_seq=3 ttl=64 time=0.758 ms
+				64 bytes from 10.9.0.1: icmp_seq=4 ttl=64 time=0.538 ms
+				64 bytes from 10.9.0.1: icmp_seq=5 ttl=64 time=0.736 ms
+				64 bytes from 10.9.0.1: icmp_seq=6 ttl=64 time=1.33 ms
+				64 bytes from 10.9.0.1: icmp_seq=7 ttl=64 time=0.573 ms
+				64 bytes from 10.9.0.1: icmp_seq=8 ttl=64 time=0.605 ms
+				64 bytes from 10.9.0.1: icmp_seq=9 ttl=64 time=0.538 ms
+				64 bytes from 10.9.0.1: icmp_seq=10 ttl=64 time=0.536 ms
+				64 bytes from 10.9.0.1: icmp_seq=11 ttl=64 time=0.488 ms
+				64 bytes from 10.9.0.1: icmp_seq=12 ttl=64 time=0.486 ms
+				64 bytes from 10.9.0.1: icmp_seq=13 ttl=64 time=0.518 ms
+				64 bytes from 10.9.0.1: icmp_seq=14 ttl=64 time=0.479 ms
 
 
 	* c) Create a subfolder called **exercise2c** to hold your answers and configuration files. Using the OpenVPN documentation and the previous exercise's answers, try to set up the VPN so that the VPN client uses the VPN for all its network traffic. This is a fairly common usage scenario, to it is fairly well covered in the basic documentation. Document the commands in a text file **commands**. Include configuration files for both hosts. Perform the same kind of packet capture as in exercise 2b, however, this time the VPN client should ping some host on the internet (e.g. www.google.com) instead of the VPN server. You can use traceroute or mtr to figure out whether traffic is actually going through the VPN or whether it's taking the normal route to the internet. Include the commands and output of the ping and traceroute commands you used during the capture in the file **commands**. If you have network issues during the exercise, one thing to do would be to look at your routing table (ip r show; route -n) and see if you can figure out why traffic is or is not going through the VPN. Of course, send an e-mail or drop by Pol's office (M1.03.20) if you're stuck.
