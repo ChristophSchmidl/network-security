@@ -656,6 +656,73 @@ In this assignment you will be using the following tools:
 
 	* c) Create a subfolder called **exercise2c** to hold your answers and configuration files. Using the OpenVPN documentation and the previous exercise's answers, try to set up the VPN so that the VPN client uses the VPN for all its network traffic. This is a fairly common usage scenario, to it is fairly well covered in the basic documentation. Document the commands in a text file **commands**. Include configuration files for both hosts. Perform the same kind of packet capture as in exercise 2b, however, this time the VPN client should ping some host on the internet (e.g. www.google.com) instead of the VPN server. You can use traceroute or mtr to figure out whether traffic is actually going through the VPN or whether it's taking the normal route to the internet. Include the commands and output of the ping and traceroute commands you used during the capture in the file **commands**. If you have network issues during the exercise, one thing to do would be to look at your routing table (ip r show; route -n) and see if you can figure out why traffic is or is not going through the VPN. Of course, send an e-mail or drop by Pol's office (M1.03.20) if you're stuck.
 
-		* Answer
+		* New vpn-client.conf:
+		* ```
+			remote 192.168.2.116
+			dev tun
+			ifconfig 10.9.0.2 10.9.0.1
+			secret static.key
+			route 192.168.255.0 255.255.255.0
+			#proto tcp-client
+			keepalive 10 120
+			redirect-gateway autolocal
+
+		* New vpn-server.conf:
+		* ```
+			dev tun
+			ifconfig 10.9.0.1 10.9.0.2
+			secret static.key
+			#proto tcp-server
+			keepalive 10 120
+			redirect-gateway local def1	
+
+		* Commands executed on server-side:
+		* ```
+			sudo iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -o enp0s3 -j MASQUERADE
+			sudo sysctl -w net.ipv4.ip_forward=1
+
+		* Ip route information on client side without openvpn:
+		* ``` 	
+			cs@cs-VirtualBox:/etc/openvpn$ sudo ip route show
+			default via 192.168.2.1 dev enp0s8 
+			192.168.2.0/24 dev enp0s8  proto kernel  scope link  src 192.168.2.117  metric 100 
+
+		* Ip route information on client side with openvpn:
+		* ```
+			cs@cs-VirtualBox:~$ sudo ip route show
+			default via 10.9.0.1 dev tun0 
+			10.9.0.1 dev tun0  proto kernel  scope link  src 10.9.0.2 
+			169.254.0.0/16 dev tun0  scope link  metric 1000 
+			192.168.2.0/24 dev enp0s8  proto kernel  scope link  src 192.168.2.117  metric 100 
+			192.168.255.0/24 via 10.9.0.1 dev tun0
+
+		* Traceroute on client side without openvpn
+		* ```
+			cs@cs-VirtualBox:~$ sudo traceroute -I google.com
+			traceroute to google.com (172.217.18.174), 30 hops max, 60 byte packets
+			 1  speedport.ip (192.168.2.1)  0.977 ms  0.367 ms  0.338 ms
+			 2  62.155.244.66 (62.155.244.66)  12.036 ms  12.036 ms  12.003 ms
+			 3  217.239.45.98 (217.239.45.98)  20.956 ms  21.094 ms  21.092 ms
+			 4  xe-1-0-4.cr-vega.sxb1.core.heg.com (80.156.160.118)  22.349 ms  22.344 ms  22.644 ms
+			 5  209.85.243.17 (209.85.243.17)  21.582 ms  21.298 ms  21.557 ms
+			 6  74.125.37.197 (74.125.37.197)  22.154 ms  20.670 ms  21.096 ms
+			 7  fra15s29-in-f14.1e100.net (172.217.18.174)  20.111 ms  19.371 ms  19.446 ms	
+
+		* Traceroute on client side with openvpn
+		* ```
+			cs@cs-VirtualBox:~$ sudo traceroute -I google.com
+			traceroute to google.com (172.217.18.174), 30 hops max, 60 byte packets
+			 1  10.9.0.1 (10.9.0.1)  1.380 ms  0.800 ms  1.136 ms
+			 2  10.0.2.2 (10.0.2.2)  0.903 ms  0.792 ms  1.125 ms
+			 3  * * *
+			 4  62.155.244.66 (62.155.244.66)  14.492 ms  14.469 ms  14.431 ms
+			 5  217.239.45.98 (217.239.45.98)  21.619 ms  21.429 ms  21.361 ms
+			 6  xe-1-0-4.cr-vega.sxb1.core.heg.com (80.156.160.118)  22.368 ms  22.092 ms  21.974 ms
+			 7  209.85.243.17 (209.85.243.17)  20.763 ms  22.796 ms  22.725 ms
+			 8  74.125.37.197 (74.125.37.197)  22.734 ms *  22.644 ms
+			 9  fra15s29-in-f14.1e100.net (172.217.18.174)  22.528 ms  22.466 ms  22.462 ms
+
+
+
 
 	
