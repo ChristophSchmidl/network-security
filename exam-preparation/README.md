@@ -58,7 +58,49 @@
 
 	* b) The scans are listed in increasing order of "stealthiness". Explain briefly why this is the case by explaining how a system administrator could notice those scans and attribute their origin.
 	
-		* Answer	
+		* Answer
+
+
+4. **(20 points)** Consider the following iptables firewall script running on a laptop called **mylaptop**:
+
+	* ```
+		iptables -F
+		iptables -P INPUT DROP
+		iptables -P OUTPUT DROP
+		iptables -P FORWARD DROP
+		iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
+		iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+		iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+		iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+		iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+	For each of the following tasks decide whether the firewall allows it or not. If the firewall does not allow it, give an iptables rule that enables it. In each part you can assume the presence of additional rules from the previous parts. **Note:** The rules have to be minimal and must not allow anything beyond the required functionality; in particular something like **iptables -P INPUT ACCEPT** is not a valid solution.
+
+	* a) A web browser running on mylaptop tries to load the website at https://www.google.com
+
+		* Answer
+
+	* b) The user runs the ping utility on my laptop to test whether the host www.ru.nl is reachable.
+	
+		* Answer
+
+	* c) A mail client on mylaptop retrieves e-mail from post.science.ru.nl through IMAPS (TCP port 993)
+	
+		* Answer
+
+	* d) Another computer (not the laptop with the firewall) uses the ping utility to test whether mylaptop is reachable.
+
+		* Answer
+
+	* e) Somebody else from outside tries to connect to the SSH server running on port 22 of mylaptop.
+	
+		* Answer
+
+
+5. **(20 points)** Consider a confidential e-mail being sent from a user A (using e-mail provider P_A)			
+
+
+
 
 
 
