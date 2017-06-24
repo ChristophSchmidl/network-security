@@ -70,6 +70,13 @@
 	* Application layer
 * Cracking WEP: attacking physical part of link layer
 * ARP spoofing: attacking logical part of link layer
+* IP addresses have a **network part** and a **host part**, where hosts with the same network part are directly reachable. Access to hosts with a **different network** part needs to go through a gateway
+* **Variable-length subnet masks (VLSM)**
+	* Example: Netmask 255.255.255.0 means the first 3 bytes are network part. Netmask 255.224.0.0 means the first 11 bits are network part
+	* Specify network together with mask: 192.168.42.0/24
+* **IP Header**
+* ![IPHeader](img/ip_header.PNG)
+
 
 
 ## Lecture 3: Routing and Firewalls
