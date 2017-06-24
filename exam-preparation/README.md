@@ -78,7 +78,7 @@
 * ![IPHeader](img/ip_header.PNG)
 * **IP spoofing**: Send IP packet with wrong ("spoofed") source address
 * **TCP Handshake**
-* ![TCPHandshake](img/tcp_handshake.png =250x)
+* ![TCPHandshake](img/tcp_handshake.png)
 * **TCP ports** identify processes
 * Negative answer to a **SYN** is an **RST**
 * Termination of a connection uses a 4-way handshake:
