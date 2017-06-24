@@ -97,7 +97,23 @@
 		* Answer
 
 
-5. **(20 points)** Consider a confidential e-mail being sent from a user A (using e-mail provider P_A)			
+5. **(20 points)** Consider a confidential e-mail being sent from a user A (using e-mail provider P_A) to another user B (using e-mail provider P_B). Consider the following independent cryptographic protections for this e-mail communication:
+
+	* P1: User A is in a WPA2-protected WiFi using pre-shared keys.
+	* P2: User A uses TLS to communicate with the SMTP server of P_A.
+	* P3: User B uses TLS to communicate with the IMAP server of P_B.
+	* P4: Provider P_A and P_B communicate through IPSec with encapsulated security payloads (ESP) in tunnel mode.
+	* P5: User A obtains B's PGP public key from pgp.mit.edu and then encrypts the e-mail using PGP with this public key.
+
+	Consider the following attacks against this e-mail communication:
+
+	* A1: An attacker, who is not the in WiFi network that A is in, sniffs the WiFi traffic near A to read the e-mail.
+	* A2: An attacker, who is in the WiFi network that A is in, sniffs the WiFi traffic to read the e-mail
+	* A3: An attacker, who is in the same network that B is in, sniffs the network to read the e-mail.
+	* A4: An attacker (controlling an Internet router) sniffs the traffic between A and the SMTP server of P_A.
+	* A5: An attacker (controlling an Internet router) sniffs the traffic between P_A and P_B.
+	* A6: A's provider is reading and analyzing the e-mail.
+	* A7: B's provider is reading and analyzing the e-mail.			
 
 
 
