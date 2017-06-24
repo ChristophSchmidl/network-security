@@ -46,7 +46,7 @@
 		* SSID
 		* Frequency-hopping parameters
 * **Hidden SSID**
-	* CLients need to know the SSID to authenticate/associate
+	* Clients need to know the SSID to authenticate/associate
 	* Idea: Don't send this SSID in beacon frames and advertise this as "network cloaking"
 	* Network is not really cloaked, SSID is also contained in other frames
 * Encrypted WiFi
@@ -55,7 +55,7 @@
 	* WEP-104 can be broken in less than a minute
 	* **WPA (WiFi Protected Access)** uses **Temporal Integrity Protocol (TKIP)** which is a wrapper around RC4
 	* WPA is therefore still vulnerable
-	* **WPA2** got rif of RC4 and uses CCMP instead with a 128-bit AES key
+	* **WPA2** got rif of RC4 and uses CCMP instead with a 128-bit AES key but sometimes provides backwards-compatibility to TKIP
 	* **WPS (WiFi Protected Setup)** is still a possibility to circumvent WPA2 but is disabled but most routers
 
 
@@ -63,7 +63,13 @@
 
 ## Lecture 2: Security aspects of TCP/IP
 
-
+* **4-layer IP model:**
+	* Link layer
+	* Internet layer
+	* Transport layer
+	* Application layer
+* Cracking WEP: attacking physical part of link layer
+* ARP spoofing: attacking logical part of link layer
 
 
 ## Lecture 3: Routing and Firewalls
