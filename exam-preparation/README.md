@@ -1,5 +1,44 @@
 # Network Security - Exam Preparation
 
+## Lecture 1: Security in local-area networks
+
+* Netcat example
+	* Command in tyrion: ``` `netcat -lp 51966 ```
+	* Command on arya: ``` echo "Hi tyrion" | netcat tyrion 51966 ```
+* How does arya know tyrions IP address? -> she sends and ARP request to the broadcast MAC address (ff:ff:ff:ff:ff:ff) and gets a arp reply from tyrion with "192.168.42.1 is at 50:75.9d.f3:db:29"
+* The above example is sent over a TCP/IP connection
+* Network sniffing through Hubs and Switched Ethernet. Switches are aware of the MAC addresses behin their ports and do not broadcast every packet.
+* ARP Cache poisoning/ARP spoofing still works for Switched Ethernet though
+
+
+
+
+## Lecture 2: Security aspects of TCP/IP
+
+
+
+
+## Lecture 3: Routing and Firewalls
+
+
+
+
+## Lecture 4: DNS (In)security
+
+
+
+
+
+## Lecture 5: Encrypting Network Communication
+
+
+
+
+
+
+## Lecture 6: Traffic Analysis and Anonymization
+
+
 
 ## Mock Exam
 
