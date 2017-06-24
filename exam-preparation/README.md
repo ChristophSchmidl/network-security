@@ -84,7 +84,9 @@
 * Termination of a connection uses a 4-way handshake:
 	* Each side terminates independently (through a FIN)#
 	* Each side acknowledges the FIN of the other side
+* **TCP Header**	
 * ![TCPHeader](img/tcp_header.PNG)	
+* **SYN flooding**: Client sends **SYN**. Server allocates resources for connection in the SYN queue and sends **SYN/ACK** back. Client never replies back with **ACK** to the server's **SYN/ACK**. The server's **SYN queue** will fill up when sending of those SYN packets is faster than the server is "discarding" half-open connections. Time to discard is configured by the TCP SYN-Received timer. 
 
 
 
