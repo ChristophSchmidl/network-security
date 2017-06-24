@@ -3,12 +3,15 @@
 ## Lecture 1: Security in local-area networks
 
 * Netcat example
-	* Command in tyrion: ``` `netcat -lp 51966 ```
+	* Command in tyrion: ``` netcat -lp 51966 ```
 	* Command on arya: ``` echo "Hi tyrion" | netcat tyrion 51966 ```
 * How does arya know tyrions IP address? -> she sends and ARP request to the broadcast MAC address (ff:ff:ff:ff:ff:ff) and gets a arp reply from tyrion with "192.168.42.1 is at 50:75.9d.f3:db:29"
 * The above example is sent over a TCP/IP connection
-* Network sniffing through Hubs and Switched Ethernet. Switches are aware of the MAC addresses behin their ports and do not broadcast every packet.
+* Network sniffing through Hubs and Switched Ethernet. Switches are aware of the MAC addresses behind their ports and do not broadcast every packet.
 * ARP Cache poisoning/ARP spoofing still works for Switched Ethernet though
+	* Gratuitous ARP packets are announcements ("replies without a request"). There are good reasong for this kind of announcements like announcing IP+MAC at boot time, announcing changed IP address to other hosts or ip-adress takeover in high performance clusters
+* In order to use arp spoofing, IP forwarding should be enabled: ``` echo 1 > /proc/sys/net/ipv4/ip_forward ```	
+* Poisoning the ARP cache of 192.168.42.2: ``` arpspoof -t 192.168.42.2 192.168.42.3 ```
 
 
 
