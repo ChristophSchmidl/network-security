@@ -35,7 +35,17 @@
 	* Networks are logically separated by their network names (**service set identification, SSID**)
 	* Communication is physically separated by using different **channels (frequencies)**
 	* Two different modes of operation: **ad-hoc mode: peer-to-peer** and **infrastructure mode: communication through access point(AP)**
-
+* Connecting to a WiFi network
+	* Connections to a wireless network are handled through **management frames**
+	* Other important management frames:
+		* **Reassociate request/response frames: change the AP**
+		* **Disassociate frame: leave the network**
+	* APs send **beacon frames** (by default, 10/second) containing:
+		* Timestamp
+		* Beacon interval
+		* SSID
+		* Frequency-hopping parameters
+* **Hidden SSID**			
 
 
 
