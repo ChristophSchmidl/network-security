@@ -45,7 +45,19 @@
 		* Beacon interval
 		* SSID
 		* Frequency-hopping parameters
-* **Hidden SSID**			
+* **Hidden SSID**
+	* CLients need to know the SSID to authenticate/associate
+	* Idea: Don't send this SSID in beacon frames and advertise this as "network cloaking"
+	* Network is not really cloaked, SSID is also contained in other frames
+* Encrypted WiFi
+	* **WEP (Wired Equivalent Privacy)** uses RC4 with 40-bit key and 24-bit IV -> weak encryption
+	* RC4/WEP can be broken after 40000 frames with probability > 50% and after 85000 frames with probability > 95%
+	* WEP-104 can be broken in less than a minute
+	* **WPA (WiFi Protected Access)** uses **Temporal Integrity Protocol (TKIP)** which is a wrapper around RC4
+	* WPA is therefore still vulnerable
+	* **WPA2** got rif of RC4 and uses CCMP instead with a 128-bit AES key
+	* **WPS (WiFi Protected Setup)** is still a possibility to circumvent WPA2 but is disabled but most routers
+
 
 
 
