@@ -76,6 +76,15 @@
 	* Specify network together with mask: 192.168.42.0/24
 * **IP Header**
 * ![IPHeader](img/ip_header.PNG)
+* **IP spoofing**: Send IP packet with wrong ("spoofed") source address
+* **TCP Handshake**
+* ![TCPHandshake](img/tcp_handshake.PNG)
+* **TCP ports** identify processes
+* Negative answer to a **SYN** is an **RST**
+* Termination of a connection uses a 4-way handshake:
+	* Each side terminates independently (through a FIN)#
+	* Each side acknowledges the FIN of the other side
+* ![TCPHeader](img/tcp_header.PNG)	
 
 
 
