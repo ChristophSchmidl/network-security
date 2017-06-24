@@ -115,6 +115,18 @@
 	* A6: A's provider is reading and analyzing the e-mail.
 	* A7: B's provider is reading and analyzing the e-mail.			
 
+	* a) Fill in a checkmark in each cell of the following table, if and only if the cryptographic protection alone is effective to prevent the attack:
+
+		* ![SecureTable](img/table.PNG)
+
+		**Note:** Don't forget to submit this sheet together with your exam or copy the table to your exam sheet.
+
+		* Answer
+
+	* b) Can you think of an attack that would work against each of the protections (and any combination of those)?
+	
+		* Answer		
+
 
 
 
