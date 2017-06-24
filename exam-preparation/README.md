@@ -21,7 +21,20 @@
 	* ARP filter -> arptables
 	* arpwatch
 	* Protection mechanisms on advanced switches like "Dynamic ARP Inspection"
-	* Protection against ARP spoofing is hard in general because ARP does not have any authentication mechanism	
+	* Protection against ARP spoofing is hard in general because ARP does not have any authentication mechanism
+* **VLANs**
+	* Partioning of local-area network (LAN) into multiple virtual LANs (VLANs)
+	* VLANs have separated broadcast domains
+	* ARP requests/replies don't go from one VLAN to another
+	* Can limit the damage caused by ARP-level attacks ("students can only attack each other")		
+* **MAC address filtering**
+	* Switches could use a whitelist of MAC addresses and ignore computers with unknown MAC addresses
+	* **MAC spoofing** is an easy way to circumvent Mac address filtering
+	* ``` ip link set dev eth0 down; ip link set dev eth0 address 42:42:42:42:42:42; ip link set dev eth0 up```
+* Wireless networks: **IEEE 802.11**
+	* Networks are logically separated by their network names (**service set identification, SSID**)
+	* Communication is physically separated by using different **channels (frequencies)**
+	* Two different modes of operation: **ad-hoc mode: peer-to-peer** and **infrastructure mode: communication through access point(AP)**
 
 
 
