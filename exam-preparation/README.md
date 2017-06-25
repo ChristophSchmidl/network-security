@@ -130,6 +130,22 @@
 	* When TTL has reached zero, an **ICMP time exceeded** is sent back
 	* Traceroute send packets with incrasing TTL
 	* Traceroute can use **UDP packets, ICMP echo requests (ping) or TCP SYN**
+* **Routing attacks**
+	* Detaching a target from the network (DOS)
+	* Flooding a target with requests (DOS)
+	* Becoming MitM	
+* **Static routing vs Dynamic routing**	
+* **Routing tables**: usage of **route** and **ip route show**	
+* **Routing Information Protocol (RIP)**
+* **Open Shortest Path First (OSPF)**
+* **Border Gateway Protocol (BGP)**: also see "Schengen routing"
+* **Scalability, Control, and Isolation on Next-Generation Networks (SCION)**: Replacement for BGP
+* **Source routing**
+	* **Strict source and record route (SSRR)**
+	* **Loose source and record route (LSRR)*
+	* Idea in both cases: The source specifies the route
+* **ICMP redirect**	
+
 
 
 
