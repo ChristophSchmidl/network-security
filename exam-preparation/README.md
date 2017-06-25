@@ -206,8 +206,28 @@
 
 ## Lecture 4: DNS (In)security
 
-
-
+* **Domain Name System (DNS)**: typically uses UDP on port 53
+* DNS servers are typically responsible for one specific domain (DNS zone)
+* Two kind of DNS servers: **recursive DNS servers** and **authoritative DNS servers**
+	* **Recursive server (or DNS caches)**
+		* forward requests to other servers
+		* remember (cache) the reply for a certain amount of time
+	* **Authoritative servers** are responsible for a certain domain (or DNS zone)
+		* know the hosts in their domain
+		* know the authoritative DNS server of their subdomains
+* Two types of request: **recursive** and **iterative**	
+	* **Recursive request (to a DNS cache)**: give me the answer or an error
+	* **Iterative request (to an authoritative server)**: give me the answer or tell me who might know	
+* **DNS entry types**
+* ![DNSEntryTypes](img/dns_entry_types.PNG)
+* Four sections in a **DNS reply**:
+	* **QUESTION SECTION** (repetition of the question)
+	* **ANSWER SECTION**
+	* **AUTHORITY SECTION**
+	* **ADDITIONAL SECTION**: particularly important for gue records -> communicate IP addresses of authoritative DNS servers
+* **DNS root servers**
+	* Whenever a DNS server does not know the authoritative DNS servers of a Domain, it asks the DNS root servers
+	* There are **13** DNS root servers
 
 
 ## Lecture 5: Encrypting Network Communication
