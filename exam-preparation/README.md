@@ -155,7 +155,20 @@
 * **Rogue DHCP**
 	* Attacker can canswer DHCP requests **faster**
 	* Knock clients **offline** by providing unroutable IP addresses
-	* Communicate itself as default gatesway and become MitM between requesting client and the outside			
+	* Communicate itself as default gatesway and become MitM between requesting client and the outside	
+* **Firewall**: A firewall is a concept for separating networks, typically together with technical means to implement this concept.
+	* Can separate networks on different levels
+	* Can filter packets on the internet and transport layers
+* **iptables**: A powerful linux netfilter framework to modify netfilter rules
+	* iptables defines multiple **tables**, each table with multiple **chains**, each chain with multiple **rules**
+	* Default table is **filter** with **3 chains**: **INPUT, FORWARD, OUTPUT**
+	* Additional to rules, each of the 3 chains also has a **policy** which defines default behaviour (if no rule matches)
+	* Allow ICMP echo request/reply (ping) from outside (stateless):
+		* ``` iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT ```
+		* ``` iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT ```
+	* Allow outbound DNS requests (stateless):
+		* ``` iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT ```
+		* ``` iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT ```			
 
 
 
