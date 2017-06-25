@@ -240,8 +240,20 @@
 * **DNS Cache poisoning in the old days**
 * ![DNSCachePoisoning](img/dns_cache_poisoning.PNG)
 * **Bailiwick check**
-	* Reject ADDITIONAL information of the requested server is not authorized to answer for the domain
-
+	* Reject ADDITIONAL information if the requested server is not authorized to answer for the domain
+* **Kaminsky's attack**
+* **DNS Randomization**: 16bit Query ID (QID) + Source-port randomization (16bit), 0x29 randomization (random capitalization of letter in the QUESTION section)
+	* Does not prevent an attack if a passive MitM is performed
+* **DNSSEC**
+	* Idea: Use cryptographically signed DNS entries (sign information offline)
+	* Root of trust: public keys of the DNS root servers
+	* Does not increase the size of DNS requests but DOES increase the size of DNS replies significantly	
+	* Modern DDOS uses DNS+DNSSEC	
+* **DNSCurve**	
+	* Alternative to DNSSEC
+	* Idea is to encrypt and authenticate DNS traffic (similar to SSL/TLS)
+* **DNS zone enumeration**
+	* Finding all hosts in a DNS zone is called zone numeration	
 
 ## Lecture 5: Encrypting Network Communication
 
