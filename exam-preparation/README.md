@@ -168,7 +168,19 @@
 		* ``` iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT ```
 	* Allow outbound DNS requests (stateless):
 		* ``` iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT ```
-		* ``` iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT ```			
+		* ``` iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT ```	
+	* iptables has multiple **modules**, use **conntrack** module for stateful firewall		
+	* Allow all incoming packets that belong to established or related connection:
+		* ``` iptables -A INPUT -m conntrack --ctstate RELATED, ESTABLISHED -j ACCEPT```
+	* Most important connection states:
+		* **NEW**: first packet of a connection
+		* **ESTABLISHED**: Have seen packets of this connection before
+		* **RELATED**: New connection, which is "related" to an ESTABLISHED connection
+* **Network Address Translation (NAT)**
+	* Multiple hosts on a local network
+	* Only one host (gateway) has an IP address routed in the Internet
+	* Gateway remembers connection (IP+Port) to rewrite destination IP address on incomming packets
+	* This kind of NAT is also known as **IP Masquerading**			
 
 
 
