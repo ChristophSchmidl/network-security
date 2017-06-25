@@ -124,6 +124,12 @@
 
 ## Lecture 3: Routing and Firewalls
 
+* **Traceroute**
+	* Find out what route is used to reach a specific destination like www.google.com
+	* IP header has a time-to-live (TTL) field which gets decreased by each hop by 1
+	* When TTL has reached zero, an **ICMP time exceeded** is sent back
+	* Traceroute send packets with incrasing TTL
+	* Traceroute can use **UDP packets, ICMP echo requests (ping) or TCP SYN**
 
 
 
