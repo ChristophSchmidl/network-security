@@ -114,6 +114,12 @@
 		* Y = X + 1: port is closed
 		* Y = X + 2: port is open
 	* **UDP port scanning**	
+		* First option: **ICMP port unreachable**
+		* Second option: **Use specific service like DNS on port 53**
+* **OS finderprinting**
+	* Many services reveal details (e.g., banner information)		
+* **Port knocking**: Hide specific services and wait for certain packets to arrive, then open port. Example: Send udp packets to port 42, 53 from a specific IP and then open port 22 for that IP.	
+* **TCP Stealth**: include authentication in client's ISN
 
 
 ## Lecture 3: Routing and Firewalls
