@@ -315,6 +315,35 @@
 		* Becomes the payload of a new IP packet
 		* May contain different source and destination addresses
 		* Can be used between hosts, gateways, or host-gateway		
+* **Userspace VPN**: software that authenticates users and tunnels traffic, e.g., **ssh, Openvpn**	
+	* **TUN interfaces**: operates on OSI-layer 3 and uses IP packets
+		* Linux provides TUN (tunneling) "software network interface"
+		* Output IP packets are fed into software that reads from file ``` /dev/net/tun ```
+	* *TAP interfaces***: operates on OSI-layer 2 and uses Ethernet frames
+		* You are able to receive ARP packets through TAP
+		* The hosts are logically connected on the link layer
+		* They are in the same broadcast domain
+* **Secure Sockets Layer (SSL) and Transport Layer Security (TLS)**
+	* SSL/TLS provides a secure channel between server and client
+		* Confidentiality
+		* Server (and client) authentication
+		* Message integrity		
+	* SSL/TLS runs on top of TCP:
+		* Transparent for application-layer protocols
+		* SSL/TLS connection acts like a secured TCP connection
+		* Most protocols running over TCP can be run over SSL/TLS instead e.g., HTTP -> HTTPS, SMTP -> SMTPS	
+	* Protocols in SSL/TLS
+		* Handshake Protocol: initiate session, Authenticate server/client, establish keys
+		* Record Protocol: data transfer, Compute MAC for integrity, encrypt MAC and data
+		* Alert Protocol: alert the other side of exceptional conditions, e.g., error and warnings	
+	* HTTPS uses pre-installed root certificates in the browsers
+	* Authenticating a communication partner means: follow chain of trust to root CA
+	* Compromise one root CA and all browsers are compromised
+	* DigiNotar compromised in 2011	
+* **SSLstrip**
+	* Idea: rewrite links from HTTPS to HTTP
+	* Required that client does not enforce HTTPS
+
 
 
 
