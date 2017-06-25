@@ -345,13 +345,41 @@
 	* Required that client does not enforce HTTPS
 
 
-
-
-
-
-
 ## Lecture 6: Traffic Analysis and Anonymization
 
+* Meta data 
+* IPsec ESP in tunnel mode
+* Anonymizing proxies
+* Mix networks
+	* Achieves anonymity if encrypted messages are indistinguishable
+	* Has high communication latency (wait for enough messages)
+* Mix Nets vs. Anonymizing proxies
+	* Mix Nets
+		* + No single point of failure with cascading
+		* + Inbound/output-traffic analysis does not de-anonymize
+		* + Generally good anonymity
+		* - slow public-key cryptography
+		* - long latency
+	* Anon. Proxies
+		* + Low latency
+		* + No overhead from slow crypto
+		* - Single point of failure
+		* - Inbound/output-traffic analysis de-anonymizes
+		* - Fairly weak anonymity
+* **Idea of Tor (The Onion Router): Combine advantages:**
+	* Use cascade of "proxies", called Tor relays or Tor nodes
+	* Use fast symmetric crypto instead of asymmetric crypto			
+	* Tor offers anonymity up to the transport layer
+	* Tor cannot offer application-level anonymity
+	* Various Bittorrent clients do precisely this: send the IP address as part of the application data	
+	* Tor provides anonamity as long as not all three relays attack together
+	* Tor is a poweful tool to circumvent censorship
+	* **Tor bridges**: entry nodes that are not in the public list
+	* Tor traffic is relatively easy to identify:
+		* Disguised as HTTPS traffic
+		* uses random domain names
+		* has a characteristic packet-size distribution
+		* Solution: fully disguise Tor traffic as other traffic
 
 
 ## Mock Exam
