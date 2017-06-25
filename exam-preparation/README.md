@@ -224,10 +224,23 @@
 	* **QUESTION SECTION** (repetition of the question)
 	* **ANSWER SECTION**
 	* **AUTHORITY SECTION**
-	* **ADDITIONAL SECTION**: particularly important for gue records -> communicate IP addresses of authoritative DNS servers
+	* **ADDITIONAL SECTION**: particularly important for glue records -> communicate IP addresses of authoritative DNS servers
 * **DNS root servers**
 	* Whenever a DNS server does not know the authoritative DNS servers of a Domain, it asks the DNS root servers
 	* There are **13** DNS root servers
+* **DNS tunneling**	
+	* Tunnel SSH traffic through DNS because most of the time firewalls do not block DNS
+* **DNS DDos amplification**
+	* DNS answers can be much larger than the request
+	* Idea: Spoof ip address of DOS victim in DNS request, victim will receive 	much more data than attacker has to send
+* **DNS spoofing**
+	* Send wrong answer to client: **hit one target**
+	* Send wrong answer to DNS cache: **hit many targets**
+	* Answers contain "validity period"	
+* **DNS Cache poisoning in the old days**
+* ![DNSCachePoisoning](img/dns_cache_poisoning.PNG)
+* **Bailiwick check**
+	* Reject ADDITIONAL information of the requested server is not authorized to answer for the domain
 
 
 ## Lecture 5: Encrypting Network Communication
