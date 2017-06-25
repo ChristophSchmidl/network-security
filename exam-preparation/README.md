@@ -103,7 +103,7 @@
 	* Trivial to exploit: ``` ping -s 65510 target ```
 * **TCP session hijacking**: this became known as the "Mitnick attack" by using a DOS attack and guessing ISN.
 * **Common services and their ports**: Same port for UDP and TCP (but service is not necessarily listening on both)
-* ![CommonServices](img/common_services.png)
+* ![CommonServices](img/common_services.PNG)
 * **Port scanning**
 	* Default scan method for non-privilged user: **connect() scan**: Uses the OS's connect() system call to connect to a remote port. if connect() succeeds -> port is open, if connect() fails -> port is closed. Connect() scans appear in the servers's log files
 	* **SYN scan**: Send SYN packet. If SYN/ACK is received -> port is open, if RST is received -> port is closed. Send an RST when receiving SYN/ACK to "hang up". Because the service is never completed, server does not log it.
