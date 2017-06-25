@@ -176,12 +176,32 @@
 		* **NEW**: first packet of a connection
 		* **ESTABLISHED**: Have seen packets of this connection before
 		* **RELATED**: New connection, which is "related" to an ESTABLISHED connection
+	* Enabling NAT (IP Masquerading):
+		* ``` iptables -t nat -A POSTROUTING -j MASQUERADE ```	
 * **Network Address Translation (NAT)**
 	* Multiple hosts on a local network
 	* Only one host (gateway) has an IP address routed in the Internet
 	* Gateway remembers connection (IP+Port) to rewrite destination IP address on incomming packets
-	* This kind of NAT is also known as **IP Masquerading**			
-
+	* This kind of NAT is also known as **IP Masquerading**	
+	* It two hosts in the local network are using the same port to connect to website like www.google.com (port 80) with source port 11111, the the gateway also rewrites the ports of these hosts		
+* **Tethering:** Many (Android) phones offer sharing an Internet connection through tethering. Tethering uses NAT (IP Masquerading)
+* **NAT and ICMP**
+	* NAT or IP masquerading relies on ports
+	* ICMP messages do not have ports
+	* For ICMP echo request/reply use the **Query ID** instead of the port
+* **Port forwarding**
+	* The before mentioned examples are also known as **source-NAT**
+	* When a server is running inside a NAT network and forwards incoming connection then it is called port forwarding or **destination NAT**
+	* iptables has a **nat** table with chains: **PREROUTING, POSTROUTING, OUTPUT**	
+* **Tunneling**: place packets of one protocol into the payload of another protocol
+	* iptables cannot distinguish between HTTP going to port 80 and SSH going to port 80
+	* **sshuttle** is a convenient tool to tunnel all traffic through SSH.
+* **Proxy Servers**
+	* **Application-level proxy**: understands high-level protocols, such as HTTP
+	* **SOCKS proxy**: for secure forwarding of TCP connections. can be used for SSH	
+	* Similar to Proxy: **Application-level gateway (ALG)**
+* **Tunneling through an HTTP Proxy**
+	* HTTP CONNECT() can be used to tunnel SSH through an HTTP(S) proxy	
 
 
 ## Lecture 4: DNS (In)security
