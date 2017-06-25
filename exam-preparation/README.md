@@ -303,12 +303,14 @@
 			* Security Association Database (SADB) contains list of active security associations (SA)
 	* **Transport mode**
 		* ![TransportMode](img/transport_mode.PNG) 
+		* ![IPsecTransportMode](img/ipsec_transport_mode.PNG) 
 		* Only the payload of the IP packet is protected
 		* Data is protected from source to destination
 		* Header information is completely in the clear
 		* Used only between hosts
 	* **Tunnel mode**
 		* ![TunnelMode](img/tunnel_mode.PNG) 
+		* ![IPsecTunnelMode](img/ipsec_tunnel_mode.PNG) 
 		* Entire IP packet is protected (i.e. IP header and data)
 		* Becomes the payload of a new IP packet
 		* May contain different source and destination addresses
