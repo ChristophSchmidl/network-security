@@ -271,7 +271,7 @@
 * **Network-layer security**
 	* ![NetworkLayerSecurity](img/network_layer_security.PNG)
 	* Encrypt IP packets, main protocol: **IPsec**
-	* Point-to-point security btween entities identified by IP addresses, typically routers or firewalls
+	* Point-to-point security between entities identified by IP addresses, typically routers or firewalls
 	* Routers encrypt and decrypt unnoticed by higher layer
 	* **"Encrypt to an IP address"**
 * **Transport-layer security**
@@ -289,6 +289,16 @@
 	* authentication of sender and data
 	* end users have control over their keys
 	* end-to-end security ("encrypt to an e-mail address"), e.g., **PGP**
+* **IPsec**
+	* Idea of network-layer security: No need to change applications or user behaviour
+	* IPsec is a protocol suite
+		* **Authentication header (AH) protocol**
+			* Transport mode
+			* Tunnel mode
+		* **Encapsulating Security Payloads (ESP) protocol**
+			* Transport mode
+			* Tunnel model
+		* **Security Association (SA) protocol**
 
 
 
