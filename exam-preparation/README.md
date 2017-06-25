@@ -299,6 +299,20 @@
 			* Transport mode
 			* Tunnel model
 		* **Security Association (SA) protocol**
+			* Concept to formalize unidirectional security relationships between two parties
+			* Security Association Database (SADB) contains list of active security associations (SA)
+	* **Transport mode**
+		* ![TransportMode](img/transport_mode.PNG) 
+		* Only the payload of the IP packet is protected
+		* Data is protected from source to destination
+		* Header information is completely in the clear
+		* Used only between hosts
+	* **Tunnel mode**
+		* ![TunnelMode](img/tunnel_mode.PNG) 
+		* Entire IP packet is protected (i.e. IP header and data)
+		* Becomes the payload of a new IP packet
+		* May contain different source and destination addresses
+		* Can be used between hosts, gateways, or host-gateway		
 
 
 
