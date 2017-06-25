@@ -263,17 +263,32 @@
 	* Transport-layer securutiy: e.g., TLS/SSL
 	* Network-layer security: e.g., IPsec
 	* Link-layer security: e.g., WEP, WPA, WPA2
-* Link-layer security
+* **Link-layer security**
 	* ![LinkLayerSecurity](img/link_layer_security.PNG)
-	* Encrypt all network packets between network links, e.g., WPA2
+	* Encrypt all network packets between network links, e.g., **WPA2**
 	* Point-to-point security between network interfaces
-	* "Encrypt to a MAC address"	
-* Network-layer security
+	* **"Encrypt to a MAC address"**	
+* **Network-layer security**
 	* ![NetworkLayerSecurity](img/network_layer_security.PNG)
 	* Encrypt IP packets, main protocol: **IPsec**
 	* Point-to-point security btween entities identified by IP addresses, typically routers or firewalls
 	* Routers encrypt and decrypt unnoticed by higher layer
-	* "Encrypt to an IP address"
+	* **"Encrypt to an IP address"**
+* **Transport-layer security**
+	* ![TransportLayerSecurity](img/transport_layer_security.PNG) 	
+	* ![TransportLayerSecurity2](img/transport_layer_security2.PNG) 
+	* Encrypt sessions and messages, e.g., **TLS/SSL**
+	* communication between web browser and server, or email clients and servers
+	* entities identified by connections, port numbers
+	* **"Encrypt to a server process"**
+	* part of the communication might still be unprotected (to application server or between mail servers)
+* **Application-layer security**	
+	* ![ApplicationLayerSecurity](img/application_layer_security.PNG) 
+	* Add security to standard message formats
+	* For email: entire link between two user mail clients is protected
+	* authentication of sender and data
+	* end users have control over their keys
+	* end-to-end security ("encrypt to an e-mail address"), e.g., **PGP**
 
 
 
