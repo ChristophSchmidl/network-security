@@ -242,7 +242,7 @@
 * **Bailiwick check**
 	* Reject ADDITIONAL information if the requested server is not authorized to answer for the domain
 * **Kaminsky's attack**
-* **DNS Randomization**: 16bit Query ID (QID) + Source-port randomization (16bit), 0x29 randomization (random capitalization of letter in the QUESTION section)
+* **DNS Randomization**: 16bit Query ID (QID) + Source-port randomization (16bit), 0x20 randomization (random capitalization of letter in the QUESTION section)
 	* Does not prevent an attack if a passive MitM is performed
 * **DNSSEC**
 	* Idea: Use cryptographically signed DNS entries (sign information offline)
@@ -256,6 +256,24 @@
 	* Finding all hosts in a DNS zone is called zone numeration	
 
 ## Lecture 5: Encrypting Network Communication
+
+* Cryptography in the TCP/IP stack
+* ![CryptographyInTheTCPIPStack](img/cryptography_in_the_tcp_ip_stack.PNG)
+	* Application-layer security: e.g., PGP, S/MIME, OTR
+	* Transport-layer securutiy: e.g., TLS/SSL
+	* Network-layer security: e.g., IPsec
+	* Link-layer security: e.g., WEP, WPA, WPA2
+* Link-layer security
+	* ![LinkLayerSecurity](img/link_layer_security.PNG)
+	* Encrypt all network packets between network links, e.g., WPA2
+	* Point-to-point security between network interfaces
+	* "Encrypt to a MAC address"	
+* Network-layer security
+	* ![NetworkLayerSecurity](img/network_layer_security.PNG)
+	* Encrypt IP packets, main protocol: **IPsec**
+	* Point-to-point security btween entities identified by IP addresses, typically routers or firewalls
+	* Routers encrypt and decrypt unnoticed by higher layer
+	* "Encrypt to an IP address"
 
 
 
