@@ -86,8 +86,34 @@
 	* Each side acknowledges the FIN of the other side
 * **TCP Header**	
 * ![TCPHeader](img/tcp_header.PNG)	
-* **SYN flooding**: Client sends **SYN**. Server allocates resources for connection in the SYN queue and sends **SYN/ACK** back. Client never replies back with **ACK** to the server's **SYN/ACK**. The server's **SYN queue** will fill up when sending of those SYN packets is faster than the server is "discarding" half-open connections. Time to discard is configured by the TCP SYN-Received timer. 
-
+* **SYN flooding**: Client sends **SYN**. Server allocates resources for connection in the SYN queue and sends **SYN/ACK** back. Client never replies back with **ACK** to the server's **SYN/ACK**. The server's **SYN queue** will fill up when sending of those SYN packets is faster than the server is "discarding" half-open connections. Time to discard is configured by the TCP SYN-Received timer.
+* **SYN flooding countermeasures:**
+	* Decrease the SYN-Received timer
+	* Increase the size of the queue
+	* Recycle oldest half-open connection
+	* Firewalls
+	* Better idea: SYN cookies
+* **SYN cookies**	 
+	* Reason for allocating resources after receiving SYN: need to remember properties of the connection
+	* Idea: Securely encode this information in the server's **initial sequence number (ISN)** of SYN/ACK. Reconstruct information when ACK from client is received.
+* **Ping of death**
+	* Idea: target does not know how to handle malformed packets and crashes
+	* IP packets are limited to a length of **65535 bytes**
+	* Overlong IP packet will overflow the buffer which is used to assemble fragments
+	* Trivial to exploit: ``` ping -s 65510 target ```
+* **TCP session hijacking**: this became known as the "Mitnick attack" by using a DOS attack and guessing ISN.
+* **Common services and their ports**: Same port for UDP and TCP (but service is not necessarily listening on both)
+* ![CommonServices](img/common_services.png)
+* **Port scanning**
+	* Default scan method for non-privilged user: **connect() scan**: Uses the OS's connect() system call to connect to a remote port. if connect() succeeds -> port is open, if connect() fails -> port is closed. Connect() scans appear in the servers's log files
+	* **SYN scan**: Send SYN packet. If SYN/ACK is received -> port is open, if RST is received -> port is closed. Send an RST when receiving SYN/ACK to "hang up". Because the service is never completed, server does not log it.
+	* **Idle scan**: More stealthy because idle scan is using a zombie host. Idle scans are based on the fragment identification number of IP packets (IPID) and that an increment of 1 means that a port is closed and an increment of 2 that the port is open.
+		* Probe the zombie's IPID and record it, let's say IPID = X
+		* Forge SYN packet from the zombie to the target host and port
+		* Probe the zombie's IPID again, let say IPID = Y
+		* Y = X + 1: port is closed
+		* Y = X + 2: port is open
+	* **UDP port scanning**	
 
 
 ## Lecture 3: Routing and Firewalls
