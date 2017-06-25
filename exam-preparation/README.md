@@ -145,7 +145,17 @@
 	* **Loose source and record route (LSRR)*
 	* Idea in both cases: The source specifies the route
 * **ICMP redirect**	
-
+	* ICMP redirects are mostly used to inform the host that a shorter route is available and can "suggest" better routes
+	* Idea: Become MitM by spoofing ip of a visited host and send ICMP redirect
+	* Limitations:
+		* ICMP redirect will only be accepted for a route to a recently contacted host
+		* 10 minutes time frame
+* **Dynamic Host Configuration Protocol (DHCP)**
+	* When a host enters a network it sends DHCP discovery packets and the DHCP server answers
+* **Rogue DHCP**
+	* Attacker can canswer DHCP requests **faster**
+	* Knock clients **offline** by providing unroutable IP addresses
+	* Communicate itself as default gatesway and become MitM between requesting client and the outside			
 
 
 
