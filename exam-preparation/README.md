@@ -467,7 +467,7 @@
 
 	* c) A mail client on mylaptop retrieves e-mail from post.science.ru.nl through IMAPS (TCP port 993)
 	
-		* Answer
+		* Is **not allowed** by the current firewall rules. Rule to allow IMAPS: ``` iptables -A OUTPUT -p tcp --dport 993 -j ACCEPT ```. You could do the same for port 143 (IMAP).
 
 	* d) Another computer (not the laptop with the firewall) uses the ping utility to test whether mylaptop is reachable.
 
@@ -475,7 +475,7 @@
 
 	* e) Somebody else from outside tries to connect to the SSH server running on port 22 of mylaptop.
 	
-		* Answer
+		* Is **not allowed** by the current firewall rules. Rule to allow SSH from outside: ``` iptables -A INPUT -p tcp --dport 22 -j ACCEPT ```
 
 
 5. **(20 points)** Consider a confidential e-mail being sent from a user A (using e-mail provider P_A) to another user B (using e-mail provider P_B). Consider the following independent cryptographic protections for this e-mail communication:
