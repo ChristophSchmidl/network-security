@@ -502,7 +502,7 @@
 
 		**Note:** Don't forget to submit this sheet together with your exam or copy the table to your exam sheet.
 
-		* Answer
+		* ![FilledSecureTable](img/filled_table.png)
 
 	* b) Can you think of an attack that would work against each of the protections (and any combination of those)?
 	
