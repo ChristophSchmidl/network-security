@@ -435,11 +435,15 @@
 
 	* a) How does it work? What packets are being sent to probe whether the port is open, what answer packet(s) are expected if the port is open, what answer packet(s) are expected if it's closed?
 
-		* Answer
+		* **Connect scan**: The connect scan is not using raw packets but the underlying connect() system call of the operating system to connect to a remote port. If connect() succeeds then the port is open, if connect() fails then the port is closed. This can method relies on the Berkeley Sockets-API.
+		* **SYN scan**: The SYN scan sends TCP SYN packets and receives a SYN/ACK packet if the port is open and a RST packet if the port is closed.
+		* **Idle scan**: Idle scans rely on a so called zombie host and the fragment identification number (IPID) of IP packets. A zombie host is a idle machine on the network. First you have to probe the zombie's IPID and record it (IPID=X). Then forge a SYN packet from the zombie to the target host and port. Probe the zombie's IPID again (IPID=Y). If Y = X + 1 then the port is closed, if Y = X + 2 then the port is open.
 
 	* b) The scans are listed in increasing order of "stealthiness". Explain briefly why this is the case by explaining how a system administrator could notice those scans and attribute their origin.
 	
-		* Answer
+		* **Connect scan**: Connect scan takes the underlying socket api and performs full connects which reveals the ip address of the source and always closes its connections properly which let them appear in the server logs.
+		* **SYN scan**: SYN scans also reveal the ip address of the source but SYN scans do not close the connections properly all the time and are left with a half open connection which may not appear in the server logs. The ip address is visible nevertheless and could be traced by any good intrusion system.
+		* **Idle scan**: Idle scans have the advantage that they only reveal the ip address of the zombie host and not the original source. Idle scans also use SYN packets but perform their analysis of an open port based on the IPID.
 
 
 4. **(20 points)** Consider the following iptables firewall script running on a laptop called **mylaptop**:
