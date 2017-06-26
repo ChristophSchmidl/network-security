@@ -459,11 +459,11 @@
 
 	* a) A web browser running on mylaptop tries to load the website at https://www.google.com
 
-		* Answer
+		* The firewall **allows** it based on the fact that outgoing connections on port 80 (http) and port 443 (https) are allowed and the resulting tcp handshake results into a established/related connection which is allowed by the last rule as input.
 
 	* b) The user runs the ping utility on my laptop to test whether the host www.ru.nl is reachable.
 	
-		* Answer
+		* The firewall **allows** it based on the fact that outgoing icmp echo-requests are allowed and and related/established connections are allowed as input.
 
 	* c) A mail client on mylaptop retrieves e-mail from post.science.ru.nl through IMAPS (TCP port 993)
 	
@@ -471,7 +471,7 @@
 
 	* d) Another computer (not the laptop with the firewall) uses the ping utility to test whether mylaptop is reachable.
 
-		* Answer
+		* Is **not allowed** by the current firewall rules. Rule to allow incoming ping requests: ``` iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT ```
 
 	* e) Somebody else from outside tries to connect to the SSH server running on port 22 of mylaptop.
 	
